@@ -9,7 +9,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
 @interface EligibilityInput : NSObject<NSSecureCoding, NSCopying>
 
 @property(nonatomic, assign) uint64_t type; // +0x8

@@ -11,6 +11,8 @@
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
 		2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */; };
+		2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7992C1F343900F5D46B /* EligibilityLog.m */; };
+		27CA501F2C1F3D6A009785B3 /* Eligibility+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA501E2C1F3D6A009785B3 /* Eligibility+Util.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +35,10 @@
 		2730C7922C1F129800F5D46B /* EligibilityInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInput.h; sourceTree = "<group>"; };
 		2730C7932C1F129800F5D46B /* EligibilityInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInput.m; sourceTree = "<group>"; };
 		2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libMobileGestalt.tbd; path = usr/lib/libMobileGestalt.tbd; sourceTree = SDKROOT; };
+		2730C7982C1F343900F5D46B /* EligibilityLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityLog.h; sourceTree = "<group>"; };
+		2730C7992C1F343900F5D46B /* EligibilityLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityLog.m; sourceTree = "<group>"; };
+		27CA501D2C1F3D6A009785B3 /* Eligibility+Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Eligibility+Util.h"; sourceTree = "<group>"; };
+		27CA501E2C1F3D6A009785B3 /* Eligibility+Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Eligibility+Util.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,10 @@
 				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
 				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
 				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
+				27CA501D2C1F3D6A009785B3 /* Eligibility+Util.h */,
+				27CA501E2C1F3D6A009785B3 /* Eligibility+Util.m */,
+				2730C7982C1F343900F5D46B /* EligibilityLog.h */,
+				2730C7992C1F343900F5D46B /* EligibilityLog.m */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
@@ -141,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27CA501F2C1F3D6A009785B3 /* Eligibility+Util.m in Sources */,
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
+				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

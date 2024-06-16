@@ -6,6 +6,8 @@
 //
 
 #import "EligibilityInput.h"
+#import "EligibilityLog.h"
+#import "Eligibility+Util.h"
 
 @implementation EligibilityInput
 
@@ -47,6 +49,49 @@
     EligibilityInput *copiedInput = [self initWithInputType:input.type status:input.status process:input.settingProccessName];
     copiedInput.setTime = input.setTime;
     return copiedInput;
+}
+
+- (NSString *)description {
+    uint64_t type = self.type;
+    uint64_t status = self.status;    
+    return [NSString stringWithFormat:@"<EligibilityInput type: %@ status: %@ setTime: %@ settingProccessName: %@>",
+            eligibility_input_to_str(type) ?: [NSString stringWithFormat:@"<Unknown: %llu>", type],
+            eligibility_input_status_to_str(status) ?: [NSString stringWithFormat:@"<Unknown: %llu>", status],
+            self.setTime,
+            self.settingProccessName ?: @"<NULL>"];
+}
+
+- (BOOL)isEqual:(id)other
+{
+    if (![super isEqual:other]) {
+        return NO;
+    } else if (other == self) {
+        return YES;
+    } else {
+        if (![other isKindOfClass:self.class]) {
+            return NO;
+        }
+        EligibilityInput *otherInput = (EligibilityInput *)other;
+        if (self.type != otherInput.type) {
+            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "type");
+            return NO;
+        } else if (self.status != otherInput.status) {
+            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "status");
+            return NO;
+        } else if (self.setTime != otherInput.setTime) {
+            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "setTime");
+            return NO;
+        } else if (self.settingProccessName != otherInput.settingProccessName) {
+            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "settingProccessName");
+            return NO;
+        } else {
+            return YES;
+        }
+    }
+}
+
+- (NSUInteger)hash {
+    return self.type ^ self.status ^ self.setTime.hash ^ self.settingProccessName.hash;
 }
 
 @end
