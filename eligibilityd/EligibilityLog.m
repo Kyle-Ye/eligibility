@@ -5,7 +5,7 @@
 //  Created by Kyle on 2024/6/16.
 //
 
-#import "Log.h"
+#import "EligibilityLog.h"
 
 os_log_t eligibility_log(void) {
     static dispatch_once_t onceToken;

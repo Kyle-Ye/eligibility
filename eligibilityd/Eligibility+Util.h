@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NSString * _Nullable eligibility_input_to_str(uint64_t type);
-NSString * _Nullable eligibility_input_status_to_str(uint64_t status);
+NSString * _Nullable eligibility_input_to_str(NSUInteger type);
+NSString * _Nullable eligibility_input_status_to_str(NSUInteger status);
 
 NS_ASSUME_NONNULL_END

@@ -15,7 +15,7 @@
     return YES;
 }
 
-- (instancetype)initWithInputType:(int64_t)type status:(int64_t)status process:(NSString *)process {
+- (instancetype)initWithInputType:(NSUInteger)type status:(NSUInteger)status process:(NSString * _Nullable)process {
     self = [super init];
     if (self) {
         _type = type;
@@ -61,8 +61,7 @@
             self.settingProccessName ?: @"<NULL>"];
 }
 
-- (BOOL)isEqual:(id)other
-{
+- (BOOL)isEqual:(id)other {
     if (![super isEqual:other]) {
         return NO;
     } else if (other == self) {
