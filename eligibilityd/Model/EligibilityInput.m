@@ -16,7 +16,7 @@
     return YES;
 }
 
-- (instancetype)initWithInputType:(NSUInteger)type status:(NSUInteger)status process:(NSString * _Nullable)process {
+- (instancetype)initWithInputType:(EligibilityInputType)type status:(EligibilityInputStatus)status process:(NSString * _Nullable)process {
     self = [super init];
     if (self) {
         _type = type;

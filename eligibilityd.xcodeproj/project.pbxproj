@@ -42,6 +42,8 @@
 		27CA501E2C1F3D6A009785B3 /* Eligibility+Util.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Eligibility+Util.m"; sourceTree = "<group>"; };
 		27CA50212C1F4308009785B3 /* BoronAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoronAsset.h; sourceTree = "<group>"; };
 		27CA50222C1F4308009785B3 /* BoronAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoronAsset.m; sourceTree = "<group>"; };
+		27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputType.h; sourceTree = "<group>"; };
+		27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputStatus.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,8 @@
 				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
 				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
 				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
+				27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */,
+				27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";

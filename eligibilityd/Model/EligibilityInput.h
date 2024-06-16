@@ -7,6 +7,8 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
+#import "EligibilityInputType.h"
+#import "EligibilityInputStatus.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSDate *setTime;
 @property(nonatomic, strong, nullable) NSString *settingProccessName;
 
-- (instancetype)initWithInputType:(NSUInteger)type status:(NSUInteger)status process:(NSString * _Nullable)process;
+- (instancetype)initWithInputType:(EligibilityInputType)type status:(EligibilityInputStatus)status process:(NSString * _Nullable)process;
 
 @end
 

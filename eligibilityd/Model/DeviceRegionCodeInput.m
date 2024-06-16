@@ -28,7 +28,7 @@ NSString *MGGetStringAnswer(NSString *);
 }
 
 - (instancetype)init {
-    self = [super initWithInputType:6 status:0 process:@"eligibilityd"];
+    self = [super initWithInputType:EligibilityInputTypeDeviceRegionCode status:EligibilityInputStatusNone process:@"eligibilityd"];
     if (self) {
         self.deviceRegionCode = DeviceRegionCodeInput._mgDeviceRegionCode;
     }
