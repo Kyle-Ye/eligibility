@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EligibilityInput : NSObject<NSSecureCoding, NSCopying>
 
-@property(nonatomic, assign) NSUInteger type;
-@property(nonatomic, assign) NSUInteger status;
+@property(nonatomic, assign) EligibilityInputType type;
+@property(nonatomic, assign) EligibilityInputStatus status;
 @property(nonatomic, strong) NSDate *setTime;
 @property(nonatomic, strong, nullable) NSString *settingProccessName;
 

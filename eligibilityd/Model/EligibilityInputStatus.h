@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, EligibilityInputStatus) {
     EligibilityInputStatusNone = 0,
     EligibilityInputStatusNotSet = 1,
@@ -18,3 +20,7 @@ typedef NS_ENUM(NSUInteger, EligibilityInputStatus) {
     EligibilityInputStatusTokenExpired = 6,
     EligibilityInputStatusNoAccount = 7,
 };
+
+NSString * _Nullable eligibility_input_status_to_str(EligibilityInputStatus status);
+
+NS_ASSUME_NONNULL_END

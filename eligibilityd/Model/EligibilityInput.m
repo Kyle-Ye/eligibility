@@ -8,7 +8,6 @@
 
 #import "EligibilityInput.h"
 #import "EligibilityLog.h"
-#import "Eligibility+Util.h"
 
 @implementation EligibilityInput
 

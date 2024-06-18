@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, EligibilityInputType) {
     EligibilityInputTypeInvalid = 0,
     EligibilityInputTypeCountryLocation = 1,
@@ -21,3 +23,7 @@ typedef NS_ENUM(NSUInteger, EligibilityInputType) {
     EligibilityInputTypeGreyMatterOnQueue = 9,
     EligibilityInputTypeSiriLanguage = 10,
 };
+
+NSString * _Nullable eligibility_input_to_str(EligibilityInputType type);
+
+NS_ASSUME_NONNULL_END
