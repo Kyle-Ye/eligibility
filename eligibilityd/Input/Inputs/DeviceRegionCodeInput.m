@@ -8,6 +8,7 @@
 
 #import "DeviceRegionCodeInput.h"
 #import "EligibilityLog.h"
+#import "EligibilityBase.h"
 
 NSString *MGGetStringAnswer(NSString *);
 
@@ -50,8 +51,8 @@ NSString *MGGetStringAnswer(NSString *);
     }
     return self;
 }
-    
-- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+
+- (id)copyWithZone:(nullable NSZone *)zone {
     DeviceRegionCodeInput *copiedInput = [super copyWithZone:zone];
     copiedInput.deviceRegionCode = [self.deviceRegionCode copyWithZone:zone];
     return copiedInput;
@@ -71,8 +72,8 @@ NSString *MGGetStringAnswer(NSString *);
             return NO;
         }
         DeviceRegionCodeInput *otherInput = (DeviceRegionCodeInput *)other;
-        if (self.deviceRegionCode != otherInput.deviceRegionCode) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[DeviceRegionCodeInput isEqual:]", "deviceRegionCode");
+        if (!AreObjectsEqual(self.deviceRegionCode, otherInput.deviceRegionCode)) {
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "deviceRegionCode");
             return NO;
         } else {
             return YES;

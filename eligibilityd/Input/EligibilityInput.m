@@ -72,16 +72,16 @@
         }
         EligibilityInput *otherInput = (EligibilityInput *)other;
         if (self.type != otherInput.type) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "type");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "type");
             return NO;
         } else if (self.status != otherInput.status) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "status");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "status");
             return NO;
         } else if (self.setTime != otherInput.setTime) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "setTime");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "setTime");
             return NO;
         } else if (self.settingProccessName != otherInput.settingProccessName) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[EligibilityInput isEqual:]", "settingProccessName");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "settingProccessName");
             return NO;
         } else {
             return YES;

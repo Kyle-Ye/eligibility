@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DeviceRegionCodeInput : EligibilityInput<NSSecureCoding, NSCopying>
+@interface DeviceRegionCodeInput : EligibilityInput
 
 @property(nonatomic, strong) NSString *deviceRegionCode;
 @property(nonatomic, assign, readonly) BOOL isChinaSKU;

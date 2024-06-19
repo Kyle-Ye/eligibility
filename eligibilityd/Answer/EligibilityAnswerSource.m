@@ -15,7 +15,7 @@ NSString *eligibility_answer_source_to_str(EligibilityAnswerSource answerSource)
         case EligibilityAnswerSourceComputed: return @"OS_ELIGIBILITY_ANSWER_SOURCE_COMPUTED";
         case EligibilityAnswerSourceForced: return @"OS_ELIGIBILITY_ANSWER_SOURCE_FORCED";
         default:
-            os_log_error(eligibility_log(), "%s: Unsupported answer source: %llu", "eligibility_answer_source_to_str", (unsigned long long)answerSource);
+            os_log_error(eligibility_log(), "%s: Unsupported answer source: %llu", __func__, (unsigned long long)answerSource);
             return nil;
     }
 }

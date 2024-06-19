@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 270DB0172C228443003DF9BF /* LocatedCountryInput.m */; };
+		270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */; };
+		270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */; };
 		2730C7892C1F120B00F5D46B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7882C1F120B00F5D46B /* main.m */; };
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
@@ -30,6 +33,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270DB0162C228443003DF9BF /* LocatedCountryInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocatedCountryInput.h; sourceTree = "<group>"; };
+		270DB0172C228443003DF9BF /* LocatedCountryInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocatedCountryInput.m; sourceTree = "<group>"; };
+		270DB01C2C228B5F003DF9BF /* EligibilityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityBase.h; sourceTree = "<group>"; };
 		2730C7852C1F120B00F5D46B /* eligibilityd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibilityd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2730C7882C1F120B00F5D46B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceRegionCodeInput.h; sourceTree = "<group>"; };
@@ -63,6 +69,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270DB0142C22841D003DF9BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */,
+				27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */,
+				27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */,
+				27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		270DB0152C228430003DF9BF /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
+				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
+				270DB0162C228443003DF9BF /* LocatedCountryInput.h */,
+				270DB0172C228443003DF9BF /* LocatedCountryInput.m */,
+			);
+			path = Inputs;
+			sourceTree = "<group>";
+		};
 		2730C77C2C1F120B00F5D46B = {
 			isa = PBXGroup;
 			children = (
@@ -83,10 +111,13 @@
 		2730C7872C1F120B00F5D46B /* eligibilityd */ = {
 			isa = PBXGroup;
 			children = (
-				27CA50202C1F42F9009785B3 /* Model */,
+				2799A6EC2C2160FD00312655 /* Asset */,
+				2799A6EB2C2160F400312655 /* Input */,
+				27CA50202C1F42F9009785B3 /* Answer */,
 				2730C7882C1F120B00F5D46B /* main.m */,
 				2730C7982C1F343900F5D46B /* EligibilityLog.h */,
 				2730C7992C1F343900F5D46B /* EligibilityLog.m */,
+				270DB01C2C228B5F003DF9BF /* EligibilityBase.h */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
@@ -99,25 +130,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		27CA50202C1F42F9009785B3 /* Model */ = {
+		2799A6EB2C2160F400312655 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				2730C7922C1F129800F5D46B /* EligibilityInput.h */,
+				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
+				270DB0142C22841D003DF9BF /* Model */,
+				270DB0152C228430003DF9BF /* Inputs */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		2799A6EC2C2160FD00312655 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
 				27CA50212C1F4308009785B3 /* BoronAsset.h */,
 				27CA50222C1F4308009785B3 /* BoronAsset.m */,
-				2730C7922C1F129800F5D46B /* EligibilityInput.h */,
-				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
-				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
-				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
-				27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */,
-				27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */,
-				27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */,
-				27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		27CA50202C1F42F9009785B3 /* Answer */ = {
+			isa = PBXGroup;
+			children = (
 				27CA50362C1F5C22009785B3 /* EligibilityAnswer.h */,
 				27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */,
 				27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */,
 				27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */,
 			);
-			path = Model;
+			path = Answer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,10 +218,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */,
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
+				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
+				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
 				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,

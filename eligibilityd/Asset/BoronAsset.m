@@ -58,10 +58,10 @@
         }
         BoronAsset *otherAsset = (BoronAsset *)other;
         if (self.countryCodes != otherAsset.countryCodes) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[BoronAsset isEqual:]", "countryCodes");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "countryCodes");
             return NO;
         } else if (self.gracePeriodInSeconds != otherAsset.gracePeriodInSeconds) {
-            os_log_with_type(eligibility_log(), OS_LOG_TYPE_DEFAULT, "%s: Property %s did not match", "-[BoronAsset isEqual:]", "gracePeriodInSeconds");
+            os_log(eligibility_log(), "%s: Property %s did not match", __func__, "gracePeriodInSeconds");
             return NO;
         } else {
             return YES;
