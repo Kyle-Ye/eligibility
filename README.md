@@ -14,6 +14,10 @@ The author of this project is not responsible for any consequences that may aris
 
 If you find any issues or have suggestions for improvements, feel free to submit an issue or a pull request.
 
+## Related Links
+
+- https://theapplewiki.com/wiki/Eligibility
+
 ## LICENSE
 
 See LICENSE

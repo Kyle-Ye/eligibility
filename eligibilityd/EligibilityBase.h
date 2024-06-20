@@ -8,6 +8,8 @@
 #ifndef EligibilityBase_h
 #define EligibilityBase_h
 
+#define VERSION "98.0.0.0.5"
+
 #define AreObjectsEqual(x, y) ({ \
     id _x = (x); \
     id _y = (y); \
