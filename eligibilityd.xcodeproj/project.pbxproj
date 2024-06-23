@@ -105,6 +105,33 @@
 			path = Inputs;
 			sourceTree = "<group>";
 		};
+		27267E4A2C2879F700614B1D /* XPC */ = {
+			isa = PBXGroup;
+			children = (
+				27267E422C280D8C00614B1D /* EligibilityXPC.h */,
+				27267E432C280D8C00614B1D /* EligibilityXPC.m */,
+			);
+			path = XPC;
+			sourceTree = "<group>";
+		};
+		27267E4B2C287A0000614B1D /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				2730C7982C1F343900F5D46B /* EligibilityLog.h */,
+				2730C7992C1F343900F5D46B /* EligibilityLog.m */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
+		27267E4C2C287A0600614B1D /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				27267E3C2C28016700614B1D /* GlobalConfiguration.h */,
+				27267E3D2C28016700614B1D /* GlobalConfiguration.m */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		272EB8772C2466A900C5B1DC /* spi */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,17 +165,14 @@
 			isa = PBXGroup;
 			children = (
 				27A770772C243734002E7A1D /* eligibilityd.entitlements */,
+				270DB01C2C228B5F003DF9BF /* EligibilityBase.h */,
+				2730C7882C1F120B00F5D46B /* main.m */,
 				2799A6EC2C2160FD00312655 /* Asset */,
 				2799A6EB2C2160F400312655 /* Input */,
 				27CA50202C1F42F9009785B3 /* Answer */,
-				2730C7882C1F120B00F5D46B /* main.m */,
-				2730C7982C1F343900F5D46B /* EligibilityLog.h */,
-				2730C7992C1F343900F5D46B /* EligibilityLog.m */,
-				270DB01C2C228B5F003DF9BF /* EligibilityBase.h */,
-				27267E3C2C28016700614B1D /* GlobalConfiguration.h */,
-				27267E3D2C28016700614B1D /* GlobalConfiguration.m */,
-				27267E422C280D8C00614B1D /* EligibilityXPC.h */,
-				27267E432C280D8C00614B1D /* EligibilityXPC.m */,
+				27267E4B2C287A0000614B1D /* Log */,
+				27267E4C2C287A0600614B1D /* Configuration */,
+				27267E4A2C2879F700614B1D /* XPC */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
