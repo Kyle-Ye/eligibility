@@ -16,7 +16,15 @@ If you find any issues or have suggestions for improvements, feel free to submit
 
 ## Related Links
 
+### Eligibility
+
 - https://theapplewiki.com/wiki/Eligibility
+
+### XPC
+
+- https://github.com/PureDarwin/XPC
+- https://github.com/jceel/libxpc
+- https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/spi/darwin/XPCSPI.h
 
 ## LICENSE
 
