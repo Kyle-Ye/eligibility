@@ -11,6 +11,7 @@
 		270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */; };
 		270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */; };
 		27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E3D2C28016700614B1D /* GlobalConfiguration.m */; };
+		27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E432C280D8C00614B1D /* EligibilityXPC.m */; };
 		2730C7892C1F120B00F5D46B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7882C1F120B00F5D46B /* main.m */; };
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
@@ -40,6 +41,8 @@
 		27267E3B2C26CE3600614B1D /* XPCSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCSPI.h; sourceTree = "<group>"; };
 		27267E3C2C28016700614B1D /* GlobalConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConfiguration.h; sourceTree = "<group>"; };
 		27267E3D2C28016700614B1D /* GlobalConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalConfiguration.m; sourceTree = "<group>"; };
+		27267E422C280D8C00614B1D /* EligibilityXPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityXPC.h; sourceTree = "<group>"; };
+		27267E432C280D8C00614B1D /* EligibilityXPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityXPC.m; sourceTree = "<group>"; };
 		2730C7852C1F120B00F5D46B /* eligibilityd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibilityd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2730C7882C1F120B00F5D46B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceRegionCodeInput.h; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				270DB01C2C228B5F003DF9BF /* EligibilityBase.h */,
 				27267E3C2C28016700614B1D /* GlobalConfiguration.h */,
 				27267E3D2C28016700614B1D /* GlobalConfiguration.m */,
+				27267E422C280D8C00614B1D /* EligibilityXPC.h */,
+				27267E432C280D8C00614B1D /* EligibilityXPC.m */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
 				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
+				27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
 				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
