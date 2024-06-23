@@ -9,9 +9,7 @@
 #import "LocatedCountryInput.h"
 #import "EligibilityLog.h"
 #import "EligibilityBase.h"
-#import <xpc/xpc.h>
-
-CFTypeRef _CFXPCCreateCFObjectFromXPCObject(xpc_object_t xpcattrs);
+#import "XPCSPI.h"
 
 @implementation LocatedCountryInput
 

@@ -10,6 +10,7 @@
 		270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 270DB0172C228443003DF9BF /* LocatedCountryInput.m */; };
 		270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */; };
 		270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */; };
+		27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E3D2C28016700614B1D /* GlobalConfiguration.m */; };
 		2730C7892C1F120B00F5D46B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7882C1F120B00F5D46B /* main.m */; };
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
@@ -36,6 +37,9 @@
 		270DB0162C228443003DF9BF /* LocatedCountryInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocatedCountryInput.h; sourceTree = "<group>"; };
 		270DB0172C228443003DF9BF /* LocatedCountryInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocatedCountryInput.m; sourceTree = "<group>"; };
 		270DB01C2C228B5F003DF9BF /* EligibilityBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityBase.h; sourceTree = "<group>"; };
+		27267E3B2C26CE3600614B1D /* XPCSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCSPI.h; sourceTree = "<group>"; };
+		27267E3C2C28016700614B1D /* GlobalConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConfiguration.h; sourceTree = "<group>"; };
+		27267E3D2C28016700614B1D /* GlobalConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalConfiguration.m; sourceTree = "<group>"; };
 		2730C7852C1F120B00F5D46B /* eligibilityd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibilityd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2730C7882C1F120B00F5D46B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceRegionCodeInput.h; sourceTree = "<group>"; };
@@ -93,10 +97,19 @@
 			path = Inputs;
 			sourceTree = "<group>";
 		};
+		272EB8772C2466A900C5B1DC /* spi */ = {
+			isa = PBXGroup;
+			children = (
+				27267E3B2C26CE3600614B1D /* XPCSPI.h */,
+			);
+			path = spi;
+			sourceTree = "<group>";
+		};
 		2730C77C2C1F120B00F5D46B = {
 			isa = PBXGroup;
 			children = (
 				27A770762C2436E1002E7A1D /* README.md */,
+				272EB8772C2466A900C5B1DC /* spi */,
 				2730C7872C1F120B00F5D46B /* eligibilityd */,
 				2730C7862C1F120B00F5D46B /* Products */,
 				2730C7952C1F13F700F5D46B /* Frameworks */,
@@ -122,6 +135,8 @@
 				2730C7982C1F343900F5D46B /* EligibilityLog.h */,
 				2730C7992C1F343900F5D46B /* EligibilityLog.m */,
 				270DB01C2C228B5F003DF9BF /* EligibilityBase.h */,
+				27267E3C2C28016700614B1D /* GlobalConfiguration.h */,
+				27267E3D2C28016700614B1D /* GlobalConfiguration.m */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
@@ -223,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */,
+				27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */,
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
 				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
@@ -272,6 +288,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -333,6 +350,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -358,6 +376,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = eligibilityd/eligibilityd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -368,6 +387,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = eligibilityd/eligibilityd.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
