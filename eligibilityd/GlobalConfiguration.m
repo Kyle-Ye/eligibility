@@ -17,4 +17,12 @@
     return NO;
 }
 
+- (BOOL)testMode {
+    return NO;
+}
+
+- (BOOL)setTestMode:(BOOL)testMode withError:(NSError * _Nullable *)error {
+    return NO;
+}
+
 @end

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(instancetype)sharedInstance;
 
+@property(nonatomic, assign, readonly) BOOL testMode;
+- (BOOL)setTestMode:(BOOL)testMode withError:(NSError * _Nullable *)error;
 - (BOOL)isMemoryConstrainedDevice;
 
 @end
