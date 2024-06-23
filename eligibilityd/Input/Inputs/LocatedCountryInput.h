@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSSet *countryCodes;
 
-- (instancetype)initWithCountryCodes:(xpc_object_t)countryCodes
+- (instancetype)initWithCountryCodes:(nullable xpc_object_t)countryCodes
                               status:(EligibilityInputStatus)status
-                             process:(NSString *)process;
+                             process:(nullable NSString *)process;
 - (instancetype)init NS_UNAVAILABLE;
 
 @end

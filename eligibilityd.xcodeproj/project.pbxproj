@@ -13,6 +13,8 @@
 		27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E3D2C28016700614B1D /* GlobalConfiguration.m */; };
 		27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E432C280D8C00614B1D /* EligibilityXPC.m */; };
 		27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27267E472C2874E100614B1D /* SystemConfiguration.framework */; };
+		27267E4F2C287A5E00614B1D /* InputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E4E2C287A5E00614B1D /* InputManager.m */; };
+		27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E532C2880FA00614B1D /* EligibilityUtils.m */; };
 		2730C7892C1F120B00F5D46B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7882C1F120B00F5D46B /* main.m */; };
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
@@ -47,6 +49,10 @@
 		27267E452C286EE800614B1D /* MobileGestalt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileGestalt.h; sourceTree = "<group>"; };
 		27267E462C2873E300614B1D /* variant_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = variant_private.h; sourceTree = "<group>"; };
 		27267E472C2874E100614B1D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		27267E4D2C287A5E00614B1D /* InputManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
+		27267E4E2C287A5E00614B1D /* InputManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputManager.m; sourceTree = "<group>"; };
+		27267E522C2880FA00614B1D /* EligibilityUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityUtils.h; sourceTree = "<group>"; };
+		27267E532C2880FA00614B1D /* EligibilityUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityUtils.m; sourceTree = "<group>"; };
 		2730C7852C1F120B00F5D46B /* eligibilityd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibilityd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2730C7882C1F120B00F5D46B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceRegionCodeInput.h; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 		270DB0152C228430003DF9BF /* Inputs */ = {
 			isa = PBXGroup;
 			children = (
+				2730C7922C1F129800F5D46B /* EligibilityInput.h */,
+				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
 				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
 				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
 				270DB0162C228443003DF9BF /* LocatedCountryInput.h */,
@@ -130,6 +138,24 @@
 				27267E3D2C28016700614B1D /* GlobalConfiguration.m */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		27267E502C287A6F00614B1D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				27267E4D2C287A5E00614B1D /* InputManager.h */,
+				27267E4E2C287A5E00614B1D /* InputManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		27267E512C2880E600614B1D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				27267E522C2880FA00614B1D /* EligibilityUtils.h */,
+				27267E532C2880FA00614B1D /* EligibilityUtils.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		272EB8772C2466A900C5B1DC /* spi */ = {
@@ -173,6 +199,7 @@
 				27267E4B2C287A0000614B1D /* Log */,
 				27267E4C2C287A0600614B1D /* Configuration */,
 				27267E4A2C2879F700614B1D /* XPC */,
+				27267E512C2880E600614B1D /* Utils */,
 			);
 			path = eligibilityd;
 			sourceTree = "<group>";
@@ -189,10 +216,9 @@
 		2799A6EB2C2160F400312655 /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				2730C7922C1F129800F5D46B /* EligibilityInput.h */,
-				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
 				270DB0142C22841D003DF9BF /* Model */,
 				270DB0152C228430003DF9BF /* Inputs */,
+				27267E502C287A6F00614B1D /* Manager */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -284,6 +310,8 @@
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
 				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
+				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
+				27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */,
 				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
 			);

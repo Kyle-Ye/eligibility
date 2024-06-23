@@ -55,7 +55,7 @@
     uint64_t type = self.type;
     uint64_t status = self.status;    
     return [NSString stringWithFormat:@"<EligibilityInput type: %@ status: %@ setTime: %@ settingProccessName: %@>",
-            eligibility_input_to_str(type) ?: [NSString stringWithFormat:@"<Unknown: %llu>", type],
+            eligibility_input_to_NSString(type),
             eligibility_input_status_to_str(status) ?: [NSString stringWithFormat:@"<Unknown: %llu>", status],
             self.setTime,
             self.settingProccessName ?: @"<NULL>"];

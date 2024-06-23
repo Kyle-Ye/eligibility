@@ -17,9 +17,9 @@
     return YES;
 }
 
-- (instancetype)initWithCountryCodes:(xpc_object_t)xpcCountryCodes
+- (instancetype)initWithCountryCodes:(nullable xpc_object_t)xpcCountryCodes
                               status:(EligibilityInputStatus)status
-                             process:(NSString *)process {
+                             process:(nullable NSString *)process {
     NSSet *countryCodes;
     if (xpcCountryCodes != nil) {
         xpc_type_t type = xpc_get_type(xpcCountryCodes);

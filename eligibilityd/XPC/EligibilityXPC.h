@@ -15,6 +15,4 @@ void main_block_invoke_1(void);
 void main_block_invoke_2(xpc_object_t object);
 void main_block_invoke_3(xpc_object_t object, dispatch_queue_t queue);
 
-void asyncBlock(dispatch_queue_t queue, dispatch_block_t block);
-
 NS_ASSUME_NONNULL_END

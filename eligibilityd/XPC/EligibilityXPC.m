@@ -7,20 +7,16 @@
 
 #import "EligibilityXPC.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
 #import "XPCSPI.h"
 #import "GlobalConfiguration.h"
+#import "EligibilityUtils.h"
 
-#import <objc/objc.h>
 #import <notify.h>
 #import <libproc.h>
 
 void _sendInputsNeededNotification(void);
 void _createDirectoryAtPath(void);
-void copy_eligibility_domain_daemon_directory_path(void);
-
 void _connectionHandler(xpc_object_t object, xpc_connection_t connection);
-uint64_t eligibility_xpc_get_message_type(xpc_object_t object);
 bool _checkEntitlement(audit_token_t *token, const char *name);
 bool _checkTestModeEntitlement(audit_token_t *token);
 void _tryExitWhenCleanOnWorkloop_block_invoke(void);
@@ -68,17 +64,6 @@ void main_block_invoke_3(xpc_object_t object, dispatch_queue_t queue) {
     }
 }
 
-void asyncBlock(dispatch_queue_t queue, dispatch_block_t block) {
-    // TODO
-    os_transaction_t transaction = os_transaction_create("com.apple.eligibilityd.async-block");
-    
-    dispatch_async(queue, ^{
-        @autoreleasepool {
-            block();
-        }
-    });
-}
-
 void _sendInputsNeededNotification(void) {
     // TODO
     uint32_t status = notify_post("com.apple.os-eligibility-domain.input-needed");
@@ -88,15 +73,6 @@ void _sendInputsNeededNotification(void) {
 }
 
 void _createDirectoryAtPath(void) {
-    // TODO
-}
-
-void copy_eligibility_domain_daemon_directory_path(void) {
-    char *x;
-    int size = asprintf(&x, "%s%s", "/", "/private/var/db/os_eligibility");
-    if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __FUNCTION__, "/private/var/db/os_eligibility");
-    }
     // TODO
 }
 
@@ -282,15 +258,6 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
         }
     }
     xpc_connection_send_message(connection, reply);
-}
-
-uint64_t eligibility_xpc_get_message_type(xpc_object_t object) {
-    xpc_type_t type = xpc_get_type(object);
-    if (type != XPC_TYPE_DICTIONARY) {
-        os_log_error(eligibility_log(), "%s: xpc message type must be a dictionary", __func__);
-        return 0;
-    }
-    return xpc_dictionary_get_uint64(object, "eligibility_message_type");
 }
 
 bool _checkEntitlement(audit_token_t *token, const char *name) {

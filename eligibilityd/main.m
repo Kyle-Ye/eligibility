@@ -8,6 +8,7 @@
 #import "EligibilityLog.h"
 #import "EligibilityBase.h"
 #import "EligibilityXPC.h"
+#import "EligibilityUtils.h"
 
 int main(int argc, const char * argv[]) {
     os_log_info(eligibility_log(), "%s: eligibilityd (%s) built at %s %s started", __func__, VERSION, __DATE__, __TIME__);

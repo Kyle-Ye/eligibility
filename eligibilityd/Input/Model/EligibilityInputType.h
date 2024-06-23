@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, EligibilityInputType) {
     EligibilityInputTypeSiriLanguage = 10,
 };
 
-NSString * _Nullable eligibility_input_to_str(EligibilityInputType type);
+const char * _Nullable eligibility_input_to_str(EligibilityInputType type);
+NSString *eligibility_input_to_NSString(EligibilityInputType type);
 
 NS_ASSUME_NONNULL_END
