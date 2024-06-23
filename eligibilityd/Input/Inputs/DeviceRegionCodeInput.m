@@ -9,8 +9,7 @@
 #import "DeviceRegionCodeInput.h"
 #import "EligibilityLog.h"
 #import "EligibilityBase.h"
-
-NSString *MGGetStringAnswer(NSString *);
+#import "MobileGestalt.h"
 
 @interface DeviceRegionCodeInput ()
 
@@ -21,7 +20,7 @@ NSString *MGGetStringAnswer(NSString *);
 @implementation DeviceRegionCodeInput
 
 + (NSString *)_mgDeviceRegionCode {
-    return MGGetStringAnswer(@"RegionCode");
+    return (__bridge NSString *)MGGetStringAnswer((__bridge CFStringRef)@"RegionCode");
 }
 
 + (BOOL)supportsSecureCoding {
