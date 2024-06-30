@@ -45,9 +45,10 @@
 }
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    EligibilityInput *input = [[self class] allocWithZone:zone];
-    EligibilityInput *copiedInput = [self initWithInputType:input.type status:input.status process:input.settingProccessName];
-    copiedInput.setTime = input.setTime;
+    EligibilityInput *copiedInput = [[[self class] allocWithZone:zone] initWithInputType:self.type 
+                                                                                  status:self.status
+                                                                                 process:self.settingProccessName];
+    copiedInput.setTime = self.setTime;
     return copiedInput;
 }
 

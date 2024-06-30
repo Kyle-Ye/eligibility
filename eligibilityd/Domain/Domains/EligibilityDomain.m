@@ -9,10 +9,14 @@
 #import "os_private.h"
 #import "InputManager.h"
 #import "EligibilityLog.h"
+#import "EligibilityTimer.h"
 
 @interface EligibilityDomain ()
 
+@property(nonatomic, strong) EligibilityTimer *locatedCountryTimer;
+
 - (void)_supportedInputsString;
+- (EligibilityInputStatus)_computeInputStatusForSet:(NSSet *)set withObject:(id)object isInverted:(BOOL)inverted;
 
 @end
 
@@ -22,35 +26,45 @@
     return YES;
 }
 
-#pragma mark - Common API
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.answer = EligibilityAnswerInvalid;
-    }
-    return self;
+- (EligibilityDomainType)domain {
+    os_crash("This property must be overridden");
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super init];
-    if (self) {
-        // TODO;
-    }
-    return self;
+- (NSNotificationName)domainChangeNotificationName {
+    os_crash("This property must be overridden");
 }
 
-#pragma mark - Answer Related
+- (void)updateParameters {
+    os_crash("This method must be overridden");
+}
 
 - (EligibilityAnswer)defaultAnswer {
     return EligibilityAnswerNotEligible;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _answer = EligibilityAnswerInvalid;
+        _context = nil;
+        _supportedInputs = EligibilityInputTypesInvalid;
+    }
+    return self;
+}
+
+- (void)setLocatedCountriesOfInterest:(NSSet *)locatedCountriesOfInterest isInverted:(BOOL)inverted {
+    if (locatedCountriesOfInterest) {
+        self.supportedInputs |= EligibilityInputTypesCountryLocation;
+    } else {
+        self.supportedInputs &= ~EligibilityInputTypesCountryLocation;
+    }
+    _locatedCountriesOfInterest = locatedCountriesOfInterest;
+    _invertLocatedCountries = inverted;
+}
+
 - (EligibilityAnswerSource)answerSource {
     return EligibilityAnswerSourceComputed;
 }
-
-#pragma mark - Status Related
 
 - (NSDictionary *)status {
     NSMutableDictionary *dict = [NSMutableDictionary new];
@@ -80,6 +94,10 @@
     return dict.copy;
 }
 
+- (EligibilityAnswer)computeWithError:(NSError * _Nullable *)errorPtr {
+    return [self computeAnswerFromStatusWithError:errorPtr];
+}
+
 - (EligibilityInputStatus)computeInputStatusForInput:(EligibilityInput *)input {
     EligibilityInputType inputType = input.type;
     if (![self isInterestedInInput:inputType]) {
@@ -87,17 +105,132 @@
     }
     switch (inputType) {
         case EligibilityInputTypeCountryLocation:
-            // TODO
-            return EligibilityInputStatusNotSet;
+            return [self computeInputStatusForLocatedCountryInput:(LocatedCountryInput *)input];
+        case EligibilityInputTypeCountryBilling:
+            return [self computeInputStatusForBillingCountryInput:(CountryBillingInput *)input];
+        case EligibilityInputTypeDeviceClass:
+            return [self computeInputStatusForDeviceClassInput:(DeviceClassInput *)input];
+        case EligibilityInputTypeDeviceLocale:
+            return [self computeInputStatusForDeviceLocaleInput:(DeviceLocaleInput *)input];
+        case EligibilityInputTypeChinaCellular:
+            return [self computeInputStatusForChinaCellularInput:(ChinaCellularInput *)input];
+        case EligibilityInputTypeDeviceRegionCode:
+            return [self computeInputStatusForDeviceRegionCodesInput:(DeviceRegionCodeInput *)input];
+        case EligibilityInputTypeDeviceLanguage:
+            return [self computeInputStatusForDeviceLanguageInput:(DeviceLanguageInput *)input];
+        case EligibilityInputTypeGenerativeModelSystem:
+            return [self computeInputStatusForGenerativeModelSystemInput:(GenerativeModelSystemInput *)input];
+        case EligibilityInputTypeGreyMatterOnQueue:
+            return [self computeInputStatusForGreymatterQueueInput:(GreymatterQueueInput *)input];
+        case EligibilityInputTypeSiriLanguage:
+            return [self computeInputStatusForSiriLanguageInput:(SiriLanguageInput *)input];
         default:
             os_log_error(eligibility_log(), "%s: Unsupported input for %@: %@(%llu)", __func__, self, eligibility_input_to_NSString(inputType), (unsigned long long)inputType);
             return EligibilityInputStatusUnspecifiedError;
     }
 }
 
+- (BOOL)isInterestedInInput:(EligibilityInputType)inputType {
+    EligibilityInputTypes supportedInputs = self.supportedInputs;
+    switch (inputType) {
+        case EligibilityInputTypeCountryLocation:
+            return supportedInputs & EligibilityInputTypesCountryLocation;
+        case EligibilityInputTypeCountryBilling:
+            return supportedInputs & EligibilityInputTypesCountryBilling;
+        case EligibilityInputTypeDeviceClass:
+            return supportedInputs & EligibilityInputTypesDeviceClass;
+        case EligibilityInputTypeDeviceLocale:
+            return supportedInputs & EligibilityInputTypesDeviceLocale;
+        case EligibilityInputTypeChinaCellular:
+            return supportedInputs & EligibilityInputTypesChinaCellular;
+        case EligibilityInputTypeDeviceRegionCode:
+            return supportedInputs & EligibilityInputTypesDeviceRegionCode;
+        case EligibilityInputTypeDeviceLanguage:
+            return supportedInputs & EligibilityInputTypesDeviceLanguage;
+        case EligibilityInputTypeGenerativeModelSystem:
+            return supportedInputs & EligibilityInputTypesGenerativeModelSystem;
+        case EligibilityInputTypeGreyMatterOnQueue:
+            return supportedInputs & EligibilityInputTypesGreyMatterOnQueue;
+        case EligibilityInputTypeSiriLanguage:
+            return supportedInputs & EligibilityInputTypesSiriLanguage;
+        default:
+            return NO;
+    }
+}
 
+- (BOOL)hasActiveGracePeriod {
+    // TODO
+    return NO;
+}
 
-// FIXME: Confirm the logic
+- (EligibilityInputStatus)_computeInputStatusForSet:(NSSet *)set withObject:(NSString *)object isInverted:(BOOL)inverted {
+    // TODO
+    return EligibilityInputStatusNone;
+}
+
+- (EligibilityInputStatus)computeInputStatusForLocatedCountryInput:(LocatedCountryInput *)input {
+    // TODO
+    return EligibilityInputStatusNone;
+}
+
+- (EligibilityInputStatus)computeInputStatusForBillingCountryInput:(CountryBillingInput *)input {
+    return [self _computeInputStatusForSet:self.billingCountriesOfInterest withObject:input.countryCode isInverted:self.invertBillingCountries];
+}
+
+- (EligibilityInputStatus)computeInputStatusForDeviceClassInput:(DeviceClassInput *)input {
+    return [self _computeInputStatusForSet:self.deviceClassesOfInterest withObject:input.deviceClass isInverted:NO];
+}
+
+- (EligibilityInputStatus)computeInputStatusForDeviceLocaleInput:(DeviceLocaleInput *)input {
+    return [self _computeInputStatusForSet:self.deviceLocalesOfInterest withObject:input.deviceLocale isInverted:NO];
+}
+
+- (EligibilityInputStatus)computeInputStatusForChinaCellularInput:(ChinaCellularInput *)input {
+    return input.chinaCellularDevice ? EligibilityInputStatusEligible : EligibilityInputStatusNotEligible;
+}
+
+- (EligibilityInputStatus)computeInputStatusForDeviceRegionCodesInput:(DeviceRegionCodeInput *)input {
+    return [self _computeInputStatusForSet:self.deviceRegionCodesOfInterest withObject:input.deviceRegionCode isInverted:NO];
+}
+
+- (EligibilityInputStatus)computeInputStatusForDeviceLanguageInput:(DeviceLanguageInput *)input {
+    NSArray *deviceLanguages = input.deviceLanguages;
+    if (!deviceLanguages) {
+        return EligibilityInputStatusNotSet;
+    }
+    NSSet *deviceLanguageSet = [NSSet setWithArray:deviceLanguages];
+    if (!deviceLanguageSet) {
+        return EligibilityInputStatusNotEligible;
+    }
+    return [self.deviceLanguagesOfInterest intersectsSet:deviceLanguageSet] ? EligibilityInputStatusEligible : EligibilityInputStatusNotEligible;
+}
+
+- (EligibilityInputStatus)computeInputStatusForGenerativeModelSystemInput:(GenerativeModelSystemInput *)input {
+    return input.supportsGenerativeModelSystems ? EligibilityInputStatusEligible : EligibilityInputStatusNotEligible;
+}
+
+- (EligibilityInputStatus)computeInputStatusForGreymatterQueueInput:(GreymatterQueueInput *)input {
+    return input.onGreymatterQueue ? EligibilityInputStatusNotEligible : EligibilityInputStatusEligible;
+}
+
+- (EligibilityInputStatus)computeInputStatusForSiriLanguageInput:(SiriLanguageInput *)input {
+    os_crash("This property must be overridden");
+}
+
+- (void)serialize {
+    // TODO
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+    // TODO
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    // TODO
+    return self;
+}
+
+// FIXME: TO BE AUDITED
 - (EligibilityAnswer)computeAnswerFromStatus:(NSDictionary *)status {
     if (status.count == 0) {
         return self.defaultAnswer;
@@ -122,62 +255,29 @@
     }
 }
 
-//- (EligibilityAnswer)computeAnswerFromStatus:(NSDictionary *)status withError:(NSError * _Nullable *)errorPtr {
-//    
-//}
-
-
-
-#pragma mark - Override Methods
-
-//- (EligibilityDomainType)domain {
-//    os_crash("This property must be overridden");
-//}
-//
-//- (NSNotificationName)domainChangeNotificationName {
-//    os_crash("This property must be overridden");
-//}
-//
-//- (void)updateParameters {
-//    os_crash("This method must be overridden");
-//}
-
-
-#pragma mark - Input related
-
-- (void)_supportedInputsString {
-    // TOOD
-}
-
-- (BOOL)isInterestedInInput:(EligibilityInputType)inputType {
-    EligibilityInputType supportedInputs = self.supportedInputs;
-    switch (inputType) {
-        case EligibilityInputTypeCountryLocation:
-            return supportedInputs & (1 << (EligibilityInputTypeCountryLocation - 1));
-        case EligibilityInputTypeCountryBilling:
-            return supportedInputs & (1 << (EligibilityInputTypeCountryBilling - 1));
-        case EligibilityInputTypeDeviceClass:
-            return supportedInputs & (1 << (EligibilityInputTypeDeviceClass - 1));
-        case EligibilityInputTypeDeviceLocale:
-            return supportedInputs & (1 << (EligibilityInputTypeDeviceLocale - 1));
-        case EligibilityInputTypeChinaCellular:
-            return supportedInputs & (1 << (EligibilityInputTypeChinaCellular - 1));
-        case EligibilityInputTypeDeviceRegionCode:
-            return supportedInputs & (1 << (EligibilityInputTypeDeviceRegionCode - 1));
-        case EligibilityInputTypeDeviceLanguage:
-            return supportedInputs & (1 << (EligibilityInputTypeDeviceLanguage - 1));
-        case EligibilityInputTypeGenerativeModelSystem:
-            return supportedInputs & (1 << (EligibilityInputTypeGenerativeModelSystem - 1));
-        case EligibilityInputTypeGreyMatterOnQueue:
-            return supportedInputs & (1 << (EligibilityInputTypeGreyMatterOnQueue - 1));
-        case EligibilityInputTypeSiriLanguage:
-            return supportedInputs & (1 << (EligibilityInputTypeSiriLanguage - 1));
-        default:
-            return NO;
-    }
-}
-
-- (void)resetInputsOfInterest {
+- (EligibilityAnswer)computeAnswerFromStatusWithError:(NSError * _Nullable *)errorPtr {
     // TODO
+    return EligibilityAnswerInvalid;
 }
+
+- (void)addContextForKey:(NSString *)key value:(id)value {
+    NSMutableDictionary *context = nil;
+    if (self.context) {
+        context = self.context.mutableCopy;
+    } else {
+        context = [NSMutableDictionary new];
+    }
+    context[key] = value;
+    self.context = context.copy;
+}
+
+
+//- (void)_supportedInputsString {
+//    // TOOD
+//}
+//
+//- (void)resetInputsOfInterest {
+//    // TODO
+//}
+
 @end

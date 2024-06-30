@@ -35,6 +35,7 @@
 		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
+		27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +111,8 @@
 		27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputStatus.m; sourceTree = "<group>"; };
 		27CA50362C1F5C22009785B3 /* EligibilityAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswer.h; sourceTree = "<group>"; };
 		27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityAnswer.m; sourceTree = "<group>"; };
+		27DBD6CD2C3175360078A218 /* EligibilityInputTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputTypes.h; sourceTree = "<group>"; };
+		27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputTypes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 			children = (
 				27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */,
 				27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */,
+				27DBD6CD2C3175360078A218 /* EligibilityInputTypes.h */,
+				27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */,
 				27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */,
 				27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */,
 			);
@@ -406,6 +411,7 @@
 				275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */,
 				275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */,
 				275F93992C31472F0049F986 /* ChinaCellularInput.m in Sources */,
+				27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */,
 				27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
 				275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */,
