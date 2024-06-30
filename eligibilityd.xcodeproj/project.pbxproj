@@ -39,6 +39,7 @@
 		27DBD6E92C31AE990078A218 /* EligibilityEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6E82C31AE990078A218 /* EligibilityEngine.m */; };
 		27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */; };
 		27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */; };
+		27DBD6F32C31BF8F0078A218 /* TestDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6F22C31BF8F0078A218 /* TestDomain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -122,6 +123,8 @@
 		27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverrideData.m; sourceTree = "<group>"; };
 		27DBD6EE2C31B3800078A218 /* EligibilityOverride.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityOverride.h; sourceTree = "<group>"; };
 		27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverride.m; sourceTree = "<group>"; };
+		27DBD6F12C31BF8F0078A218 /* TestDomain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDomain.h; sourceTree = "<group>"; };
+		27DBD6F22C31BF8F0078A218 /* TestDomain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestDomain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,8 @@
 			children = (
 				27267E572C2893B800614B1D /* EligibilityDomain.h */,
 				27267E582C2893B800614B1D /* EligibilityDomain.m */,
+				27DBD6F12C31BF8F0078A218 /* TestDomain.h */,
+				27DBD6F22C31BF8F0078A218 /* TestDomain.m */,
 				27267E5A2C2893C700614B1D /* XcodeLLMDomain.h */,
 				27267E5B2C2893C700614B1D /* XcodeLLMDomain.m */,
 			);
@@ -435,6 +440,7 @@
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
 				27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */,
 				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
+				27DBD6F32C31BF8F0078A218 /* TestDomain.m in Sources */,
 				275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */,
 				275F93A82C315A220049F986 /* EligibilityTimer.m in Sources */,
 				27267E5C2C2893C700614B1D /* XcodeLLMDomain.m in Sources */,

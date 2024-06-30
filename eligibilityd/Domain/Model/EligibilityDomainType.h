@@ -11,12 +11,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define EligibilityDomainTypeCount 124
 
+// TODO
 typedef NS_ENUM(NSUInteger, EligibilityDomainType) {
     EligibilityDomainTypeInvalid = 0,
-    // TODO
+    EligibilityDomainTypeTest = 120,
     EligibilityDomainTypeXcodeLLM = 123,
 };
 
 const char * eligibility_domain_to_str(EligibilityDomainType domain);
+NSString *eligibility_domain_to_NSString(EligibilityDomainType domain);
 
 NS_ASSUME_NONNULL_END

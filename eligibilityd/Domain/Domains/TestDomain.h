@@ -1,8 +1,8 @@
 //
-//  XcodeLLMDomain.h
+//  TestDomain.h
 //  eligibilityd
 //
-//  Created by Kyle on 2024/6/24.
+//  Created by Kyle on 2024/7/1.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
@@ -11,7 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XcodeLLMDomain : EligibilityDomain
+@interface TestDomain : EligibilityDomain
+
+- (NSString *)expectedCountryCode;
 
 @end
 

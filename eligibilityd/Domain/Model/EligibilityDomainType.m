@@ -11,8 +11,13 @@ const char *eligibility_domain_to_str(EligibilityDomainType domain) {
     switch (domain) {
         case EligibilityDomainTypeInvalid: return "OS_ELIGIBILITY_DOMAIN_INVALID";
         // TODO
+        case EligibilityDomainTypeTest: return "OS_ELIGIBILITY_DOMAIN_TEST";
+        // TODO
         case EligibilityDomainTypeXcodeLLM: return "OS_ELIGIBILITY_DOMAIN_XCODE_LLM";
         default: return "<Unknown Domain>";
     }
 }
 
+NSString *eligibility_domain_to_NSString(EligibilityDomainType domain) {
+    return [NSString stringWithUTF8String:eligibility_domain_to_str(domain)];
+}
