@@ -4,10 +4,19 @@
 //
 //  Created by Kyle on 2024/6/23.
 //  Audited for RELEASE_2024_BETA_1
-//  Status: Blocked by _createDefaultInputs
+//  Status: Complete
 
 #import "InputManager.h"
 #import "LocatedCountryInput.h"
+#import "CountryBillingInput.h"
+#import "DeviceClassInput.h"
+#import "DeviceLocaleInput.h"
+#import "ChinaCellularInput.h"
+#import "DeviceRegionCodeInput.h"
+#import "DeviceLanguageInput.h"
+#import "GenerativeModelSystemInput.h"
+#import "GreymatterQueueInput.h"
+#import "SiriLanguageInput.h"
 #import "EligibilityLog.h"
 #import "EligibilityUtils.h"
 
@@ -56,9 +65,54 @@
     NSMutableDictionary *dict = [NSMutableDictionary new];
     LocatedCountryInput *locatedCountryInput = [[LocatedCountryInput alloc] initWithCountryCodes:nil status:EligibilityInputStatusNotSet process:nil];
     if (locatedCountryInput) {
-        dict[@"OS_ELIGIBILITY_INPUT_COUNTRY_LOCATION"] = locatedCountryInput;
+        dict[eligibility_input_to_NSString(EligibilityInputTypeCountryLocation)] = locatedCountryInput;
     }
-    // TODO: Add other inputs
+    
+    CountryBillingInput *countryBillingInput = [[CountryBillingInput alloc] initWithBillingCountry:nil status:EligibilityInputStatusNotSet process:nil];
+    if (countryBillingInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeCountryBilling)] = countryBillingInput;
+    }
+    
+    DeviceClassInput *deviceClassInput = [[DeviceClassInput alloc] init];
+    if (deviceClassInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeDeviceClass)] = deviceClassInput;
+    }
+    
+    DeviceLocaleInput *deviceLocaleInput = [[DeviceLocaleInput alloc] initWithDeviceLocale:nil status:EligibilityInputStatusNotSet process:nil];
+    if (deviceLocaleInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeDeviceLocale)] = deviceLocaleInput;
+    }
+    
+    ChinaCellularInput *chinaCellularInput = [[ChinaCellularInput alloc] init];
+    if (chinaCellularInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeChinaCellular)] = chinaCellularInput;
+    }
+    
+    DeviceRegionCodeInput *deviceRegionCodeInput = [[DeviceRegionCodeInput alloc] init];
+    if (deviceRegionCodeInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeDeviceRegionCode)] = deviceRegionCodeInput;
+    }
+    
+    DeviceLanguageInput *deviceLanguageInput = [[DeviceLanguageInput alloc] init];
+    if (deviceLanguageInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeDeviceLanguage)] = deviceLanguageInput;
+    }
+    
+    GenerativeModelSystemInput *generativeModelSystemInput = [[GenerativeModelSystemInput alloc] init];
+    if (generativeModelSystemInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeGenerativeModelSystem)] = generativeModelSystemInput;
+    }
+    
+    GreymatterQueueInput *greymatterQueueInput = [[GreymatterQueueInput alloc] initOnQueue:nil status:EligibilityInputStatusNotSet process:nil];
+    if (greymatterQueueInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeGreyMatterOnQueue)] = greymatterQueueInput;
+    }
+    
+    SiriLanguageInput *siriLanguageInput = [[SiriLanguageInput alloc] init];
+    if (siriLanguageInput) {
+        dict[eligibility_input_to_NSString(EligibilityInputTypeSiriLanguage)] = siriLanguageInput;
+    }
+    
     return dict.copy;
 }
 
