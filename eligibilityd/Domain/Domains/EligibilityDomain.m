@@ -41,15 +41,15 @@
 }
 
 - (EligibilityDomainType)domain {
-    os_crash("This property must be overridden");
+    _os_crash("This property must be overridden");
 }
 
 - (NSNotificationName)domainChangeNotificationName {
-    os_crash("This property must be overridden");
+    _os_crash("This property must be overridden");
 }
 
 - (void)updateParameters {
-    os_crash("This method must be overridden");
+    _os_crash("This method must be overridden");
 }
 
 - (EligibilityAnswer)defaultAnswer {
@@ -366,7 +366,7 @@
 }
 
 - (EligibilityInputStatus)computeInputStatusForSiriLanguageInput:(SiriLanguageInput *)input {
-    os_crash("This property must be overridden");
+    _os_crash("This property must be overridden");
 }
 
 - (NSDictionary *)serialize {

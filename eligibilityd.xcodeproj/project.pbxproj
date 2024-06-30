@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 73;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -403,7 +403,6 @@
 				};
 			};
 			buildConfigurationList = 2730C7802C1F120B00F5D46B /* Build configuration list for PBXProject "eligibilityd" */;
-			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -411,6 +410,7 @@
 				Base,
 			);
 			mainGroup = 2730C77C2C1F120B00F5D46B;
+			preferredProjectObjectVersion = 73;
 			productRefGroup = 2730C7862C1F120B00F5D46B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -586,6 +586,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -597,6 +598,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
