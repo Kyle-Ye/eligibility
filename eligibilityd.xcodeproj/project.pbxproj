@@ -37,6 +37,7 @@
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
 		27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */; };
 		27DBD6E92C31AE990078A218 /* EligibilityEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6E82C31AE990078A218 /* EligibilityEngine.m */; };
+		27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +117,8 @@
 		27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputTypes.m; sourceTree = "<group>"; };
 		27DBD6E72C31AE990078A218 /* EligibilityEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityEngine.h; sourceTree = "<group>"; };
 		27DBD6E82C31AE990078A218 /* EligibilityEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityEngine.m; sourceTree = "<group>"; };
+		27DBD6EB2C31B0080078A218 /* EligibilityOverrideData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityOverrideData.h; sourceTree = "<group>"; };
+		27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverrideData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +291,7 @@
 				2799A6EC2C2160FD00312655 /* Asset */,
 				2799A6EB2C2160F400312655 /* Input */,
 				27267E562C28939E00614B1D /* Domain */,
+				27DBD6EA2C31AFEB0078A218 /* Override */,
 				27DBD6E62C31AE8D0078A218 /* Engine */,
 				27267E4B2C287A0000614B1D /* Log */,
 				27267E4C2C287A0600614B1D /* Configuration */,
@@ -343,6 +347,15 @@
 				27DBD6E82C31AE990078A218 /* EligibilityEngine.m */,
 			);
 			path = Engine;
+			sourceTree = "<group>";
+		};
+		27DBD6EA2C31AFEB0078A218 /* Override */ = {
+			isa = PBXGroup;
+			children = (
+				27DBD6EB2C31B0080078A218 /* EligibilityOverrideData.h */,
+				27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */,
+			);
+			path = Override;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +439,7 @@
 				275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */,
 				275F93992C31472F0049F986 /* ChinaCellularInput.m in Sources */,
 				27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */,
+				27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */,
 				27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
 				275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */,
