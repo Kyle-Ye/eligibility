@@ -10,6 +10,7 @@
 #import "XPCSPI.h"
 #import "GlobalConfiguration.h"
 #import "EligibilityUtils.h"
+#import "EligibilityEngine.h"
 
 #import <notify.h>
 #import <libproc.h>
@@ -36,7 +37,7 @@ void main_block_invoke_2(xpc_object_t object) {
     if (strcmp(name, "AppleLanguagePreferencesChangedNotification") == 0 ||
         strcmp(name, "AFLanguageCodeDidChangeDarwinNotification") == 0 ||
         strcmp(name, "com.apple.coregraphics.GUIConsoleSessionChanged") == 0) {
-        // [EligibilityEngine.sharedInstance recomputeAllDomainAnswers];
+        [EligibilityEngine.sharedInstance recomputeAllDomainAnswers];
     }
 }
 

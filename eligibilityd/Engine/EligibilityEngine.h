@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 - (instancetype)init;
 
+- (void)recomputeAllDomainAnswers;
+
 @end
 
 NS_ASSUME_NONNULL_END
