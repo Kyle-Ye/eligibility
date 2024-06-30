@@ -50,7 +50,7 @@
 		27267E422C280D8C00614B1D /* EligibilityXPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityXPC.h; sourceTree = "<group>"; };
 		27267E432C280D8C00614B1D /* EligibilityXPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityXPC.m; sourceTree = "<group>"; };
 		27267E452C286EE800614B1D /* MobileGestalt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileGestalt.h; sourceTree = "<group>"; };
-		27267E462C2873E300614B1D /* variant_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = variant_private.h; sourceTree = "<group>"; };
+		27267E462C2873E300614B1D /* os_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = os_private.h; sourceTree = "<group>"; };
 		27267E472C2874E100614B1D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		27267E4D2C287A5E00614B1D /* InputManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InputManager.h; sourceTree = "<group>"; };
 		27267E4E2C287A5E00614B1D /* InputManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InputManager.m; sourceTree = "<group>"; };
@@ -190,6 +190,7 @@
 		27267E5D2C28945200614B1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				27CA50202C1F42F9009785B3 /* Answer */,
 				27267E5E2C28948D00614B1D /* EligibilityDomainType.h */,
 				27267E5F2C28948D00614B1D /* EligibilityDomainType.m */,
 			);
@@ -199,7 +200,7 @@
 		272EB8772C2466A900C5B1DC /* spi */ = {
 			isa = PBXGroup;
 			children = (
-				27267E462C2873E300614B1D /* variant_private.h */,
+				27267E462C2873E300614B1D /* os_private.h */,
 				27267E3B2C26CE3600614B1D /* XPCSPI.h */,
 				27267E452C286EE800614B1D /* MobileGestalt.h */,
 			);
@@ -233,7 +234,6 @@
 				2730C7882C1F120B00F5D46B /* main.m */,
 				2799A6EC2C2160FD00312655 /* Asset */,
 				2799A6EB2C2160F400312655 /* Input */,
-				27CA50202C1F42F9009785B3 /* Answer */,
 				27267E562C28939E00614B1D /* Domain */,
 				27267E4B2C287A0000614B1D /* Log */,
 				27267E4C2C287A0600614B1D /* Configuration */,

@@ -7,6 +7,7 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
+#import "EligibilityInput.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 - (instancetype)init;
 
+- (BOOL)setInput:(EligibilityInput *)input withError:(NSError * _Nullable *)errorPtr;
+- (EligibilityInput *)objectForInputValue:(EligibilityInputType)inputType;
 @end
 
 NS_ASSUME_NONNULL_END

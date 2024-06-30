@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define EligibilityInputTypeCount 10
+
 typedef NS_ENUM(NSUInteger, EligibilityInputType) {
     EligibilityInputTypeInvalid = 0,
     EligibilityInputTypeCountryLocation = 1,

@@ -9,11 +9,11 @@
 #import "EligibilityAnswerSource.h"
 #import "EligibilityLog.h"
 
-NSString *eligibility_answer_source_to_str(EligibilityAnswerSource answerSource) {
+const char * _Nullable eligibility_answer_source_to_str(EligibilityAnswerSource answerSource) {
     switch (answerSource) {
-        case EligibilityAnswerSourceInvalid: return @"OS_ELIGIBILITY_ANSWER_SOURCE_INVALID";
-        case EligibilityAnswerSourceComputed: return @"OS_ELIGIBILITY_ANSWER_SOURCE_COMPUTED";
-        case EligibilityAnswerSourceForced: return @"OS_ELIGIBILITY_ANSWER_SOURCE_FORCED";
+        case EligibilityAnswerSourceInvalid: return "OS_ELIGIBILITY_ANSWER_SOURCE_INVALID";
+        case EligibilityAnswerSourceComputed: return "OS_ELIGIBILITY_ANSWER_SOURCE_COMPUTED";
+        case EligibilityAnswerSourceForced: return "OS_ELIGIBILITY_ANSWER_SOURCE_FORCED";
         default:
             os_log_error(eligibility_log(), "%s: Unsupported answer source: %llu", __func__, (unsigned long long)answerSource);
             return nil;

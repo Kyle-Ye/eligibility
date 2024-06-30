@@ -8,7 +8,7 @@
 
 #import "GlobalConfiguration.h"
 #import "MobileGestalt.h"
-#import "variant_private.h"
+#import "os_private.h"
 #import "EligibilityLog.h"
 
 #import <SystemConfiguration/SystemConfiguration.h>

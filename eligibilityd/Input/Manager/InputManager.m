@@ -12,13 +12,9 @@
 #import "EligibilityUtils.h"
 
 @interface InputManager ()
-
-- (NSDictionary *)debugDictionary;
 - (NSDictionary *)_createDefaultInputs;
 - (BOOL)_saveInputsWithError:(NSError * _Nullable *)errorPtr;
 - (NSDictionary *)_loadInputsWithError:(NSError * _Nullable *)errorPtr;
-- (BOOL)setInput:(EligibilityInput *)input withError:(NSError * _Nullable *)errorPtr;
-- (EligibilityInput *)objectForInputValue:(EligibilityInputType)inputType;
 @end
 
 @implementation InputManager

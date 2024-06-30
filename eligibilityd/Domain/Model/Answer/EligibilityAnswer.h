@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, EligibilityAnswer) {
     EligibilityAnswerEligible = 4,
 };
 
-NSString *eligibility_answer_to_str(EligibilityAnswer answer);
+const char * _Nullable eligibility_answer_to_str(EligibilityAnswer answer);
+NSString *eligibility_answer_to_NSString(EligibilityAnswer answer);
 
 NS_ASSUME_NONNULL_END

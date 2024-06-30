@@ -6,7 +6,3 @@
 //
 
 #import "EligibilityDomainType.h"
-
-@implementation EligibilityDomainType
-
-@end

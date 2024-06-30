@@ -16,6 +16,6 @@ typedef NS_ENUM(NSUInteger, EligibilityAnswerSource) {
     EligibilityAnswerSourceForced = 2,
 };
 
-NSString *eligibility_answer_source_to_str(EligibilityAnswerSource answerSource);
+const char * _Nullable eligibility_answer_source_to_str(EligibilityAnswerSource answerSource);
 
 NS_ASSUME_NONNULL_END
