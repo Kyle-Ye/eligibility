@@ -8,6 +8,7 @@
 
 #import "BoronAsset.h"
 #import "EligibilityLog.h"
+#import "EligibilityBase.h"
 
 @implementation BoronAsset
 
@@ -57,7 +58,7 @@
             return NO;
         }
         BoronAsset *otherAsset = (BoronAsset *)other;
-        if (self.countryCodes != otherAsset.countryCodes) {
+        if (!AreObjectsEqual(self.countryCodes, otherAsset.countryCodes)) {
             os_log(eligibility_log(), "%s: Property %s did not match", __func__, "countryCodes");
             return NO;
         } else if (self.gracePeriodInSeconds != otherAsset.gracePeriodInSeconds) {
