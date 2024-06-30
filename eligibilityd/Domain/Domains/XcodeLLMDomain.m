@@ -4,7 +4,7 @@
 //
 //  Created by Kyle on 2024/6/24.
 //  Audited for RELEASE_2024_BETA_1
-//  Status: Blocked by EligibilityDomain
+//  Status: Complete
 
 #import "XcodeLLMDomain.h"
 
@@ -27,8 +27,8 @@
 }
 
 - (void)_internal_doInit {
-    // [self setDeviceRegionInterest: @"Mac"];
-    // [self setDeviceClassesOfInterest:[NSSet setWithObject:@"Mac"]];
+    [self setDeviceRegionInterest];    
+    [self setDeviceClassesOfInterest:[NSSet setWithObject:@"Mac"]];
 }
 
 - (instancetype)init {
