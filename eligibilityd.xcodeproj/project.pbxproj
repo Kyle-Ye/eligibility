@@ -38,6 +38,7 @@
 		27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */; };
 		27DBD6E92C31AE990078A218 /* EligibilityEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6E82C31AE990078A218 /* EligibilityEngine.m */; };
 		27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */; };
+		27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -119,6 +120,8 @@
 		27DBD6E82C31AE990078A218 /* EligibilityEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityEngine.m; sourceTree = "<group>"; };
 		27DBD6EB2C31B0080078A218 /* EligibilityOverrideData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityOverrideData.h; sourceTree = "<group>"; };
 		27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverrideData.m; sourceTree = "<group>"; };
+		27DBD6EE2C31B3800078A218 /* EligibilityOverride.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityOverride.h; sourceTree = "<group>"; };
+		27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverride.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +355,8 @@
 		27DBD6EA2C31AFEB0078A218 /* Override */ = {
 			isa = PBXGroup;
 			children = (
+				27DBD6EE2C31B3800078A218 /* EligibilityOverride.h */,
+				27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */,
 				27DBD6EB2C31B0080078A218 /* EligibilityOverrideData.h */,
 				27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */,
 			);
@@ -428,6 +433,7 @@
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
 				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
+				27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */,
 				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
 				275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */,
 				275F93A82C315A220049F986 /* EligibilityTimer.m in Sources */,
