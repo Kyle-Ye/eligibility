@@ -3,7 +3,8 @@
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/30.
-//
+//  Audited for RELEASE_2024_BETA_1
+//  Status: Complete
 
 #import "DeviceLocaleInput.h"
 #import "EligibilityLog.h"
@@ -30,7 +31,7 @@
     } else {
         deviceLocale = nil;
     }
-    self = [super initWithInputType:EligibilityInputTypeCountryBilling status:status process:process];
+    self = [super initWithInputType:EligibilityInputTypeDeviceLocale status:status process:process];
     if (self) {
         self.deviceLocale = deviceLocale;
     }
@@ -45,7 +46,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        self.countryCode = [coder decodeObjectOfClass:NSString.class
+        self.deviceLocale = [coder decodeObjectOfClass:NSString.class
                                                forKey:@"deviceLocale"];
     }
     return self;

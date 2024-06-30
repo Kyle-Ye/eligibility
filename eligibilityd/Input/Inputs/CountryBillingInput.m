@@ -3,7 +3,8 @@
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/30.
-//
+//  Audited for RELEASE_2024_BETA_1
+//  Status: Complete
 
 #import "CountryBillingInput.h"
 #import "EligibilityLog.h"
@@ -46,7 +47,7 @@
     self = [super initWithCoder:coder];
     if (self) {
         self.countryCode = [coder decodeObjectOfClass:NSString.class
-                                               forKey:@"countryCodes"];
+                                               forKey:@"countryCode"];
     }
     return self;
 }

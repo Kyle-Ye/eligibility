@@ -26,6 +26,11 @@
 		275F93902C3141910049F986 /* CountryBillingInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F938F2C3141910049F986 /* CountryBillingInput.m */; };
 		275F93932C3141A40049F986 /* DeviceClassInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93922C3141A40049F986 /* DeviceClassInput.m */; };
 		275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93952C3141B60049F986 /* DeviceLocaleInput.m */; };
+		275F93992C31472F0049F986 /* ChinaCellularInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93982C31472F0049F986 /* ChinaCellularInput.m */; };
+		275F939C2C31473B0049F986 /* DeviceLanguageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F939B2C31473B0049F986 /* DeviceLanguageInput.m */; };
+		275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F939E2C3147450049F986 /* GenerativeModelSystemInput.m */; };
+		275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A12C31474F0049F986 /* GreymatterQueueInput.m */; };
+		275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A42C3147560049F986 /* SiriLanguageInput.m */; };
 		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
@@ -80,6 +85,16 @@
 		275F93922C3141A40049F986 /* DeviceClassInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceClassInput.m; sourceTree = "<group>"; };
 		275F93942C3141B60049F986 /* DeviceLocaleInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceLocaleInput.h; sourceTree = "<group>"; };
 		275F93952C3141B60049F986 /* DeviceLocaleInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceLocaleInput.m; sourceTree = "<group>"; };
+		275F93972C31472F0049F986 /* ChinaCellularInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChinaCellularInput.h; sourceTree = "<group>"; };
+		275F93982C31472F0049F986 /* ChinaCellularInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChinaCellularInput.m; sourceTree = "<group>"; };
+		275F939A2C31473B0049F986 /* DeviceLanguageInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceLanguageInput.h; sourceTree = "<group>"; };
+		275F939B2C31473B0049F986 /* DeviceLanguageInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceLanguageInput.m; sourceTree = "<group>"; };
+		275F939D2C3147450049F986 /* GenerativeModelSystemInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenerativeModelSystemInput.h; sourceTree = "<group>"; };
+		275F939E2C3147450049F986 /* GenerativeModelSystemInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerativeModelSystemInput.m; sourceTree = "<group>"; };
+		275F93A02C31474F0049F986 /* GreymatterQueueInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreymatterQueueInput.h; sourceTree = "<group>"; };
+		275F93A12C31474F0049F986 /* GreymatterQueueInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreymatterQueueInput.m; sourceTree = "<group>"; };
+		275F93A32C3147560049F986 /* SiriLanguageInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiriLanguageInput.h; sourceTree = "<group>"; };
+		275F93A42C3147560049F986 /* SiriLanguageInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiriLanguageInput.m; sourceTree = "<group>"; };
 		27A770762C2436E1002E7A1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770772C243734002E7A1D /* eligibilityd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eligibilityd.entitlements; sourceTree = "<group>"; };
 		27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSource.h; sourceTree = "<group>"; };
@@ -131,8 +146,18 @@
 				275F93922C3141A40049F986 /* DeviceClassInput.m */,
 				275F93942C3141B60049F986 /* DeviceLocaleInput.h */,
 				275F93952C3141B60049F986 /* DeviceLocaleInput.m */,
+				275F93972C31472F0049F986 /* ChinaCellularInput.h */,
+				275F93982C31472F0049F986 /* ChinaCellularInput.m */,
 				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
 				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
+				275F939A2C31473B0049F986 /* DeviceLanguageInput.h */,
+				275F939B2C31473B0049F986 /* DeviceLanguageInput.m */,
+				275F939D2C3147450049F986 /* GenerativeModelSystemInput.h */,
+				275F939E2C3147450049F986 /* GenerativeModelSystemInput.m */,
+				275F93A02C31474F0049F986 /* GreymatterQueueInput.h */,
+				275F93A12C31474F0049F986 /* GreymatterQueueInput.m */,
+				275F93A32C3147560049F986 /* SiriLanguageInput.h */,
+				275F93A42C3147560049F986 /* SiriLanguageInput.m */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -362,14 +387,19 @@
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
 				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
 				27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */,
+				275F939C2C31473B0049F986 /* DeviceLanguageInput.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
 				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
 				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
+				275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */,
 				27267E5C2C2893C700614B1D /* XcodeLLMDomain.m in Sources */,
 				27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */,
 				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
+				275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */,
+				275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */,
+				275F93992C31472F0049F986 /* ChinaCellularInput.m in Sources */,
 				27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
 				275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */,

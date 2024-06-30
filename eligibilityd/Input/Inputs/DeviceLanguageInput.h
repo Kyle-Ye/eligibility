@@ -1,5 +1,5 @@
 //
-//  DeviceClassInput.h
+//  DeviceLanguageInput.h
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/30.
@@ -11,12 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DeviceClassInput : EligibilityInput
+@interface DeviceLanguageInput : EligibilityInput
 
-@property(nonatomic, strong) NSString *deviceClass;
-
-@property(nonatomic, assign, readonly) BOOL isiPad;
-@property(nonatomic, assign, readonly) BOOL isiPhone;
+@property(nonatomic, strong, readonly) NSArray *deviceLanguages;
 
 @end
 
