@@ -55,3 +55,8 @@ uint64_t eligibility_xpc_get_message_type(xpc_object_t object) {
     }
     return xpc_dictionary_get_uint64(object, "eligibility_message_type");
 }
+
+NSURL * _Nullable OEURLForContainerWithError(NSError * _Nullable *errorPtr) {
+    // TODO
+    return nil;
+}

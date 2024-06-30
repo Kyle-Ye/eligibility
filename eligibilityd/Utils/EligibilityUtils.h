@@ -17,4 +17,6 @@ const char *copy_eligibility_domain_daemon_directory_path(void);
 const char * copy_eligibility_domain_input_manager_plist_path(void);
 uint64_t eligibility_xpc_get_message_type(xpc_object_t object);
 
+NSURL * _Nullable OEURLForContainerWithError(NSError * _Nullable *errorPtr);
+
 NS_ASSUME_NONNULL_END

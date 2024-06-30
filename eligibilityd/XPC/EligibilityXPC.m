@@ -28,20 +28,17 @@ void _tryExitWhenCleanOnWorkloop_block_invoke(void);
 
 static dispatch_source_t source;
 
-// TODO
 void main_block_invoke_1(void) {
     _sendInputsNeededNotification();
     const char *vault_path = copy_eligibility_domain_data_vault_directory_path();
     _createDirectoryAtPath(vault_path, YES);
     free((void *)vault_path);
-    
     const char *deamon_path = copy_eligibility_domain_daemon_directory_path();
     _createDirectoryAtPath(deamon_path, NO);
     free((void *)deamon_path);
-    
-    // OEURLForContainerWithError
-    // _createDirectories
-    // TODO
+    _createDirectories();
+    [EligibilityEngine.sharedInstance recomputeAllDomainAnswers];
+    [EligibilityEngine.sharedInstance scheduleDailyRecompute];
 }
 
 void main_block_invoke_2(xpc_object_t object) {
@@ -113,8 +110,15 @@ void _setDataProtectionClassDForPath(const char * path) {
     }
 }
 
-void _createDirectories(void);
-
+void _createDirectories(void) {
+    NSError *error = nil;
+    NSURL *url = OEURLForContainerWithError(&error);
+    if (url) {
+        _createDirectoryAtPath([url URLByAppendingPathComponent:@"Library/Caches/NeverRestore/" isDirectory:YES].fileSystemRepresentation, NO);
+    } else {
+        os_log(eligibility_log(), "%s: Failed to obtain the URL for data container: %@", __FUNCTION__, error);
+    }
+}
 
 void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
     audit_token_t auditToken = {};

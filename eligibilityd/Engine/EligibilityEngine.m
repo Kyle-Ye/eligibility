@@ -17,6 +17,8 @@
 - (NSDictionary *)_createDefaultDomains;
 - (void)_currentLocaleDidChange:(NSNotification *)notification;
 - (id)_decodeObjectOfClasses:(NSSet *)classes atURL:(NSURL *)url withError:(NSError * _Nullable *)errorPtr;
+- (id)_loadOverridesWithError:(NSError * _Nullable *)errorPtr;
+- (id)_loadDomainsWithError:(NSError * _Nullable *)errorPtr;
 
 - (void)_onQueue_recomputeAllDomainAnswers;
 
@@ -96,6 +98,17 @@
     return decoded;
 }
 
+- (id)_loadOverridesWithError:(NSError * _Nullable __autoreleasing *)errorPtr {
+    // TODO
+    return nil;
+}
+
+- (id)_loadDomainsWithError:(NSError * _Nullable __autoreleasing *)errorPtr {
+    // TODO
+    return nil;
+}
+
+
 - (void)recomputeAllDomainAnswers {
     dispatch_async(self.internalQueue, ^{
         [self _onQueue_recomputeAllDomainAnswers];
@@ -103,6 +116,10 @@
 }
 
 - (void)_onQueue_recomputeAllDomainAnswers {
+    // TODO
+}
+
+- (void)scheduleDailyRecompute {
     // TODO
 }
 

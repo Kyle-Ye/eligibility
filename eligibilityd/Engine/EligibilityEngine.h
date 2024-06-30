@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)recomputeAllDomainAnswers;
 
+- (void)scheduleDailyRecompute;
+
 @end
 
 NS_ASSUME_NONNULL_END
