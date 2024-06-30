@@ -32,7 +32,7 @@
     static InputManager *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[InputManager alloc] init];
+        sharedInstance = [[[self class] alloc] init];
     });
     return sharedInstance;
 }

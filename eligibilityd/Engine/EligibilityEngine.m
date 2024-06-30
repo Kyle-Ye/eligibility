@@ -30,7 +30,7 @@
     static EligibilityEngine *sharedInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self class] init];
+        sharedInstance = [[[self class] alloc] init];
     });
     return sharedInstance;
 }
@@ -38,6 +38,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        // TODO
+        dispatch_queue_attr_t internalQueueAttr = dispatch_queue_attr_make_with_autorelease_frequency(nil, DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM);
+        dispatch_queue_t internalQueue = dispatch_queue_create("com.apple.eligibility.EligibilityEngine.internal", internalQueueAttr);
+        _internalQueue = internalQueue;
         // TODO
     }
     return self;

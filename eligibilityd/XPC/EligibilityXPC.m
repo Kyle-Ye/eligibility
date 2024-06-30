@@ -98,7 +98,7 @@ void _createDirectoryAtPath(const char * path, BOOL isDirectory) {
 
 void _setDataProtectionClassDForPath(const char * path) {
     DIR *dir = opendir(path);
-    if (dir == NULL) {
+    if (dir) {
         int descriptor = dirfd(dir);
         // See:  https://developer.apple.com/support/downloads/Apple-File-System-Reference.pdf
         if (fcntl(descriptor, F_SETPROTECTIONCLASS, 0x4)) { // PROTECTION_CLASS_D
