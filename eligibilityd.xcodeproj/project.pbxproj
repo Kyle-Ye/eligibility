@@ -23,6 +23,9 @@
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
 		2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */; };
 		2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7992C1F343900F5D46B /* EligibilityLog.m */; };
+		275F93902C3141910049F986 /* CountryBillingInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F938F2C3141910049F986 /* CountryBillingInput.m */; };
+		275F93932C3141A40049F986 /* DeviceClassInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93922C3141A40049F986 /* DeviceClassInput.m */; };
+		275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93952C3141B60049F986 /* DeviceLocaleInput.m */; };
 		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
@@ -71,6 +74,12 @@
 		2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libMobileGestalt.tbd; path = usr/lib/libMobileGestalt.tbd; sourceTree = SDKROOT; };
 		2730C7982C1F343900F5D46B /* EligibilityLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityLog.h; sourceTree = "<group>"; };
 		2730C7992C1F343900F5D46B /* EligibilityLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityLog.m; sourceTree = "<group>"; };
+		275F938E2C3141910049F986 /* CountryBillingInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CountryBillingInput.h; sourceTree = "<group>"; };
+		275F938F2C3141910049F986 /* CountryBillingInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CountryBillingInput.m; sourceTree = "<group>"; };
+		275F93912C3141A40049F986 /* DeviceClassInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceClassInput.h; sourceTree = "<group>"; };
+		275F93922C3141A40049F986 /* DeviceClassInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceClassInput.m; sourceTree = "<group>"; };
+		275F93942C3141B60049F986 /* DeviceLocaleInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceLocaleInput.h; sourceTree = "<group>"; };
+		275F93952C3141B60049F986 /* DeviceLocaleInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceLocaleInput.m; sourceTree = "<group>"; };
 		27A770762C2436E1002E7A1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770772C243734002E7A1D /* eligibilityd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eligibilityd.entitlements; sourceTree = "<group>"; };
 		27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSource.h; sourceTree = "<group>"; };
@@ -114,10 +123,16 @@
 			children = (
 				2730C7922C1F129800F5D46B /* EligibilityInput.h */,
 				2730C7932C1F129800F5D46B /* EligibilityInput.m */,
-				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
-				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
 				270DB0162C228443003DF9BF /* LocatedCountryInput.h */,
 				270DB0172C228443003DF9BF /* LocatedCountryInput.m */,
+				275F938E2C3141910049F986 /* CountryBillingInput.h */,
+				275F938F2C3141910049F986 /* CountryBillingInput.m */,
+				275F93912C3141A40049F986 /* DeviceClassInput.h */,
+				275F93922C3141A40049F986 /* DeviceClassInput.m */,
+				275F93942C3141B60049F986 /* DeviceLocaleInput.h */,
+				275F93952C3141B60049F986 /* DeviceLocaleInput.m */,
+				2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */,
+				2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -342,6 +357,7 @@
 				270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */,
 				27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */,
 				27267E602C28948D00614B1D /* EligibilityDomainType.m in Sources */,
+				275F93902C3141910049F986 /* CountryBillingInput.m in Sources */,
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
 				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
@@ -356,6 +372,8 @@
 				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
 				27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
+				275F93962C3141B60049F986 /* DeviceLocaleInput.m in Sources */,
+				275F93932C3141A40049F986 /* DeviceClassInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

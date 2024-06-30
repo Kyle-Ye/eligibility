@@ -44,7 +44,7 @@
 }
     
 - (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super initWithCoder:coder];
+    self = [super initWithInputType:EligibilityInputTypeDeviceRegionCode status:EligibilityInputStatusNone process:@"eligibilityd"];
     if (self) {
         self.deviceRegionCode = DeviceRegionCodeInput._mgDeviceRegionCode;
     }

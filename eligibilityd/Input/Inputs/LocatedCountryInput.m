@@ -27,7 +27,7 @@
             os_log_error(eligibility_log(), "%s: Located country codes input is wrong data type: %s", __func__, xpc_type_get_name(type));
             return nil;
         }
-        [NSSet setWithArray:(__bridge NSArray*)_CFXPCCreateCFObjectFromXPCObject(xpcCountryCodes)];
+        countryCodes = [NSSet setWithArray:(__bridge NSArray*)_CFXPCCreateCFObjectFromXPCObject(xpcCountryCodes)];
     } else {
         countryCodes = nil;
     }

@@ -4,7 +4,7 @@
 //
 //  Created by Kyle on 2024/6/23.
 //  Audited for RELEASE_2024_BETA_1
-//  Status: Blocked by _createDefaultsInputs
+//  Status: Blocked by _createDefaultInputs
 
 #import "InputManager.h"
 #import "LocatedCountryInput.h"
