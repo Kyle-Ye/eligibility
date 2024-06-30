@@ -11,7 +11,6 @@
 		270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */; };
 		270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */; };
 		27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E3D2C28016700614B1D /* GlobalConfiguration.m */; };
-		27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E432C280D8C00614B1D /* EligibilityXPC.m */; };
 		27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27267E472C2874E100614B1D /* SystemConfiguration.framework */; };
 		27267E4F2C287A5E00614B1D /* InputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E4E2C287A5E00614B1D /* InputManager.m */; };
 		27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E532C2880FA00614B1D /* EligibilityUtils.m */; };
@@ -61,8 +60,6 @@
 		27267E3B2C26CE3600614B1D /* XPCSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCSPI.h; sourceTree = "<group>"; };
 		27267E3C2C28016700614B1D /* GlobalConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalConfiguration.h; sourceTree = "<group>"; };
 		27267E3D2C28016700614B1D /* GlobalConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalConfiguration.m; sourceTree = "<group>"; };
-		27267E422C280D8C00614B1D /* EligibilityXPC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityXPC.h; sourceTree = "<group>"; };
-		27267E432C280D8C00614B1D /* EligibilityXPC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityXPC.m; sourceTree = "<group>"; };
 		27267E452C286EE800614B1D /* MobileGestalt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileGestalt.h; sourceTree = "<group>"; };
 		27267E462C2873E300614B1D /* os_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = os_private.h; sourceTree = "<group>"; };
 		27267E472C2874E100614B1D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -182,15 +179,6 @@
 			path = Inputs;
 			sourceTree = "<group>";
 		};
-		27267E4A2C2879F700614B1D /* XPC */ = {
-			isa = PBXGroup;
-			children = (
-				27267E422C280D8C00614B1D /* EligibilityXPC.h */,
-				27267E432C280D8C00614B1D /* EligibilityXPC.m */,
-			);
-			path = XPC;
-			sourceTree = "<group>";
-		};
 		27267E4B2C287A0000614B1D /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +291,6 @@
 				27DBD6E62C31AE8D0078A218 /* Engine */,
 				27267E4B2C287A0000614B1D /* Log */,
 				27267E4C2C287A0600614B1D /* Configuration */,
-				27267E4A2C2879F700614B1D /* XPC */,
 				27267E512C2880E600614B1D /* Utils */,
 			);
 			path = eligibilityd;
@@ -432,7 +419,6 @@
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
 				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
 				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
-				27267E442C280D8C00614B1D /* EligibilityXPC.m in Sources */,
 				275F939C2C31473B0049F986 /* DeviceLanguageInput.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
