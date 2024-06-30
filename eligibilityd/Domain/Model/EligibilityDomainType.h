@@ -9,8 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define EligibilityDomainTypeCount 124
+
 typedef NS_ENUM(NSUInteger, EligibilityDomainType) {
-    EligibilityDomainTypeXcodeLLM = 0x7b,
+    EligibilityDomainTypeXcodeLLM = 123,
 };
+
+const char * eligibility_domain_to_str(EligibilityDomainType domain);
 
 NS_ASSUME_NONNULL_END

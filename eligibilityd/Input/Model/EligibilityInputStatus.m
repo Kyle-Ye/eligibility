@@ -20,7 +20,7 @@ NSString * _Nullable eligibility_input_status_to_str(EligibilityInputStatus stat
         case EligibilityInputStatusTokenExpired: return @"OS_ELIGIBILITY_INPUT_STATUS_TOKEN_EXPIRED";
         case EligibilityInputStatusNoAccount: return @"OS_ELIGIBILITY_INPUT_STATUS_NO_ACCOUNT";
         default:
-            os_log_error(eligibility_log(), "%s: Unsupported input status: %llu", __func__, (unsigned long long) status);
+            os_log_error(eligibility_log(), "%s: Unsupported input status: %llu", __func__, (uint64_t) status);
             return nil;
     }
 }

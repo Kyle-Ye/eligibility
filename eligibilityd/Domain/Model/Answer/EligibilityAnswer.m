@@ -16,7 +16,7 @@ const char * _Nullable eligibility_answer_to_str(EligibilityAnswer answer) {
         case EligibilityAnswerMaybe: return "OS_ELIGIBILITY_ANSWER_MAYBE";
         case EligibilityAnswerEligible: return "OS_ELIGIBILITY_ANSWER_ELIGIBLE";
         default:
-            os_log_error(eligibility_log(), "%s: Unsupported answer type: %llu", __func__, (unsigned long long)answer);
+            os_log_error(eligibility_log(), "%s: Unsupported answer type: %llu", __func__, (uint64_t)answer);
             return nil;
     }
 }

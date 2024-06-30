@@ -23,7 +23,7 @@ const char * _Nullable eligibility_input_to_str(EligibilityInputType type) {
         case EligibilityInputTypeGreyMatterOnQueue: return "OS_ELIGIBILITY_INPUT_GREYMATTER_ON_QUEUE";
         case EligibilityInputTypeSiriLanguage: return "OS_ELIGIBILITY_INPUT_SIRI_LANGUAGE";
         default:
-            os_log_error(eligibility_log(), "%s: Unsupported input type: %llu", __func__, (unsigned long long)type);
+            os_log_error(eligibility_log(), "%s: Unsupported input type: %llu", __func__, (uint64_t)type);
             return nil;
     }
 }

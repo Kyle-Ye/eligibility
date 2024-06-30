@@ -3,7 +3,8 @@
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/24.
-//
+//  Audited for RELEASE_2024_BETA_1
+//  Status: Complete
 
 #import <Foundation/Foundation.h>
 #import "EligibilityDomainType.h"
@@ -31,17 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)supportsSecureCoding;
 
-@property(nonatomic, assign) BOOL invertLocatedCountries;
-@property(nonatomic, assign) BOOL invertBillingCountries;
-@property(nonatomic, assign) EligibilityAnswer answer;
-@property(nonatomic, strong) NSDictionary *context;
-@property(nonatomic, assign) EligibilityInputTypes supportedInputs;
-@property(nonatomic, strong) NSSet *locatedCountriesOfInterest;
-@property(nonatomic, strong) NSSet *billingCountriesOfInterest;
-@property(nonatomic, strong) NSSet *deviceClassesOfInterest;
-@property(nonatomic, strong) NSSet *deviceLocalesOfInterest;
-@property(nonatomic, strong) NSSet *deviceRegionCodesOfInterest;
-@property(nonatomic, strong) NSSet *deviceLanguagesOfInterest;
+@property(nonatomic, assign, readonly) BOOL invertLocatedCountries;
+@property(nonatomic, assign, readonly) BOOL invertBillingCountries;
+@property(nonatomic, assign, readonly) EligibilityAnswer answer;
+@property(nonatomic, strong, readonly, nullable) NSDictionary *context;
+@property(nonatomic, assign, readonly) EligibilityInputTypes supportedInputs;
+@property(nonatomic, strong, readonly, nullable) NSSet *locatedCountriesOfInterest;
+@property(nonatomic, strong, readonly, nullable) NSSet *billingCountriesOfInterest;
+@property(nonatomic, strong, readonly, nullable) NSSet *deviceClassesOfInterest;
+@property(nonatomic, strong, readonly, nullable) NSSet *deviceLocalesOfInterest;
+@property(nonatomic, strong, readonly, nullable) NSSet *deviceRegionCodesOfInterest;
+@property(nonatomic, strong, readonly, nullable) NSSet *deviceLanguagesOfInterest;
 
 @property(nonatomic, assign, readonly) EligibilityAnswerSource answerSource;
 @property(nonatomic, strong, readonly) NSDictionary * status;
@@ -52,13 +53,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateParameters;
 - (instancetype)init;
 
-- (void)setLocatedCountriesOfInterest:(NSSet *)locatedCountriesOfInterest isInverted:(BOOL)inverted;
-- (void)setLocatedCountriesOfInterest:(NSSet *)locatedCountriesOfInterest;
-- (void)setLocatedCountriesOfInterest:(NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod;
-
-- (void)setBillingCountriesOfInterest:(NSSet *)billingCountriesOfInterest isInverted:(BOOL)inverted;
-- (void)setBillingCountriesOfInterest:(NSSet *)billingCountriesOfInterest;
-
+- (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest isInverted:(BOOL)inverted;
+- (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest;
+- (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod;
+- (void)setBillingCountriesOfInterest:(nullable NSSet *)billingCountriesOfInterest isInverted:(BOOL)inverted;
+- (void)setBillingCountriesOfInterest:(nullable NSSet *)billingCountriesOfInterest;
+- (void)setDeviceClassesOfInterest:(nullable NSSet *)deviceClassesOfInterest;
+- (void)setDeviceLocalesOfInterest:(nullable NSSet *)deviceLocalesOfInterest;
+- (void)setLocatedCountryInterest;
+- (void)setBillingCountryInterest;
+- (void)setChinaCellularInterest;
+- (void)setDeviceRegionInterest;
+- (void)setDeviceRegionCodesOfInterest:(nullable NSSet *)deviceRegionCodesOfInterest;
+- (void)setDeviceLanguageInterest;
+- (void)setDeviceLanguagesOfInterest:(nullable NSSet *)deviceLanguagesOfInterest;
+- (void)setGenerativeModelSystemVersionInterest;
+- (void)setGreymatterQueueInterest;
+- (void)setSiriLanguageInterest;
 - (void)resetInputsOfInterest;
 
 - (EligibilityAnswer)computeWithError:(NSError * _Nullable *)errorPtr;
@@ -77,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (EligibilityInputStatus)computeInputStatusForGreymatterQueueInput:(GreymatterQueueInput *)input;
 - (EligibilityInputStatus)computeInputStatusForSiriLanguageInput:(SiriLanguageInput *)input;
 
-- (void)serialize;
+- (NSDictionary *)serialize;
 - (EligibilityAnswer)computeAnswerFromStatus:(NSDictionary *)status;
 - (EligibilityAnswer)computeAnswerFromStatusWithError:(NSError * _Nullable *)errorPtr;
 - (void)addContextForKey:(NSString *)key value:(id)value;
