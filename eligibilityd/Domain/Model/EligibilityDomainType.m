@@ -9,9 +9,10 @@
 
 const char *eligibility_domain_to_str(EligibilityDomainType domain) {
     switch (domain) {
+        case EligibilityDomainTypeInvalid: return "OS_ELIGIBILITY_DOMAIN_INVALID";
         // TODO
-        default:
-            return "<Unknown Domain>";
+        case EligibilityDomainTypeXcodeLLM: return "OS_ELIGIBILITY_DOMAIN_XCODE_LLM";
+        default: return "<Unknown Domain>";
     }
 }
 

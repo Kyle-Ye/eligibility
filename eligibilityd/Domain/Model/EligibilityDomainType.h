@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 #define EligibilityDomainTypeCount 124
 
 typedef NS_ENUM(NSUInteger, EligibilityDomainType) {
+    EligibilityDomainTypeInvalid = 0,
+    // TODO
     EligibilityDomainTypeXcodeLLM = 123,
 };
 
