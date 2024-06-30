@@ -31,6 +31,7 @@
 		275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F939E2C3147450049F986 /* GenerativeModelSystemInput.m */; };
 		275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A12C31474F0049F986 /* GreymatterQueueInput.m */; };
 		275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A42C3147560049F986 /* SiriLanguageInput.m */; };
+		275F93A82C315A220049F986 /* EligibilityTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A72C315A220049F986 /* EligibilityTimer.m */; };
 		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
@@ -95,6 +96,8 @@
 		275F93A12C31474F0049F986 /* GreymatterQueueInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreymatterQueueInput.m; sourceTree = "<group>"; };
 		275F93A32C3147560049F986 /* SiriLanguageInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SiriLanguageInput.h; sourceTree = "<group>"; };
 		275F93A42C3147560049F986 /* SiriLanguageInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiriLanguageInput.m; sourceTree = "<group>"; };
+		275F93A62C315A220049F986 /* EligibilityTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityTimer.h; sourceTree = "<group>"; };
+		275F93A72C315A220049F986 /* EligibilityTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityTimer.m; sourceTree = "<group>"; };
 		27A770762C2436E1002E7A1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770772C243734002E7A1D /* eligibilityd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eligibilityd.entitlements; sourceTree = "<group>"; };
 		27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSource.h; sourceTree = "<group>"; };
@@ -223,6 +226,8 @@
 			children = (
 				27267E5D2C28945200614B1D /* Model */,
 				27267E552C28938B00614B1D /* Domains */,
+				275F93A62C315A220049F986 /* EligibilityTimer.h */,
+				275F93A72C315A220049F986 /* EligibilityTimer.m */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
 				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
 				275F939F2C3147450049F986 /* GenerativeModelSystemInput.m in Sources */,
+				275F93A82C315A220049F986 /* EligibilityTimer.m in Sources */,
 				27267E5C2C2893C700614B1D /* XcodeLLMDomain.m in Sources */,
 				27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */,
 				2730C79A2C1F343900F5D46B /* EligibilityLog.m in Sources */,
