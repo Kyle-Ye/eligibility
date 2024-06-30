@@ -117,7 +117,7 @@
 }
 
 - (BOOL)_saveInputsWithError:(NSError * _Nullable *)errorPtr {
-    const char *path = copy_eligibility_domain_daemon_directory_path();
+    const char *path = copy_eligibility_domain_input_manager_plist_path();
     if (!path) {
         os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __FUNCTION__);
         free((void *)path);
@@ -147,7 +147,7 @@
 
 - (NSDictionary *)_loadInputsWithError:(NSError * _Nullable *)errorPtr {
     NSSet *supportedClasses = [NSSet setWithObjects:NSDictionary.class, EligibilityInput.class, NSString.class, nil];
-    const char *path = copy_eligibility_domain_daemon_directory_path();
+    const char *path = copy_eligibility_domain_input_manager_plist_path();
     NSDictionary * inputs = nil;
     NSError *error = nil;
     if (!path) {

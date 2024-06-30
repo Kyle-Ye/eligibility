@@ -14,9 +14,13 @@
 
 #import <notify.h>
 #import <libproc.h>
+#import <sys/stat.h>
+#import <dirent.h>
 
 void _sendInputsNeededNotification(void);
-void _createDirectoryAtPath(void);
+void _createDirectoryAtPath(const char * path, BOOL isDirectory);
+void _setDataProtectionClassDForPath(const char *path);
+void _createDirectories(void);
 void _connectionHandler(xpc_object_t object, xpc_connection_t connection);
 bool _checkEntitlement(audit_token_t *token, const char *name);
 bool _checkTestModeEntitlement(audit_token_t *token);
@@ -26,9 +30,18 @@ static dispatch_source_t source;
 
 // TODO
 void main_block_invoke_1(void) {
-    // TODO
     _sendInputsNeededNotification();
-    copy_eligibility_domain_daemon_directory_path();
+    const char *vault_path = copy_eligibility_domain_data_vault_directory_path();
+    _createDirectoryAtPath(vault_path, YES);
+    free((void *)vault_path);
+    
+    const char *deamon_path = copy_eligibility_domain_daemon_directory_path();
+    _createDirectoryAtPath(deamon_path, NO);
+    free((void *)deamon_path);
+    
+    // OEURLForContainerWithError
+    // _createDirectories
+    // TODO
 }
 
 void main_block_invoke_2(xpc_object_t object) {
@@ -66,16 +79,42 @@ void main_block_invoke_3(xpc_object_t object, dispatch_queue_t queue) {
 }
 
 void _sendInputsNeededNotification(void) {
-    // TODO
     uint32_t status = notify_post("com.apple.os-eligibility-domain.input-needed");
     if (status != 0) {
-//  os_log_error(eligibility_log(), "%s: Could not send inputs needed notification \"com.apple.os-eligibility-domain.input-needed\""), );
+        os_log_error(eligibility_log(), "%s: Could not send inputs needed notification \\\"com.apple.os-eligibility-domain.input-needed\\\": %u", __FUNCTION__, status);
     }
 }
 
-void _createDirectoryAtPath(void) {
-    // TODO
+void _createDirectoryAtPath(const char * path, BOOL isDirectory) {
+    if (mkdir(path, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) == 0) { // 0755
+        if (isDirectory) {
+            os_log_fault(eligibility_log(), "%s: Successfully created directory \\\"%s\\\"; this should already exist", __FUNCTION__, path);
+        }
+    } else {
+        int error_code = errno;
+        if (error_code != EEXIST) {
+            os_log_fault(eligibility_log(), "%s: mkdir of path \\\"%s\\\" failed; this directory should already exist: %s(%d)", __FUNCTION__, path, strerror(error_code), error_code);
+        }
+    }
+    _setDataProtectionClassDForPath(path);
 }
+
+void _setDataProtectionClassDForPath(const char * path) {
+    DIR *dir = opendir(path);
+    if (dir == NULL) {
+        int descriptor = dirfd(dir);
+        // See:  https://developer.apple.com/support/downloads/Apple-File-System-Reference.pdf
+        if (fcntl(descriptor, F_SETPROTECTIONCLASS, 0x4)) { // PROTECTION_CLASS_D
+            os_log_error(eligibility_log(), "%s: Failed to setclass(PROTECTION_CLASS_D) on directory %s: %s", __FUNCTION__, path, strerror(errno));
+        }
+        closedir(dir);
+    } else {
+        os_log_error(eligibility_log(), "%s: opendir of %s failed: %s", __FUNCTION__, path, strerror(errno));
+    }
+}
+
+void _createDirectories(void);
+
 
 void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
     audit_token_t auditToken = {};

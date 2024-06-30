@@ -12,7 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 void asyncBlock(dispatch_queue_t queue, dispatch_block_t block);
-const char * copy_eligibility_domain_daemon_directory_path(void);
+const char *copy_eligibility_domain_data_vault_directory_path(void);
+const char *copy_eligibility_domain_daemon_directory_path(void);
+const char * copy_eligibility_domain_input_manager_plist_path(void);
 uint64_t eligibility_xpc_get_message_type(xpc_object_t object);
 
 NS_ASSUME_NONNULL_END
