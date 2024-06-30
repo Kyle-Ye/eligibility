@@ -7,7 +7,7 @@ This project is an open source reimplementation of eligibility daemon.
 > version of macOS and Xcode. (Currently it needs macOS 15 Beta 1 with Xcode 16 Beta 1)
 
 > [!WARNING]
-> Some feature will work when SIP is disable.
+> Some feature will only work when SIP is disable.
 >
 > Use at your own risk.
 
