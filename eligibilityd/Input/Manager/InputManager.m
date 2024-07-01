@@ -118,31 +118,34 @@
 
 - (BOOL)_saveInputsWithError:(NSError * _Nullable *)errorPtr {
     const char *path = copy_eligibility_domain_input_manager_plist_path();
+    NSError *error;
+    BOOL result;
     if (!path) {
         os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __FUNCTION__);
-        free((void *)path);
-        if (errorPtr) {
-            *errorPtr = nil;
+        error = nil;
+        result = NO;
+    } else {
+        NSString *pathString = [NSString stringWithUTF8String:path];
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
+        [archiver encodeObject:self.eligibilityInputs forKey:NSKeyedArchiveRootObjectKey];
+        NSData *encodedData = [archiver encodedData];
+        NSURL *pathURL = [NSURL fileURLWithPath:pathString isDirectory:NO];
+        NSError *writingError = nil;
+        BOOL writeResult = [encodedData writeToURL:pathURL options:NSDataWritingAtomic | NSDataWritingFileProtectionNone error:&writingError];
+        if (!writeResult) {
+            os_log_error(eligibility_log(), "%s: Failed to write eligibility data %@ to disk at %@: %@", __FUNCTION__, self.eligibilityInputs, pathURL, writingError);
+            error = writingError;
+            result = NO;
+        } else {
+            error = nil;
+            result = YES;
         }
-        return NO;
-    }
-    NSString *pathString = [NSString stringWithUTF8String:path];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
-    [archiver encodeObject:self.eligibilityInputs forKey:NSKeyedArchiveRootObjectKey];
-    NSData *encodedData = [archiver encodedData];
-    NSURL *pathURL = [NSURL fileURLWithPath:pathString isDirectory:NO];
-    NSError *writingError = nil;
-    BOOL result = [encodedData writeToURL:pathURL options:NSDataWritingAtomic | NSDataWritingFileProtectionNone error:&writingError];
-    if (!result) {
-        os_log_error(eligibility_log(), "%s: Failed to write eligibility data %@ to disk at %@: %@", __FUNCTION__, self.eligibilityInputs, pathURL, writingError);
-        free((void *)path);
-        if (errorPtr) {
-            *errorPtr = writingError;
-        }
-        return NO;
     }
     free((void *)path);
-    return YES;
+    if (errorPtr && !result) {
+        *errorPtr = nil;
+    }
+    return result;
 }
 
 - (NSDictionary *)_loadInputsWithError:(NSError * _Nullable *)errorPtr {

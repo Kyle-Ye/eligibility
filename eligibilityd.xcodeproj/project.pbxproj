@@ -31,6 +31,7 @@
 		275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A12C31474F0049F986 /* GreymatterQueueInput.m */; };
 		275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A42C3147560049F986 /* SiriLanguageInput.m */; };
 		275F93A82C315A220049F986 /* EligibilityTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 275F93A72C315A220049F986 /* EligibilityTimer.m */; };
+		275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */; };
 		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
 		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
@@ -100,6 +101,8 @@
 		275F93A42C3147560049F986 /* SiriLanguageInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SiriLanguageInput.m; sourceTree = "<group>"; };
 		275F93A62C315A220049F986 /* EligibilityTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityTimer.h; sourceTree = "<group>"; };
 		275F93A72C315A220049F986 /* EligibilityTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityTimer.m; sourceTree = "<group>"; };
+		275F93A92C31E2FE0049F986 /* containermanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = containermanager.h; sourceTree = "<group>"; };
+		275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_containermanager.tbd; path = usr/lib/system/libsystem_containermanager.tbd; sourceTree = SDKROOT; };
 		27A770762C2436E1002E7A1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770772C243734002E7A1D /* eligibilityd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eligibilityd.entitlements; sourceTree = "<group>"; };
 		27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSource.h; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */,
 				27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */,
 				2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */,
 			);
@@ -252,6 +256,7 @@
 		272EB8772C2466A900C5B1DC /* spi */ = {
 			isa = PBXGroup;
 			children = (
+				275F93A92C31E2FE0049F986 /* containermanager.h */,
 				27267E462C2873E300614B1D /* os_private.h */,
 				27267E3B2C26CE3600614B1D /* XPCSPI.h */,
 				27267E452C286EE800614B1D /* MobileGestalt.h */,
@@ -299,6 +304,7 @@
 		2730C7952C1F13F700F5D46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */,
 				27267E472C2874E100614B1D /* SystemConfiguration.framework */,
 				2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */,
 			);
@@ -572,6 +578,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -584,6 +594,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
