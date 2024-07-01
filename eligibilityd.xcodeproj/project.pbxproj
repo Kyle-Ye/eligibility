@@ -583,6 +583,8 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -599,6 +601,8 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
