@@ -7,6 +7,7 @@
 
 #import "eligibility.h"
 
-@implementation eligibility
-
-@end
+EligibilityAnswer os_eligibility_domain_for_name(const char *name) {
+    // TODO
+    return EligibilityAnswerInvalid;
+}

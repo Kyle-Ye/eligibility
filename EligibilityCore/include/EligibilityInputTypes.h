@@ -1,15 +1,15 @@
 //
 //  EligibilityInputTypes.h
-//  eligibilityd
+//  EligibilityCore
 //
 //  Created by Kyle on 2024/6/30.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
-#import <Foundation/Foundation.h>
-#import "EligibilityInputType.h"
+#ifndef EligibilityInputTypes_h
+#define EligibilityInputTypes_h
 
-NS_ASSUME_NONNULL_BEGIN
+#include <Foundation/Foundation.h>
 
 typedef NS_OPTIONS(NSUInteger, EligibilityInputTypes) {
     EligibilityInputTypesInvalid = EligibilityInputTypeInvalid,
@@ -25,4 +25,4 @@ typedef NS_OPTIONS(NSUInteger, EligibilityInputTypes) {
     EligibilityInputTypesSiriLanguage = 1 << (EligibilityInputTypeSiriLanguage - 1),
 };
 
-NS_ASSUME_NONNULL_END
+#endif /* EligibilityInputTypes_h */

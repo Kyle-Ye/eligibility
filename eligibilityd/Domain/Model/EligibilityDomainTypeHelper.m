@@ -1,11 +1,11 @@
 //
-//  EligibilityDomainType.m
+//  EligibilityDomainTypeHelper.m
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/24.
 //
 
-#import "EligibilityDomainType.h"
+#import "EligibilityDomainTypeHelper.h"
 
 const char *eligibility_domain_to_str(EligibilityDomainType domain) {
     switch (domain) {

@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 270DB0172C228443003DF9BF /* LocatedCountryInput.m */; };
-		270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */; };
-		270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */; };
+		270DB0192C2284B7003DF9BF /* EligibilityInputTypeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50342C1F5BB0009785B3 /* EligibilityInputTypeHelper.m */; };
+		270DB01A2C2284BC003DF9BF /* EligibilityInputStatusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50352C1F5BE0009785B3 /* EligibilityInputStatusHelper.m */; };
 		27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E3D2C28016700614B1D /* GlobalConfiguration.m */; };
 		27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27267E472C2874E100614B1D /* SystemConfiguration.framework */; };
 		27267E4F2C287A5E00614B1D /* InputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E4E2C287A5E00614B1D /* InputManager.m */; };
 		27267E542C2880FA00614B1D /* EligibilityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E532C2880FA00614B1D /* EligibilityUtils.m */; };
 		27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E582C2893B800614B1D /* EligibilityDomain.m */; };
 		27267E5C2C2893C700614B1D /* XcodeLLMDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E5B2C2893C700614B1D /* XcodeLLMDomain.m */; };
-		27267E602C28948D00614B1D /* EligibilityDomainType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E5F2C28948D00614B1D /* EligibilityDomainType.m */; };
+		27267E602C28948D00614B1D /* EligibilityDomainTypeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27267E5F2C28948D00614B1D /* EligibilityDomainTypeHelper.m */; };
 		2730C7892C1F120B00F5D46B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7882C1F120B00F5D46B /* main.m */; };
 		2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7902C1F127100F5D46B /* DeviceRegionCodeInput.m */; };
 		2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C7932C1F129800F5D46B /* EligibilityInput.m */; };
@@ -34,10 +34,9 @@
 		275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */; };
 		276F6D302C34537E00748E4D /* eligibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 276F6D2F2C34537E00748E4D /* eligibility.h */; };
 		276F6D322C34537E00748E4D /* eligibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F6D312C34537E00748E4D /* eligibility.m */; };
-		27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */; };
+		27AAD4622C21548D0012040E /* EligibilityAnswerSourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AAD4612C21548D0012040E /* EligibilityAnswerSourceHelper.m */; };
 		27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50222C1F4308009785B3 /* BoronAsset.m */; };
-		27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */; };
-		27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */; };
+		27CA50382C1F5C22009785B3 /* EligibilityAnswerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA50372C1F5C22009785B3 /* EligibilityAnswerHelper.m */; };
 		27DBD6E92C31AE990078A218 /* EligibilityEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6E82C31AE990078A218 /* EligibilityEngine.m */; };
 		27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EC2C31B0080078A218 /* EligibilityOverrideData.m */; };
 		27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */; };
@@ -74,8 +73,8 @@
 		27267E582C2893B800614B1D /* EligibilityDomain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityDomain.m; sourceTree = "<group>"; };
 		27267E5A2C2893C700614B1D /* XcodeLLMDomain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XcodeLLMDomain.h; sourceTree = "<group>"; };
 		27267E5B2C2893C700614B1D /* XcodeLLMDomain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XcodeLLMDomain.m; sourceTree = "<group>"; };
-		27267E5E2C28948D00614B1D /* EligibilityDomainType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityDomainType.h; sourceTree = "<group>"; };
-		27267E5F2C28948D00614B1D /* EligibilityDomainType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityDomainType.m; sourceTree = "<group>"; };
+		27267E5E2C28948D00614B1D /* EligibilityDomainTypeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityDomainTypeHelper.h; sourceTree = "<group>"; };
+		27267E5F2C28948D00614B1D /* EligibilityDomainTypeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityDomainTypeHelper.m; sourceTree = "<group>"; };
 		2730C7852C1F120B00F5D46B /* eligibilityd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibilityd; sourceTree = BUILT_PRODUCTS_DIR; };
 		2730C7882C1F120B00F5D46B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2730C78F2C1F127100F5D46B /* DeviceRegionCodeInput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceRegionCodeInput.h; sourceTree = "<group>"; };
@@ -105,24 +104,21 @@
 		275F93A72C315A220049F986 /* EligibilityTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityTimer.m; sourceTree = "<group>"; };
 		275F93A92C31E2FE0049F986 /* containermanager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = containermanager.h; sourceTree = "<group>"; };
 		275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_containermanager.tbd; path = usr/lib/system/libsystem_containermanager.tbd; sourceTree = SDKROOT; };
-		276F6D2D2C34537E00748E4D /* libeligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libeligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsystem_eligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		276F6D2F2C34537E00748E4D /* eligibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eligibility.h; sourceTree = "<group>"; };
 		276F6D312C34537E00748E4D /* eligibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eligibility.m; sourceTree = "<group>"; };
-		276F6D362C3453C800748E4D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770762C2436E1002E7A1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27A770772C243734002E7A1D /* eligibilityd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = eligibilityd.entitlements; sourceTree = "<group>"; };
-		27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSource.h; sourceTree = "<group>"; };
-		27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityAnswerSource.m; sourceTree = "<group>"; };
+		27AAD4602C21548D0012040E /* EligibilityAnswerSourceHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerSourceHelper.h; sourceTree = "<group>"; };
+		27AAD4612C21548D0012040E /* EligibilityAnswerSourceHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityAnswerSourceHelper.m; sourceTree = "<group>"; };
 		27CA50212C1F4308009785B3 /* BoronAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoronAsset.h; sourceTree = "<group>"; };
 		27CA50222C1F4308009785B3 /* BoronAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoronAsset.m; sourceTree = "<group>"; };
-		27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputType.h; sourceTree = "<group>"; };
-		27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputStatus.h; sourceTree = "<group>"; };
-		27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputType.m; sourceTree = "<group>"; };
-		27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputStatus.m; sourceTree = "<group>"; };
-		27CA50362C1F5C22009785B3 /* EligibilityAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswer.h; sourceTree = "<group>"; };
-		27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityAnswer.m; sourceTree = "<group>"; };
-		27DBD6CD2C3175360078A218 /* EligibilityInputTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputTypes.h; sourceTree = "<group>"; };
-		27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputTypes.m; sourceTree = "<group>"; };
+		27CA50242C1F4FE6009785B3 /* EligibilityInputTypeHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputTypeHelper.h; sourceTree = "<group>"; };
+		27CA50252C1F508D009785B3 /* EligibilityInputStatusHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityInputStatusHelper.h; sourceTree = "<group>"; };
+		27CA50342C1F5BB0009785B3 /* EligibilityInputTypeHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputTypeHelper.m; sourceTree = "<group>"; };
+		27CA50352C1F5BE0009785B3 /* EligibilityInputStatusHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityInputStatusHelper.m; sourceTree = "<group>"; };
+		27CA50362C1F5C22009785B3 /* EligibilityAnswerHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityAnswerHelper.h; sourceTree = "<group>"; };
+		27CA50372C1F5C22009785B3 /* EligibilityAnswerHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityAnswerHelper.m; sourceTree = "<group>"; };
 		27DBD6E72C31AE990078A218 /* EligibilityEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityEngine.h; sourceTree = "<group>"; };
 		27DBD6E82C31AE990078A218 /* EligibilityEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityEngine.m; sourceTree = "<group>"; };
 		27DBD6EB2C31B0080078A218 /* EligibilityOverrideData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EligibilityOverrideData.h; sourceTree = "<group>"; };
@@ -131,7 +127,12 @@
 		27DBD6EF2C31B3800078A218 /* EligibilityOverride.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EligibilityOverride.m; sourceTree = "<group>"; };
 		27DBD6F12C31BF8F0078A218 /* TestDomain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestDomain.h; sourceTree = "<group>"; };
 		27DBD6F22C31BF8F0078A218 /* TestDomain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestDomain.m; sourceTree = "<group>"; };
+		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		27EC6A6B2C34627B00F76D70 /* EligibilityCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EligibilityCore; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2730C7822C1F120B00F5D46B /* Frameworks */ = {
@@ -157,12 +158,10 @@
 		270DB0142C22841D003DF9BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27CA50242C1F4FE6009785B3 /* EligibilityInputType.h */,
-				27CA50342C1F5BB0009785B3 /* EligibilityInputType.m */,
-				27DBD6CD2C3175360078A218 /* EligibilityInputTypes.h */,
-				27DBD6CE2C3175360078A218 /* EligibilityInputTypes.m */,
-				27CA50252C1F508D009785B3 /* EligibilityInputStatus.h */,
-				27CA50352C1F5BE0009785B3 /* EligibilityInputStatus.m */,
+				27CA50242C1F4FE6009785B3 /* EligibilityInputTypeHelper.h */,
+				27CA50342C1F5BB0009785B3 /* EligibilityInputTypeHelper.m */,
+				27CA50252C1F508D009785B3 /* EligibilityInputStatusHelper.h */,
+				27CA50352C1F5BE0009785B3 /* EligibilityInputStatusHelper.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,8 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				27CA50202C1F42F9009785B3 /* Answer */,
-				27267E5E2C28948D00614B1D /* EligibilityDomainType.h */,
-				27267E5F2C28948D00614B1D /* EligibilityDomainType.m */,
+				27267E5E2C28948D00614B1D /* EligibilityDomainTypeHelper.h */,
+				27267E5F2C28948D00614B1D /* EligibilityDomainTypeHelper.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +279,8 @@
 		2730C77C2C1F120B00F5D46B = {
 			isa = PBXGroup;
 			children = (
-				276F6D362C3453C800748E4D /* README.md */,
+				27EC6A4D2C345EC500F76D70 /* README.md */,
+				27EC6A6B2C34627B00F76D70 /* EligibilityCore */,
 				2730C7872C1F120B00F5D46B /* eligibilityd */,
 				276F6D2E2C34537E00748E4D /* eligibility */,
 				2730C7862C1F120B00F5D46B /* Products */,
@@ -292,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				2730C7852C1F120B00F5D46B /* eligibilityd */,
-				276F6D2D2C34537E00748E4D /* libeligibility.dylib */,
+				276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,10 +358,10 @@
 		27CA50202C1F42F9009785B3 /* Answer */ = {
 			isa = PBXGroup;
 			children = (
-				27CA50362C1F5C22009785B3 /* EligibilityAnswer.h */,
-				27CA50372C1F5C22009785B3 /* EligibilityAnswer.m */,
-				27AAD4602C21548D0012040E /* EligibilityAnswerSource.h */,
-				27AAD4612C21548D0012040E /* EligibilityAnswerSource.m */,
+				27CA50362C1F5C22009785B3 /* EligibilityAnswerHelper.h */,
+				27CA50372C1F5C22009785B3 /* EligibilityAnswerHelper.m */,
+				27AAD4602C21548D0012040E /* EligibilityAnswerSourceHelper.h */,
+				27AAD4612C21548D0012040E /* EligibilityAnswerSourceHelper.m */,
 			);
 			path = Answer;
 			sourceTree = "<group>";
@@ -413,13 +413,15 @@
 			dependencies = (
 			);
 			name = eligibilityd;
+			packageProductDependencies = (
+			);
 			productName = eligibilityd;
 			productReference = 2730C7852C1F120B00F5D46B /* eligibilityd */;
 			productType = "com.apple.product-type.tool";
 		};
-		276F6D2C2C34537E00748E4D /* eligibility */ = {
+		276F6D2C2C34537E00748E4D /* system_eligibility */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 276F6D332C34537E00748E4D /* Build configuration list for PBXNativeTarget "eligibility" */;
+			buildConfigurationList = 276F6D332C34537E00748E4D /* Build configuration list for PBXNativeTarget "system_eligibility" */;
 			buildPhases = (
 				276F6D292C34537E00748E4D /* Headers */,
 				276F6D2A2C34537E00748E4D /* Sources */,
@@ -429,9 +431,11 @@
 			);
 			dependencies = (
 			);
-			name = eligibility;
+			name = system_eligibility;
+			packageProductDependencies = (
+			);
 			productName = eligibility;
-			productReference = 276F6D2D2C34537E00748E4D /* libeligibility.dylib */;
+			productReference = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -465,7 +469,7 @@
 			projectRoot = "";
 			targets = (
 				2730C7842C1F120B00F5D46B /* eligibilityd */,
-				276F6D2C2C34537E00748E4D /* eligibility */,
+				276F6D2C2C34537E00748E4D /* system_eligibility */,
 			);
 		};
 /* End PBXProject section */
@@ -475,18 +479,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				270DB0192C2284B7003DF9BF /* EligibilityInputType.m in Sources */,
+				270DB0192C2284B7003DF9BF /* EligibilityInputTypeHelper.m in Sources */,
 				27267E3E2C28016700614B1D /* GlobalConfiguration.m in Sources */,
-				27267E602C28948D00614B1D /* EligibilityDomainType.m in Sources */,
+				27267E602C28948D00614B1D /* EligibilityDomainTypeHelper.m in Sources */,
 				275F93902C3141910049F986 /* CountryBillingInput.m in Sources */,
 				2730C7892C1F120B00F5D46B /* main.m in Sources */,
-				27AAD4622C21548D0012040E /* EligibilityAnswerSource.m in Sources */,
-				270DB01A2C2284BC003DF9BF /* EligibilityInputStatus.m in Sources */,
+				27AAD4622C21548D0012040E /* EligibilityAnswerSourceHelper.m in Sources */,
+				270DB01A2C2284BC003DF9BF /* EligibilityInputStatusHelper.m in Sources */,
 				275F939C2C31473B0049F986 /* DeviceLanguageInput.m in Sources */,
 				2730C7942C1F129800F5D46B /* EligibilityInput.m in Sources */,
 				27CA50232C1F4308009785B3 /* BoronAsset.m in Sources */,
 				270DB0182C228443003DF9BF /* LocatedCountryInput.m in Sources */,
-				27CA50382C1F5C22009785B3 /* EligibilityAnswer.m in Sources */,
+				27CA50382C1F5C22009785B3 /* EligibilityAnswerHelper.m in Sources */,
 				27DBD6F02C31B3800078A218 /* EligibilityOverride.m in Sources */,
 				27267E4F2C287A5E00614B1D /* InputManager.m in Sources */,
 				27DBD6F32C31BF8F0078A218 /* TestDomain.m in Sources */,
@@ -499,7 +503,6 @@
 				275F93A52C3147560049F986 /* SiriLanguageInput.m in Sources */,
 				275F93A22C31474F0049F986 /* GreymatterQueueInput.m in Sources */,
 				275F93992C31472F0049F986 /* ChinaCellularInput.m in Sources */,
-				27DBD6CF2C3175360078A218 /* EligibilityInputTypes.m in Sources */,
 				27DBD6ED2C31B0080078A218 /* EligibilityOverrideData.m in Sources */,
 				27267E592C2893B800614B1D /* EligibilityDomain.m in Sources */,
 				2730C7912C1F127100F5D46B /* DeviceRegionCodeInput.m in Sources */,
@@ -680,7 +683,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -694,7 +697,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = lib;
-				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -721,7 +724,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		276F6D332C34537E00748E4D /* Build configuration list for PBXNativeTarget "eligibility" */ = {
+		276F6D332C34537E00748E4D /* Build configuration list for PBXNativeTarget "system_eligibility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				276F6D342C34537E00748E4D /* Debug */,

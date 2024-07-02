@@ -1,5 +1,5 @@
 //
-//  EligibilityAnswer.h
+//  EligibilityAnswerHelper.h
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/17.
@@ -7,16 +7,9 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
+#import "EligibilityAnswer.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NS_ENUM(NSUInteger, EligibilityAnswer) {
-    EligibilityAnswerInvalid = 0,
-    EligibilityAnswerNotYetAvailable = 1,
-    EligibilityAnswerNotEligible = 2,
-    EligibilityAnswerMaybe = 3,
-    EligibilityAnswerEligible = 4,
-};
 
 const char * _Nullable eligibility_answer_to_str(EligibilityAnswer answer);
 NSString *eligibility_answer_to_NSString(EligibilityAnswer answer);

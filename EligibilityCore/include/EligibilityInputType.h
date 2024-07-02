@@ -1,14 +1,15 @@
 //
 //  EligibilityInputType.h
-//  eligibilityd
+//  EligibilityCore
 //
 //  Created by Kyle on 2024/6/17.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
-#import <Foundation/Foundation.h>
+#ifndef EligibilityInputType_h
+#define EligibilityInputType_h
 
-NS_ASSUME_NONNULL_BEGIN
+#include <Foundation/Foundation.h>
 
 #define EligibilityInputTypeCount 10
 
@@ -26,7 +27,4 @@ typedef NS_ENUM(NSUInteger, EligibilityInputType) {
     EligibilityInputTypeSiriLanguage = 10,
 };
 
-const char * _Nullable eligibility_input_to_str(EligibilityInputType type);
-NSString *eligibility_input_to_NSString(EligibilityInputType type);
-
-NS_ASSUME_NONNULL_END
+#endif /* EligibilityInputType_h */

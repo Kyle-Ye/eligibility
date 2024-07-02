@@ -7,8 +7,8 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
-#import "EligibilityAnswer.h"
-#import "EligibilityDomainType.h"
+#import "EligibilityAnswerHelper.h"
+#import "EligibilityDomainTypeHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

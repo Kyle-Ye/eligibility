@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EligibilityAnswer.h"
 
-@interface eligibility : NSObject
-
-@end
+EligibilityAnswer os_eligibility_domain_for_name(const char *name);

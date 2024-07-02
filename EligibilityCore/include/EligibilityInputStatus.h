@@ -1,14 +1,15 @@
 //
 //  EligibilityInputStatus.h
-//  eligibilityd
+//  EligibilityCore
 //
 //  Created by Kyle on 2024/6/17.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
-#import <Foundation/Foundation.h>
+#ifndef EligibilityInputStatus_h
+#define EligibilityInputStatus_h
 
-NS_ASSUME_NONNULL_BEGIN
+#include <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, EligibilityInputStatus) {
     EligibilityInputStatusNone = 0,
@@ -20,7 +21,4 @@ typedef NS_ENUM(NSUInteger, EligibilityInputStatus) {
     EligibilityInputStatusTokenExpired = 6,
     EligibilityInputStatusNoAccount = 7,
 };
-
-NSString * _Nullable eligibility_input_status_to_str(EligibilityInputStatus status);
-
-NS_ASSUME_NONNULL_END
+#endif /* EligibilityInputStatus_h */

@@ -1,11 +1,11 @@
 //
-//  EligibilityAnswer.m
+//  EligibilityAnswerHelper.m
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/17.
 //
 
-#import "EligibilityAnswer.h"
+#import "EligibilityAnswerHelper.h"
 #import "EligibilityLog.h"
 
 const char * _Nullable eligibility_answer_to_str(EligibilityAnswer answer) {

@@ -7,8 +7,8 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
-#import "EligibilityInputType.h"
-#import "EligibilityInputStatus.h"
+#import "EligibilityInputTypeHelper.h"
+#import "EligibilityInputStatusHelper.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

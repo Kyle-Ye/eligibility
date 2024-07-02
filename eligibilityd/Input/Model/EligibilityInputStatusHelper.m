@@ -1,12 +1,12 @@
 //
-//  EligibilityInputStatus.m
+//  EligibilityInputStatusHelper.m
 //  eligibilityd
 //
 //  Created by Kyle on 2024/6/17.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
-#import "EligibilityInputStatus.h"
+#import "EligibilityInputStatusHelper.h"
 #import "EligibilityLog.h"
 
 NSString * _Nullable eligibility_input_status_to_str(EligibilityInputStatus status) {

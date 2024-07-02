@@ -7,13 +7,13 @@
 //  Status: Complete
 
 #import <Foundation/Foundation.h>
-#import "EligibilityDomainType.h"
-#import "EligibilityAnswer.h"
-#import "EligibilityAnswerSource.h"
+#import "EligibilityDomainTypeHelper.h"
+#import "EligibilityAnswerHelper.h"
+#import "EligibilityAnswerSourceHelper.h"
 #import "EligibilityInput.h"
-#import "EligibilityInputType.h"
+#import "EligibilityInputTypeHelper.h"
 #import "EligibilityInputTypes.h"
-#import "EligibilityInputStatus.h"
+#import "EligibilityInputStatusHelper.h"
 
 #import "LocatedCountryInput.h"
 #import "CountryBillingInput.h"
