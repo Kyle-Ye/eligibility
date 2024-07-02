@@ -1,17 +1,19 @@
-# eligibilityd
+# eligibility
 
-This project is an open source reimplementation of eligibility daemon.
+This project is an open source reimplementation of eligibility related stuff.
 
 > [!IMPORTANT]
 > This project is under active, ongoing development and requires the latest beta
-> version of macOS and Xcode. (Currently it needs macOS 15 Beta 1 with Xcode 16 Beta 1)
-
-> [!WARNING]
-> Some feature will only work when SIP is disable.
+> version of macOS and Xcode.
 >
-> Use at your own risk.
+> Currently it needs macOS 15 Beta 1 with Xcode 16 Beta 1
 
 ## Disclaimer
+
+> [!CAUTION]
+> Some feature will only work when SIP is disabled.
+>
+> Use at your own risk.
 
 > [!NOTE]
 > this project is for learning and research purposes only.
@@ -23,24 +25,6 @@ This project is an open source reimplementation of eligibility daemon.
 ## Contributions
 
 If you find any issues or have suggestions for improvements, feel free to submit an issue or a pull request.
-
-## Status
-
-- [ ] some Asset and Domain are missing.
-- [ ] EligibilityEngine is not implemented.
-- [ ] XPC related stuff is buggy.
-
-## Related Links
-
-### Eligibility
-
-- https://theapplewiki.com/wiki/Eligibility
-
-### XPC
-
-- https://github.com/PureDarwin/XPC
-- https://github.com/jceel/libxpc
-- https://github.com/WebKit/WebKit/blob/main/Source/WTF/wtf/spi/darwin/XPCSPI.h
 
 ## LICENSE
 
