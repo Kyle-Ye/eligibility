@@ -9,9 +9,9 @@
 #ifndef EligibilityInputTypes_h
 #define EligibilityInputTypes_h
 
-#include <Foundation/Foundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 
-typedef NS_OPTIONS(NSUInteger, EligibilityInputTypes) {
+typedef CF_OPTIONS(uint64_t, EligibilityInputTypes) {
     EligibilityInputTypesInvalid = EligibilityInputTypeInvalid,
     EligibilityInputTypesCountryLocation = 1 << (EligibilityInputTypeCountryLocation - 1),
     EligibilityInputTypesCountryBilling = 1 << (EligibilityInputTypeCountryBilling - 1),

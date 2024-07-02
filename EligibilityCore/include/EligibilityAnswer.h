@@ -9,9 +9,9 @@
 #ifndef EligibilityAnswer_h
 #define EligibilityAnswer_h
 
-#include <Foundation/Foundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 
-typedef NS_ENUM(NSUInteger, EligibilityAnswer) {
+typedef CF_ENUM(uint64_t, EligibilityAnswer) {
     EligibilityAnswerInvalid = 0,
     EligibilityAnswerNotYetAvailable = 1,
     EligibilityAnswerNotEligible = 2,

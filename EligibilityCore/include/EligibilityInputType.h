@@ -9,11 +9,11 @@
 #ifndef EligibilityInputType_h
 #define EligibilityInputType_h
 
-#include <Foundation/Foundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 #define EligibilityInputTypeCount 10
 
-typedef NS_ENUM(NSUInteger, EligibilityInputType) {
+typedef CF_ENUM(uint64_t, EligibilityInputType) {
     EligibilityInputTypeInvalid = 0,
     EligibilityInputTypeCountryLocation = 1,
     EligibilityInputTypeCountryBilling = 2,

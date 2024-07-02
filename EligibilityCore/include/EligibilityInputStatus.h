@@ -9,9 +9,9 @@
 #ifndef EligibilityInputStatus_h
 #define EligibilityInputStatus_h
 
-#include <Foundation/Foundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 
-typedef NS_ENUM(NSUInteger, EligibilityInputStatus) {
+typedef CF_ENUM(uint64_t, EligibilityInputStatus) {
     EligibilityInputStatusNone = 0,
     EligibilityInputStatusNotSet = 1,
     EligibilityInputStatusNotEligible = 2,
