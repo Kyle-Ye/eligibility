@@ -69,9 +69,9 @@
     NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe | NSDataReadingUncached error:&readinessError];
     if (!data) {
         if ([readinessError.domain isEqualToString:NSCocoaErrorDomain] && readinessError.code == NSFileReadNoSuchFileError) {
-            os_log(eligibility_log(), "%s: URL %@ doesn't exist yet: %@", __FUNCTION__, url.path, readinessError);
+            os_log(eligibility_log(), "%s: URL %@ doesn't exist yet: %@", __func__, url.path, readinessError);
         } else {
-            os_log_error(eligibility_log(), "%s: Failed to deserialize data in %@: %@", __FUNCTION__, url.path, readinessError);
+            os_log_error(eligibility_log(), "%s: Failed to deserialize data in %@: %@", __func__, url.path, readinessError);
         }
         if (!errorPtr) {
             *errorPtr = readinessError;
@@ -82,7 +82,7 @@
     NSError *unarchiveError = nil;
     NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&unarchiveError];
     if (!unarchiver) {
-        os_log_error(eligibility_log(), "%s: Failed to create unarchiver: %@", __FUNCTION__, unarchiveError);
+        os_log_error(eligibility_log(), "%s: Failed to create unarchiver: %@", __func__, unarchiveError);
         if (!errorPtr) {
             *errorPtr = unarchiveError;
         }
@@ -91,7 +91,7 @@
     
     id decoded = [unarchiver decodeObjectOfClasses:classes forKey:NSKeyedArchiveRootObjectKey];
     if (!decoded) {
-        os_log_error(eligibility_log(), "%s: Failed to decode data at %@ : %@", __FUNCTION__, url.path, unarchiver.error);
+        os_log_error(eligibility_log(), "%s: Failed to decode data at %@ : %@", __func__, url.path, unarchiver.error);
         if (!errorPtr) {
             *errorPtr = unarchiver.error;
         }

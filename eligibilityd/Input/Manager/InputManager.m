@@ -44,7 +44,7 @@
         NSError *error = nil;
         NSDictionary * inputs = [self _loadInputsWithError:&error];
         if (!inputs) {
-            os_log_error(eligibility_log(), "%s: Unable to load inputs from disk, initing with empty values: %@", __FUNCTION__, error);
+            os_log_error(eligibility_log(), "%s: Unable to load inputs from disk, initing with empty values: %@", __func__, error);
         } else {
             [defaultInputs addEntriesFromDictionary:inputs];
         }
@@ -121,7 +121,7 @@
     NSError *error;
     BOOL result;
     if (!path) {
-        os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __FUNCTION__);
+        os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __func__);
         error = nil;
         result = NO;
     } else {
@@ -133,7 +133,7 @@
         NSError *writingError = nil;
         BOOL writeResult = [encodedData writeToURL:pathURL options:NSDataWritingAtomic | NSDataWritingFileProtectionNone error:&writingError];
         if (!writeResult) {
-            os_log_error(eligibility_log(), "%s: Failed to write eligibility data %@ to disk at %@: %@", __FUNCTION__, self.eligibilityInputs, pathURL, writingError);
+            os_log_error(eligibility_log(), "%s: Failed to write eligibility data %@ to disk at %@: %@", __func__, self.eligibilityInputs, pathURL, writingError);
             error = writingError;
             result = NO;
         } else {
@@ -154,25 +154,25 @@
     NSDictionary * inputs = nil;
     NSError *error = nil;
     if (!path) {
-        os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __FUNCTION__);
+        os_log_error(eligibility_log(), "%s: Failed to copy input manager plist path", __func__);
     } else {
         NSString *pathString = [NSString stringWithUTF8String:path];
         NSURL *pathURL = [NSURL fileURLWithPath:pathString isDirectory:NO];
         NSError *readingError = nil;
         NSData *data = [NSData dataWithContentsOfURL:pathURL options:NSDataReadingMappedIfSafe | NSDataReadingUncached error:&readingError];
         if (!data) {
-            os_log_error(eligibility_log(), "%s: Failed to deserialize data in %@: %@", __FUNCTION__, pathURL.path, readingError);
+            os_log_error(eligibility_log(), "%s: Failed to deserialize data in %@: %@", __func__, pathURL.path, readingError);
             error = readingError;
         } else {
             NSError *unarchiveError = nil;
             NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingFromData:data error:&unarchiveError];
             if (!unarchiver) {
-                os_log_error(eligibility_log(), "%s: Failed to create unarchiver: %@", __FUNCTION__, unarchiveError);
+                os_log_error(eligibility_log(), "%s: Failed to create unarchiver: %@", __func__, unarchiveError);
                 error = unarchiveError;
             } else {
                 id decoded = [unarchiver decodeObjectOfClasses:supportedClasses forKey:NSKeyedArchiveRootObjectKey];
                 if (!decoded) {
-                    os_log_error(eligibility_log(), "%s: Failed to decode input from data at %@ : %@", __FUNCTION__, pathURL.path, unarchiver.error);
+                    os_log_error(eligibility_log(), "%s: Failed to decode input from data at %@ : %@", __func__, pathURL.path, unarchiver.error);
                     error = unarchiver.error;
                 } else {
                     [unarchiver finishDecoding];
@@ -191,7 +191,7 @@
 - (BOOL)setInput:(EligibilityInput *)input withError:(NSError * _Nullable *)errorPtr {
     const char *inputTypeStr = eligibility_input_to_str(input.type);
     if (!inputTypeStr) {
-        os_log_error(eligibility_log(), "%s: Unknown input %@", __FUNCTION__, input);
+        os_log_error(eligibility_log(), "%s: Unknown input %@", __func__, input);
         if (errorPtr) {
             *errorPtr = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
         }
@@ -207,7 +207,7 @@
 - (EligibilityInput *)objectForInputValue:(EligibilityInputType)inputType {
     const char *inputTypeStr = eligibility_input_to_str(inputType);
     if (!inputTypeStr) {
-        os_log_error(eligibility_log(), "%s: Unknown input %llu", __FUNCTION__, (uint64_t)inputType);
+        os_log_error(eligibility_log(), "%s: Unknown input %llu", __func__, (uint64_t)inputType);
         return nil;
     }
     NSString *inputTypeString = [NSString stringWithUTF8String:inputTypeStr];

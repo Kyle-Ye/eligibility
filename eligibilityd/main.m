@@ -93,19 +93,19 @@ int main(int argc, const char * argv[]) {
 void _sendInputsNeededNotification(void) {
     uint32_t status = notify_post("com.apple.os-eligibility-domain.input-needed");
     if (status != 0) {
-        os_log_error(eligibility_log(), "%s: Could not send inputs needed notification \\\"com.apple.os-eligibility-domain.input-needed\\\": %u", __FUNCTION__, status);
+        os_log_error(eligibility_log(), "%s: Could not send inputs needed notification \\\"com.apple.os-eligibility-domain.input-needed\\\": %u", __func__, status);
     }
 }
 
 void _createDirectoryAtPath(const char * path, BOOL isDirectory) {
     if (mkdir(path, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH) == 0) { // 0755
         if (isDirectory) {
-            os_log_fault(eligibility_log(), "%s: Successfully created directory \\\"%s\\\"; this should already exist", __FUNCTION__, path);
+            os_log_fault(eligibility_log(), "%s: Successfully created directory \\\"%s\\\"; this should already exist", __func__, path);
         }
     } else {
         int error_code = errno;
         if (error_code != EEXIST) {
-            os_log_fault(eligibility_log(), "%s: mkdir of path \\\"%s\\\" failed; this directory should already exist: %s(%d)", __FUNCTION__, path, strerror(error_code), error_code);
+            os_log_fault(eligibility_log(), "%s: mkdir of path \\\"%s\\\" failed; this directory should already exist: %s(%d)", __func__, path, strerror(error_code), error_code);
         }
     }
     _setDataProtectionClassDForPath(path);
@@ -117,11 +117,11 @@ void _setDataProtectionClassDForPath(const char * path) {
         int descriptor = dirfd(dir);
         // See:  https://developer.apple.com/support/downloads/Apple-File-System-Reference.pdf
         if (fcntl(descriptor, F_SETPROTECTIONCLASS, 0x4)) { // PROTECTION_CLASS_D
-            os_log_error(eligibility_log(), "%s: Failed to setclass(PROTECTION_CLASS_D) on directory %s: %s", __FUNCTION__, path, strerror(errno));
+            os_log_error(eligibility_log(), "%s: Failed to setclass(PROTECTION_CLASS_D) on directory %s: %s", __func__, path, strerror(errno));
         }
         closedir(dir);
     } else {
-        os_log_error(eligibility_log(), "%s: opendir of %s failed: %s", __FUNCTION__, path, strerror(errno));
+        os_log_error(eligibility_log(), "%s: opendir of %s failed: %s", __func__, path, strerror(errno));
     }
 }
 
@@ -131,7 +131,7 @@ void _createDirectories(void) {
     if (url) {
         _createDirectoryAtPath([url URLByAppendingPathComponent:@"Library/Caches/NeverRestore/" isDirectory:YES].fileSystemRepresentation, NO);
     } else {
-        os_log(eligibility_log(), "%s: Failed to obtain the URL for data container: %@", __FUNCTION__, error);
+        os_log(eligibility_log(), "%s: Failed to obtain the URL for data container: %@", __func__, error);
     }
 }
 

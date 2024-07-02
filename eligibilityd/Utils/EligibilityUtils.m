@@ -25,7 +25,7 @@ const char *copy_eligibility_domain_data_vault_directory_path(void) {
     char *buffer;
     int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/os_eligibility");
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __FUNCTION__, "/private/var/db/os_eligibility");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/os_eligibility");
     }
     return buffer;
 }
@@ -34,7 +34,7 @@ const char *copy_eligibility_domain_daemon_directory_path(void) {
     char *buffer;
     int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/eligibilityd");
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __FUNCTION__, "/private/var/db/eligibilityd");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/eligibilityd");
     }
     return buffer;
 }
@@ -43,7 +43,7 @@ const char *copy_eligibility_domain_input_manager_plist_path(void) {
     char *buffer;
     int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/eligibilityd/eligibility_inputs.plist");
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __FUNCTION__, "/private/var/db/eligibilityd/eligibility_inputs.plist");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/eligibilityd/eligibility_inputs.plist");
     }
     return buffer;
 }
