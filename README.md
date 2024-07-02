@@ -22,6 +22,26 @@ This project is an open source reimplementation of eligibility related stuff.
 >
 > The author of this project is not responsible for any consequences that may arise from your use of this project.
 
+## Status
+
+### eligibilityd
+
+A binary to replace `/usr/libexec/eligibilityd`
+
+See detail on [eligibilityd/README.md](eligibilityd/README.md)
+
+### libsystem_eligibility.dylib
+
+A library to replace `/usr/lib/system/libsystem_eligibility.dylib`
+
+See detail on [libsystem_eligibility/README.md](libsystem_eligibility/README.md)
+
+### [TODO] eligibility_util
+
+A binary tool to query eligibility status.
+
+See detail on [eligibility_util/README.md](eligibility_util/README.md)
+
 ## Contributions
 
 If you find any issues or have suggestions for improvements, feel free to submit an issue or a pull request.
