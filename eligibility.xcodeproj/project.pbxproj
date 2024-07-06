@@ -38,6 +38,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			privateHeaders = (
 				eligibility_log_handle.h,
+				eligibility_plist.h,
 				eligibility_xpc.h,
 			);
 			publicHeaders = (

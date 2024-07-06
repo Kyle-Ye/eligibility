@@ -27,7 +27,7 @@ void eligibility_xpc_set_message_type(EligibilityXPCMessageType message_type, xp
     xpc_dictionary_set_uint64(message, "eligibility_message_type", message_type);
 }
 
-int64_t eligibility_xpc_send_message_with_reply(xpc_object_t message, xpc_object_t* reply_ptr) {
+int eligibility_xpc_send_message_with_reply(xpc_object_t message, xpc_object_t* reply_ptr) {
     xpc_connection_t connection = xpc_connection_create_mach_service("com.apple.eligibilityd", NULL, 0);
     xpc_connection_set_event_handler(connection, ^(xpc_object_t  _Nonnull object) {
     });
@@ -35,10 +35,10 @@ int64_t eligibility_xpc_send_message_with_reply(xpc_object_t message, xpc_object
     xpc_object_t reply = xpc_connection_send_message_with_reply_sync(connection, message);
     xpc_type_t reply_type = xpc_get_type(reply);
     
-    int64_t error_num;
+    int error_num;
     if (reply_type != NULL && reply_type != XPC_TYPE_ERROR) {
         if (reply_type == XPC_TYPE_DICTIONARY) {
-            error_num = xpc_dictionary_get_int64(reply, "errorNum");
+            error_num = (int)xpc_dictionary_get_int64(reply, "errorNum");
         } else {
             error_num = -1;
         }

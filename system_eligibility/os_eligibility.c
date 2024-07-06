@@ -6,6 +6,7 @@
 //
 
 #include "os_eligibility.h"
+#include "eligibility_plist.h"
 #include "eligibility_xpc.h"
 #include "eligibility_log_handle.h"
 #include <xpc/xpc.h>
@@ -36,7 +37,7 @@ const char * os_eligibility_get_domain_notification_name(EligibilityDomainType d
     }
 }
 
-int64_t os_eligibility_set_input(EligibilityInputType input, xpc_object_t value, EligibilityInputStatus status) {
+int os_eligibility_set_input(EligibilityInputType input, xpc_object_t value, EligibilityInputStatus status) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeSetInput, message);
     xpc_dictionary_set_uint64(message, "input", input);
@@ -44,21 +45,21 @@ int64_t os_eligibility_set_input(EligibilityInputType input, xpc_object_t value,
         xpc_dictionary_set_value(message, "value", value);
     }
     xpc_dictionary_set_uint64(message, "status", status);
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;
 }
 
-int64_t os_eligibility_reset_domain(EligibilityDomainType domain) {
+int os_eligibility_reset_domain(EligibilityDomainType domain) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeResetDomain, message);
     xpc_dictionary_set_uint64(message, "domain", domain);
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;
 }
 
-int64_t os_eligibility_force_domain_answer(EligibilityDomainType domain, EligibilityAnswer answer, xpc_object_t context) {
+int os_eligibility_force_domain_answer(EligibilityDomainType domain, EligibilityAnswer answer, xpc_object_t context) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(ELIGIBILITYXPCMessageTypeForceDomainAnswer, message);
     xpc_dictionary_set_uint64(message, "domain", domain);
@@ -66,19 +67,19 @@ int64_t os_eligibility_force_domain_answer(EligibilityDomainType domain, Eligibi
     if (context) {
         xpc_dictionary_set_value(message, "context", context);
     }
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;
 }
 
-int64_t os_eligibility_get_internal_state(xpc_object_t* internal_state_ptr) {
+int os_eligibility_get_internal_state(xpc_object_t* internal_state_ptr) {
     if (internal_state_ptr == NULL) {
         return EINVAL;
     }
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(ELIGIBILITYXPCMessageTypeGetInternalState, message);
     xpc_object_t reply;
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, &reply);
+    int error_num = eligibility_xpc_send_message_with_reply(message, &reply);
     if (error_num == 0) {
         xpc_object_t internal_state = xpc_dictionary_get_dictionary(reply, "internalState");
         if (internal_state) {
@@ -93,15 +94,15 @@ int64_t os_eligibility_get_internal_state(xpc_object_t* internal_state_ptr) {
     return error_num;
 }
 
-int64_t os_eligibility_reset_all_domains(void) {
+int os_eligibility_reset_all_domains(void) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeResetAllDomains, message);
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;
 }
 
-int64_t os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet, EligibilityAnswer answer, xpc_object_t context) {
+int os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet, EligibilityAnswer answer, xpc_object_t context) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(ELIGIBILITYXPCMessageTypeForceDomainSetAnswer, message);
     xpc_dictionary_set_uint64(message, "domainSet", domainSet);
@@ -109,19 +110,19 @@ int64_t os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet
     if (context) {
         xpc_dictionary_set_value(message, "context", context);
     }
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;
 }
 
-int64_t os_eligibility_get_state_dump(xpc_object_t* state_dump_dictionary_ptr) {
+int os_eligibility_get_state_dump(xpc_object_t* state_dump_dictionary_ptr) {
     if (state_dump_dictionary_ptr == NULL) {
         return EINVAL;
     }
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeGetStateDump, message);
     xpc_object_t reply;
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, &reply);
+    int error_num = eligibility_xpc_send_message_with_reply(message, &reply);
     if (error_num == 0) {
         xpc_object_t state_dump_dictionary = xpc_dictionary_get_dictionary(reply, "stateDumpDictionary");
         if (state_dump_dictionary) {
@@ -136,23 +137,52 @@ int64_t os_eligibility_get_state_dump(xpc_object_t* state_dump_dictionary_ptr) {
     return error_num;
 }
 
-int64_t os_eligibility_dump_sysdiagnose_data_to_dir(const char* dir_path) {
+int os_eligibility_dump_sysdiagnose_data_to_dir(const char* dir_path) {
     if (dir_path == NULL) {
         return EINVAL;
     }
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeDumpSysdiagnoseData, message);
     xpc_dictionary_set_string(message, "dirPath", dir_path);
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
     return error_num;    
 }
 
-int64_t os_eligibility_set_test_mode(bool enabled) {
+int os_eligibility_set_test_mode(bool enabled) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeSetTestMode, message);
     xpc_dictionary_set_bool(message, "enabled", enabled);
-    int64_t error_num = eligibility_xpc_send_message_with_reply(message, NULL);
+    int error_num = eligibility_xpc_send_message_with_reply(message, NULL);
     xpc_release(message);
+    return error_num;
+}
+
+int os_eligibility_get_domain_answer(xpc_object_t *answer_ptr) {
+    // TODO
+    return 0;
+}
+
+int os_eligibility_get_all_domain_answers(xpc_object_t *answers_ptr) {
+    xpc_object_t dictionary = xpc_dictionary_create(NULL, NULL, 0);
+    const char *answer_path = copy_eligibility_domain_answer_plist_path();
+    const char *public_answer_path = copy_eligibility_domain_public_answer_plist_path();
+    int error_num = _append_plist_keys_to_dictionary(answer_path, dictionary);
+    if (error_num != 0) {
+        os_log_info(eligibility_log_handle(), "%s: Failed to load in plist %s: error=%d", __func__, answer_path, error_num);
+        dictionary = NULL;
+    } else {
+        error_num = _append_plist_keys_to_dictionary(public_answer_path, dictionary);
+        if (error_num != 0) {
+            os_log_info(eligibility_log_handle(), "%s: Failed to load in plist %s: error=%d", __func__, public_answer_path, error_num);
+            dictionary = NULL;
+        }
+    }
+    free((void *)answer_path);
+    free((void *)public_answer_path);
+    if (answers_ptr) {
+        *answers_ptr = dictionary;
+    }
+    // FIXME: A potiential memory leak on dictionry. We should retain or release dictionary here
     return error_num;
 }
