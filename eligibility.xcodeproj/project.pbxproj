@@ -34,6 +34,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		277FFF992C39909C00899CDA /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			privateHeaders = (
+				eligibility_log_handle.h,
+				eligibility_xpc.h,
+			);
+			publicHeaders = (
+				os_eligibility.h,
+			);
+			target = 276F6D2C2C34537E00748E4D /* system_eligibility */;
+		};
 		27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -83,7 +94,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		27EC6A6B2C34627B00F76D70 /* EligibilityCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EligibilityCore; sourceTree = "<group>"; };
-		27EC6A752C3468DD00F76D70 /* system_eligibility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EC6A7C2C3468DD00F76D70 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = system_eligibility; sourceTree = "<group>"; };
+		27EC6A752C3468DD00F76D70 /* system_eligibility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (277FFF992C39909C00899CDA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27EC6A7C2C3468DD00F76D70 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = system_eligibility; sourceTree = "<group>"; };
 		27EC6ACC2C3468E200F76D70 /* eligibilityd */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibilityd; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 

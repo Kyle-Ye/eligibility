@@ -19,7 +19,8 @@ typedef ELIGIBILITY_ENUM(uint64_t, EligibilityXPCMessageType) {
     ELIGIBILITYXPCMessageTypeGetInternalState = 4,
     EligibilityXPCMessageTypeResetAllDomains = 5,
     ELIGIBILITYXPCMessageTypeForceDomainSetAnswer = 6,
-    EligibilityXPCMessageTypeGetStateDump = 8,
+    EligibilityXPCMessageTypeGetStateDump = 7,
+    EligibilityXPCMessageTypeDumpSysdiagnoseData = 8,
     EligibilityXPCMessageTypeSetTestMode = 9,
 };
 
