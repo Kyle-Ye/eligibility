@@ -9,7 +9,7 @@
 #ifndef EligibilityInputStatus_h
 #define EligibilityInputStatus_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
 
 typedef ELIGIBILITY_ENUM(uint64_t, EligibilityInputStatus) {
     EligibilityInputStatusNone = 0,

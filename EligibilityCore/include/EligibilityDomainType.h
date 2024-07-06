@@ -8,7 +8,7 @@
 #ifndef EligibilityDomainType_h
 #define EligibilityDomainType_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
 
 #define EligibilityDomainTypeCount 124
 

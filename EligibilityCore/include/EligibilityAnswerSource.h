@@ -9,7 +9,7 @@
 #ifndef EligibilityAnswerSource_h
 #define EligibilityAnswerSource_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
 
 typedef ELIGIBILITY_ENUM(uint64_t, EligibilityAnswerSource) {
     EligibilityAnswerSourceInvalid = 0,

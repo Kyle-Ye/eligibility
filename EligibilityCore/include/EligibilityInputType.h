@@ -9,7 +9,7 @@
 #ifndef EligibilityInputType_h
 #define EligibilityInputType_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
 
 #define EligibilityInputTypeCount 10
 

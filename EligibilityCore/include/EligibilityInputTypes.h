@@ -9,7 +9,8 @@
 #ifndef EligibilityInputTypes_h
 #define EligibilityInputTypes_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
+#include "EligibilityInputType.h"
 
 typedef ELIGIBILITY_OPTIONS(uint64_t, EligibilityInputTypes) {
     EligibilityInputTypesInvalid = EligibilityInputTypeInvalid,

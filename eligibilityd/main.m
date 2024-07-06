@@ -170,7 +170,7 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
     bool success = NO;
     NSError *error = nil;
     switch (messageType) {
-        case 1: {
+        case EligibilityXPCMessageTypeSetInput: {
             if (!_checkEntitlement(&auditToken ,"com.apple.private.eligibilityd.setInput") || !_checkTestModeEntitlement(&auditToken)) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send set input message", __func__, process);
             }
@@ -189,7 +189,7 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
             // success = [EligibilityEngine.sharedInstance setInput:input to:value status: status fromProcess:process withError:error];
             break;
         }
-        case 2: {
+        case EligibilityXPCMessageTypeResetDomain: {
             if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.resetDomain")) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send reset domain message", __func__, process);
                 xpc_connection_cancel(connection);
@@ -313,9 +313,8 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
             }
             xpc_dictionary_set_int64(reply, "errorNum", errorCode);
         } else {
-            
             os_log_fault(eligibility_log(), "%s: Unknown underlying POSIX error for - %@", __func__, error);
-            xpc_dictionary_set_int64(reply, "errorNum", 0x6B);
+            xpc_dictionary_set_int64(reply, "errorNum", 0x6B); // Non public error number in errno.h
         }
     }
     xpc_connection_send_message(connection, reply);

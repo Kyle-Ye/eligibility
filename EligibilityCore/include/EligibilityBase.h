@@ -1,13 +1,13 @@
 //
-//  EligbilityBase.h
+//  EligibilityBase.h
 //  EligibilityCore
 //
 //  Created by Kyle on 2024/6/18.
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 
-#ifndef EligbilityBase_h
-#define EligbilityBase_h
+#ifndef EligibilityBase_h
+#define EligibilityBase_h
 
 #include <sys/cdefs.h>
 
@@ -253,4 +253,4 @@ typedef void (^eligibility_block_t)(void);
 #define ELIGIBILITY_COUNTED_BY(N) __counted_by(N)
 #define ELIGIBILITY_SIZED_BY(N) __sized_by(N)
 
-#endif /* EligbilityBase_h */
+#endif /* EligibilityBase_h */

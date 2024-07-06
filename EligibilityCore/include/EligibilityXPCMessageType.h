@@ -9,12 +9,17 @@
 #ifndef EligibilityXPCMessageType_h
 #define EligibilityXPCMessageType_h
 
-#include "EligbilityBase.h"
+#include "EligibilityBase.h"
 
 typedef ELIGIBILITY_ENUM(uint64_t, EligibilityXPCMessageType) {
     EligibilityXPCMessageTypeInvalid = 0,
+    EligibilityXPCMessageTypeSetInput = 1,
     EligibilityXPCMessageTypeResetDomain = 2,
+    ELIGIBILITYXPCMessageTypeForceDomainAnswer = 3,
+    ELIGIBILITYXPCMessageTypeGetInternalState = 4,
     EligibilityXPCMessageTypeResetAllDomains = 5,
+    ELIGIBILITYXPCMessageTypeForceDomainSetAnswer = 6,
+    EligibilityXPCMessageTypeGetStateDump = 8,
     EligibilityXPCMessageTypeSetTestMode = 9,
 };
 
