@@ -9,9 +9,9 @@
 #ifndef EligibilityInputTypes_h
 #define EligibilityInputTypes_h
 
-#include <CoreFoundation/CoreFoundation.h>
+#include "EligbilityBase.h"
 
-typedef CF_OPTIONS(uint64_t, EligibilityInputTypes) {
+typedef ELIGIBILITY_OPTIONS(uint64_t, EligibilityInputTypes) {
     EligibilityInputTypesInvalid = EligibilityInputTypeInvalid,
     EligibilityInputTypesCountryLocation = 1 << (EligibilityInputTypeCountryLocation - 1),
     EligibilityInputTypesCountryBilling = 1 << (EligibilityInputTypeCountryBilling - 1),

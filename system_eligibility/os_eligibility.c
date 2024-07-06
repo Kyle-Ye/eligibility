@@ -6,7 +6,8 @@
 //
 
 #include "os_eligibility.h"
-#include "xpc/xpc.h"
+#include "eligibility_xpc.h"
+#include <xpc/xpc.h>
 
 // TODO: Add more cases
 EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
@@ -23,10 +24,25 @@ EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
     }
 }
 
-void os_eligibility_reset_domain(const char *domain) {
-    // TODO
+void os_eligibility_reset_domain(EligibilityDomainType domain) {
+    xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+    eligibility_xpc_set_message_type(message, EligibilityXPCMessageTypeResetDomain);
+    xpc_dictionary_set_uint64(message, "domain", domain);
+    eligibility_xpc_send_message_with_reply(message, NULL);
+    xpc_release(message);
 }
 
 void os_eligibility_reset_all_domains(void) {
-    // TODO
+    xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+    eligibility_xpc_set_message_type(message, EligibilityXPCMessageTypeResetAllDomains);
+    eligibility_xpc_send_message_with_reply(message, NULL);
+    xpc_release(message);
+}
+
+void os_eligibility_set_test_mode(bool enabled) {
+    xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+    eligibility_xpc_set_message_type(message, EligibilityXPCMessageTypeSetTestMode);
+    xpc_dictionary_set_bool(message, "enabled", enabled);
+    eligibility_xpc_send_message_with_reply(message, NULL);
+    xpc_release(message);
 }

@@ -12,6 +12,7 @@
 #import "EligibilityEngine.h"
 #import "XPCSPI.h"
 #import "GlobalConfiguration.h"
+#import "EligibilityXPCMessageType.h"
 
 #import <notify.h>
 #import <libproc.h>
@@ -269,7 +270,7 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
             // success = [EligibilityEngine.sharedInstance dumpToDirectory:dirPathURL withError:&error];
             break;
         }
-        case 9: {
+        case EligibilityXPCMessageTypeSetTestMode: {
             if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.setTestMode") || !_checkTestModeEntitlement(&auditToken)) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send set test mode message", __func__, process);
                 xpc_connection_cancel(connection);

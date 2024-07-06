@@ -9,9 +9,9 @@
 #ifndef EligibilityAnswerSource_h
 #define EligibilityAnswerSource_h
 
-#include <CoreFoundation/CoreFoundation.h>
+#include "EligbilityBase.h"
 
-typedef CF_ENUM(uint64_t, EligibilityAnswerSource) {
+typedef ELIGIBILITY_ENUM(uint64_t, EligibilityAnswerSource) {
     EligibilityAnswerSourceInvalid = 0,
     EligibilityAnswerSourceComputed = 1,
     EligibilityAnswerSourceForced = 2,

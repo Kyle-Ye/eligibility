@@ -9,11 +9,11 @@
 #ifndef EligibilityInputType_h
 #define EligibilityInputType_h
 
-#include <CoreFoundation/CoreFoundation.h>
+#include "EligbilityBase.h"
 
 #define EligibilityInputTypeCount 10
 
-typedef CF_ENUM(uint64_t, EligibilityInputType) {
+typedef ELIGIBILITY_ENUM(uint64_t, EligibilityInputType) {
     EligibilityInputTypeInvalid = 0,
     EligibilityInputTypeCountryLocation = 1,
     EligibilityInputTypeCountryBilling = 2,

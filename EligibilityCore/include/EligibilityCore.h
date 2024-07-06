@@ -4,3 +4,4 @@
 #include "EligibilityInputStatus.h"
 #include "EligibilityInputType.h"
 #include "EligibilityInputTypes.h"
+#include "EligibilityXPCMessageType.h"

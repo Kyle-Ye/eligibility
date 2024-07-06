@@ -9,9 +9,9 @@
 #ifndef EligibilityInputStatus_h
 #define EligibilityInputStatus_h
 
-#include <CoreFoundation/CoreFoundation.h>
+#include "EligbilityBase.h"
 
-typedef CF_ENUM(uint64_t, EligibilityInputStatus) {
+typedef ELIGIBILITY_ENUM(uint64_t, EligibilityInputStatus) {
     EligibilityInputStatusNone = 0,
     EligibilityInputStatusNotSet = 1,
     EligibilityInputStatusNotEligible = 2,

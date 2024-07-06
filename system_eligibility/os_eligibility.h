@@ -14,8 +14,9 @@
 CF_ASSUME_NONNULL_BEGIN
 
 EligibilityDomainType os_eligibility_domain_for_name(const char *name);
-void os_eligibility_reset_domain(const char *domain);
+void os_eligibility_reset_domain(EligibilityDomainType domain);
 void os_eligibility_reset_all_domains(void);
+void os_eligibility_set_test_mode(bool enabled);
 
 CF_ASSUME_NONNULL_END
 
