@@ -10,10 +10,31 @@
 		27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27267E472C2874E100614B1D /* SystemConfiguration.framework */; };
 		2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */; };
 		275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */; };
+		277F016C2C3A948000899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
+		277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 277F01752C3A94AD00899CDA /* ArgumentParser */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		277F016E2C3A948000899CDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2730C77D2C1F120B00F5D46B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 276F6D2C2C34537E00748E4D;
+			remoteInfo = system_eligibility;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		2730C7832C1F120B00F5D46B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		277F01602C3A942A00899CDA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -30,6 +51,7 @@
 		2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libMobileGestalt.tbd; path = usr/lib/libMobileGestalt.tbd; sourceTree = SDKROOT; };
 		275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_containermanager.tbd; path = usr/lib/system/libsystem_containermanager.tbd; sourceTree = SDKROOT; };
 		276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsystem_eligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		277F01622C3A942A00899CDA /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +116,7 @@
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		277F016A2C3A943000899CDA /* eligibility_util */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = eligibility_util; sourceTree = "<group>"; };
 		27EC6A6B2C34627B00F76D70 /* EligibilityCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EligibilityCore; sourceTree = "<group>"; };
 		27EC6A752C3468DD00F76D70 /* system_eligibility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (277FFF992C39909C00899CDA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27EC6A7C2C3468DD00F76D70 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = system_eligibility; sourceTree = "<group>"; };
 		27EC6ACC2C3468E200F76D70 /* eligibilityd */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibilityd; sourceTree = "<group>"; };
@@ -117,6 +140,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		277F015F2C3A942A00899CDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */,
+				277F016C2C3A948000899CDA /* libsystem_eligibility.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -127,6 +159,7 @@
 				27EC6A6B2C34627B00F76D70 /* EligibilityCore */,
 				27EC6ACC2C3468E200F76D70 /* eligibilityd */,
 				27EC6A752C3468DD00F76D70 /* system_eligibility */,
+				277F016A2C3A943000899CDA /* eligibility_util */,
 				2730C7862C1F120B00F5D46B /* Products */,
 				2730C7952C1F13F700F5D46B /* Frameworks */,
 			);
@@ -137,6 +170,7 @@
 			children = (
 				2730C7852C1F120B00F5D46B /* eligibilityd */,
 				276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */,
+				277F01622C3A942A00899CDA /* eligibility_util */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,6 +239,30 @@
 			productReference = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		277F01612C3A942A00899CDA /* eligibility_util */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util" */;
+			buildPhases = (
+				277F015E2C3A942A00899CDA /* Sources */,
+				277F015F2C3A942A00899CDA /* Frameworks */,
+				277F01602C3A942A00899CDA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				277F016F2C3A948000899CDA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				277F016A2C3A943000899CDA /* eligibility_util */,
+			);
+			name = eligibility_util;
+			packageProductDependencies = (
+				277F01752C3A94AD00899CDA /* ArgumentParser */,
+			);
+			productName = eligibility_util;
+			productReference = 277F01622C3A942A00899CDA /* eligibility_util */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +270,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					2730C7842C1F120B00F5D46B = {
@@ -219,6 +278,10 @@
 					};
 					276F6D2C2C34537E00748E4D = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					277F01612C3A942A00899CDA = {
+						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1600;
 					};
 				};
 			};
@@ -230,6 +293,9 @@
 				Base,
 			);
 			mainGroup = 2730C77C2C1F120B00F5D46B;
+			packageReferences = (
+				277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			preferredProjectObjectVersion = 63;
 			productRefGroup = 2730C7862C1F120B00F5D46B /* Products */;
 			projectDirPath = "";
@@ -237,6 +303,7 @@
 			targets = (
 				2730C7842C1F120B00F5D46B /* eligibilityd */,
 				276F6D2C2C34537E00748E4D /* system_eligibility */,
+				277F01612C3A942A00899CDA /* eligibility_util */,
 			);
 		};
 /* End PBXProject section */
@@ -256,7 +323,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		277F015E2C3A942A00899CDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		277F016F2C3A948000899CDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 276F6D2C2C34537E00748E4D /* system_eligibility */;
+			targetProxy = 277F016E2C3A948000899CDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2730C78A2C1F120B00F5D46B /* Debug */ = {
@@ -392,6 +474,8 @@
 				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Debug;
 		};
@@ -410,6 +494,8 @@
 				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Release;
 		};
@@ -425,6 +511,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Debug;
 		};
@@ -440,6 +528,43 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+			};
+			name = Release;
+		};
+		277F01672C3A942A00899CDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		277F01682C3A942A00899CDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -473,7 +598,35 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				277F01672C3A942A00899CDA /* Debug */,
+				277F01682C3A942A00899CDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		277F01752C3A94AD00899CDA /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2730C77D2C1F120B00F5D46B /* Project object */;
 }
