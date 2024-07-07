@@ -13,6 +13,7 @@
 
 const char * copy_eligibility_domain_answer_plist_path(void);
 const char * copy_eligibility_domain_public_answer_plist_path(void);
+ELIGIBILITY_EXPORT
 int load_eligibility_plist(const char *path, xpc_object_t *result_ptr);
 int _append_plist_keys_to_dictionary(const char *path, xpc_object_t dictionary);
 
