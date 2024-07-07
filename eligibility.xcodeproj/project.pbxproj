@@ -10,12 +10,13 @@
 		27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27267E472C2874E100614B1D /* SystemConfiguration.framework */; };
 		2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */; };
 		275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */; };
-		277F016C2C3A948000899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
 		277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 277F01752C3A94AD00899CDA /* ArgumentParser */; };
+		277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
+		277F03362C3AA16500899CDA /* libsystem_eligibility.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		277F016E2C3A948000899CDA /* PBXContainerItemProxy */ = {
+		277F03372C3AA16500899CDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2730C77D2C1F120B00F5D46B /* Project object */;
 			proxyType = 1;
@@ -43,6 +44,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		277F03392C3AA16500899CDA /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				277F03362C3AA16500899CDA /* libsystem_eligibility.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +64,7 @@
 		275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_containermanager.tbd; path = usr/lib/system/libsystem_containermanager.tbd; sourceTree = SDKROOT; };
 		276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsystem_eligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F01622C3A942A00899CDA /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
+		277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_eligibility.tbd; path = usr/lib/system/libsystem_eligibility.tbd; sourceTree = SDKROOT; };
 		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,7 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */,
-				277F016C2C3A948000899CDA /* libsystem_eligibility.dylib in Frameworks */,
+				277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +191,7 @@
 		2730C7952C1F13F700F5D46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */,
 				275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */,
 				27267E472C2874E100614B1D /* SystemConfiguration.framework */,
 				2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */,
@@ -246,11 +260,12 @@
 				277F015E2C3A942A00899CDA /* Sources */,
 				277F015F2C3A942A00899CDA /* Frameworks */,
 				277F01602C3A942A00899CDA /* CopyFiles */,
+				277F03392C3AA16500899CDA /* Embed Libraries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				277F016F2C3A948000899CDA /* PBXTargetDependency */,
+				277F03382C3AA16500899CDA /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				277F016A2C3A943000899CDA /* eligibility_util */,
@@ -333,10 +348,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		277F016F2C3A948000899CDA /* PBXTargetDependency */ = {
+		277F03382C3AA16500899CDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 276F6D2C2C34537E00748E4D /* system_eligibility */;
-			targetProxy = 277F016E2C3A948000899CDA /* PBXContainerItemProxy */;
+			targetProxy = 277F03372C3AA16500899CDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -537,10 +552,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_BUNDLE_IDENTIFIER = "top.kyleye.eligibility-util";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
@@ -555,10 +580,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_BUNDLE_IDENTIFIER = "top.kyleye.eligibility-util";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;

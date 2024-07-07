@@ -17,3 +17,7 @@ targets: [
     ...
 ]
 ```
+
+## LICENSE
+
+MIT license. See LICENSE file on this folder.

@@ -159,7 +159,8 @@ int os_eligibility_set_test_mode(bool enabled) {
     return error_num;
 }
 
-int os_eligibility_get_domain_answer(EligibilityDomainType domain, int *arg1, xpc_object_t arg2, xpc_object_t _Nonnull * _Nullable arg3, void * _Nullable arg4) {
+int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAnswer *arg1, xpc_object_t arg2, xpc_object_t * arg3, void * arg4) {
+    os_log_info(eligibility_log_handle(), "%s: TODO Umplementated yet", __func__);
     return 0;
 }
 

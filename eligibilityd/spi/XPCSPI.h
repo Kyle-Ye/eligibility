@@ -16,5 +16,7 @@ extern void xpc_transaction_exit_clean(void);
 extern void xpc_connection_get_audit_token(xpc_connection_t, audit_token_t*);
 extern xpc_object_t xpc_copy_entitlement_for_token(const char *, audit_token_t *);
 
-extern CFTypeRef _CFXPCCreateCFObjectFromXPCObject(xpc_object_t xpcattrs);
-extern xpc_object_t _CFXPCCreateXPCObjectFromCFObject(CFTypeRef objc);
+extern CFTypeRef _CFXPCCreateCFObjectFromXPCObject(xpc_object_t object);
+extern CFTypeRef _CFXPCCreateCFObjectFromXPCMessage(xpc_object_t message);
+extern xpc_object_t _CFXPCCreateXPCObjectFromCFObject(CFTypeRef cfObject);
+extern xpc_object_t _CFXPCCreateXPCMessageWithCFObject(CFTypeRef cfObject);
