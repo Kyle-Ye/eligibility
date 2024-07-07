@@ -7,6 +7,7 @@
 
 #include "eligibility_plist.h"
 #include "eligibility_log_handle.h"
+#include "EligibilityAnswer.h"
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -90,5 +91,25 @@ int load_eligibility_plist(const char *path, xpc_object_t *result_ptr) {
 }
 
 int _append_plist_keys_to_dictionary(const char *path, xpc_object_t dictionary) {
-    return 0;
+    xpc_object_t result;
+    __block int error_num = load_eligibility_plist(path, &result);
+    if (error_num != 0) {
+        os_log_error(eligibility_log_handle(), "%s: Failed to read in plist %s: error=%d", __func__, path, error_num);
+    } else {
+        xpc_dictionary_apply(result, ^bool(const char *key, xpc_object_t value) {
+            EligibilityAnswer answer = xpc_dictionary_get_int64(value, "os_eligibility_answer_t");
+            if ((int64_t)answer < 0) {
+                os_log_error(eligibility_log_handle(), "%s: Unable to read eligibility answer for domain: %s", __func__, key);
+                error_num = EDOM;
+                return false;
+            } else {
+                xpc_dictionary_set_uint64(dictionary, key, answer);
+                return true;
+            }
+        });
+    }
+    if (result != NULL) {
+        xpc_release(result);
+    }
+    return error_num;
 }

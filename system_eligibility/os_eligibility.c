@@ -158,8 +158,7 @@ int os_eligibility_set_test_mode(bool enabled) {
     return error_num;
 }
 
-int os_eligibility_get_domain_answer(xpc_object_t *answer_ptr) {
-    // TODO
+int os_eligibility_get_domain_answer(EligibilityDomainType domain) {
     return 0;
 }
 

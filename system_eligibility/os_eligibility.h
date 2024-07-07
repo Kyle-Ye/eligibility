@@ -32,7 +32,7 @@ int os_eligibility_get_state_dump(xpc_object_t _Nonnull * _Nonnull state_dump_di
 int os_eligibility_dump_sysdiagnose_data_to_dir(const char* dir_path);
 int os_eligibility_set_test_mode(bool enabled);
 
-int os_eligibility_get_domain_answer(xpc_object_t _Nonnull * _Nullable answer_ptr);
+int os_eligibility_get_domain_answer(EligibilityDomainType domain);
 int os_eligibility_get_all_domain_answers(xpc_object_t _Nonnull * _Nullable answers_ptr);
 
 ELIGIBILITY_ASSUME_NONNULL_END
