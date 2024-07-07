@@ -159,7 +159,7 @@ int os_eligibility_set_test_mode(bool enabled) {
     return error_num;
 }
 
-int os_eligibility_get_domain_answer(EligibilityDomainType domain) {
+int os_eligibility_get_domain_answer(EligibilityDomainType domain, int *arg1, xpc_object_t arg2, xpc_object_t _Nonnull * _Nullable arg3, void * _Nullable arg4) {
     return 0;
 }
 

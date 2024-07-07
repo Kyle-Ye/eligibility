@@ -32,20 +32,20 @@ int os_eligibility_reset_domain(EligibilityDomainType domain);
 ELIGIBILITY_EXPORT
 int os_eligibility_force_domain_answer(EligibilityDomainType domain, EligibilityAnswer answer, xpc_object_t _Nullable context);
 ELIGIBILITY_EXPORT
-int os_eligibility_get_internal_state(xpc_object_t _Nonnull * _Nonnull internal_state_ptr);
+int os_eligibility_get_internal_state(xpc_object_t _Nonnull * _Nullable internal_state_ptr);
 ELIGIBILITY_EXPORT
 int os_eligibility_reset_all_domains(void);
 ELIGIBILITY_EXPORT
 int os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet, EligibilityAnswer answer, xpc_object_t context);
 ELIGIBILITY_EXPORT
-int os_eligibility_get_state_dump(xpc_object_t _Nonnull * _Nonnull state_dump_dictionary_ptr);
+int os_eligibility_get_state_dump(xpc_object_t _Nonnull * _Nullable state_dump_dictionary_ptr);
 ELIGIBILITY_EXPORT
 int os_eligibility_dump_sysdiagnose_data_to_dir(const char* dir_path);
 ELIGIBILITY_EXPORT
 int os_eligibility_set_test_mode(bool enabled);
 
 ELIGIBILITY_EXPORT
-int os_eligibility_get_domain_answer(EligibilityDomainType domain);
+int os_eligibility_get_domain_answer(EligibilityDomainType domain, int *, xpc_object_t, xpc_object_t _Nonnull * _Nullable, void * _Nullable);
 ELIGIBILITY_EXPORT
 int os_eligibility_get_all_domain_answers(xpc_object_t _Nonnull * _Nullable answers_ptr);
 
