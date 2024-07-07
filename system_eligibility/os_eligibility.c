@@ -82,7 +82,7 @@ int os_eligibility_get_internal_state(xpc_object_t* internal_state_ptr) {
     xpc_object_t reply = NULL;
     int error_num = eligibility_xpc_send_message_with_reply(message, &reply);
     if (error_num == 0) {
-        xpc_object_t internal_state = xpc_dictionary_get_dictionary(reply, "internalState");
+        xpc_object_t internal_state = xpc_dictionary_get_dictionary(reply, "internalStateDictionary");
         if (internal_state) {
             xpc_retain(internal_state);
         }
