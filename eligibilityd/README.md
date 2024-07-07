@@ -1,6 +1,6 @@
 # eligibilityd
 
-This project is an open source reimplementation of eligibility daemon.
+This folder contains the eligibility daemon code.
 
 ## Status
 

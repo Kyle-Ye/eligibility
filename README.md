@@ -24,13 +24,19 @@ This project is an open source reimplementation of eligibility related stuff.
 
 ## Status
 
+### EligibilityCore
+
+A SwiftPM C package to provide common header definitions for this project and can be used in other projects.
+
+See detail on [EligibilityCore/README.md](EligibilityCore/README.md)
+
 ### eligibilityd
 
 A binary to replace `/usr/libexec/eligibilityd`
 
 See detail on [eligibilityd/README.md](eligibilityd/README.md)
 
-### libsystem_eligibility.dylib
+### libsystem_eligibility
 
 A library to replace `/usr/lib/system/libsystem_eligibility.dylib`
 
@@ -48,4 +54,10 @@ If you find any issues or have suggestions for improvements, feel free to submit
 
 ## LICENSE
 
-See LICENSE
+### EligbilityCore and eligibility_util
+
+MIT license. See LICENSE file on each folder.
+
+### eligibilityd and libsystem_eligibility
+
+No license.
