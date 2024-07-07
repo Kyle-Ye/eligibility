@@ -79,7 +79,7 @@ int os_eligibility_get_internal_state(xpc_object_t* internal_state_ptr) {
     }
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(ELIGIBILITYXPCMessageTypeGetInternalState, message);
-    xpc_object_t reply;
+    xpc_object_t reply = NULL;
     int error_num = eligibility_xpc_send_message_with_reply(message, &reply);
     if (error_num == 0) {
         xpc_object_t internal_state = xpc_dictionary_get_dictionary(reply, "internalState");
@@ -122,7 +122,7 @@ int os_eligibility_get_state_dump(xpc_object_t* state_dump_dictionary_ptr) {
     }
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(EligibilityXPCMessageTypeGetStateDump, message);
-    xpc_object_t reply;
+    xpc_object_t reply = NULL;
     int error_num = eligibility_xpc_send_message_with_reply(message, &reply);
     if (error_num == 0) {
         xpc_object_t state_dump_dictionary = xpc_dictionary_get_dictionary(reply, "stateDumpDictionary");
