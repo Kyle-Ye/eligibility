@@ -4,7 +4,8 @@
 //
 //  Created by Kyle on 2024/7/3.
 //  Audited for RELEASE_2024_BETA_1
-//  Status: WIP
+//  Audited for RELEASE_2024_BETA_1
+//  Status: Complete
 
 #ifndef eligibility_xpc_h
 #define eligibility_xpc_h

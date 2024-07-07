@@ -3,7 +3,8 @@
 //  eligibility
 //
 //  Created by Kyle on 2024/7/2.
-//
+//  Audited for RELEASE_2024_BETA_1
+//  Status: WIP
 
 #ifndef os_eligibility_h
 #define os_eligibility_h

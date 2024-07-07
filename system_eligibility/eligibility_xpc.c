@@ -4,7 +4,8 @@
 //
 //  Created by Kyle on 2024/7/3.
 //  Audited for RELEASE_2024_BETA_1
-//  Status: WIP
+//  Audited for RELEASE_2024_BETA_1
+//  Status: Complete
 
 #include "eligibility_xpc.h"
 #include "eligibility_log_handle.h"
