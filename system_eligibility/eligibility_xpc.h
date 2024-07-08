@@ -1,9 +1,8 @@
 //
 //  eligibility_xpc.h
-//  eligibility_xpc
+//  system_eligibility
 //
 //  Created by Kyle on 2024/7/3.
-//  Audited for RELEASE_2024_BETA_1
 //  Audited for RELEASE_2024_BETA_1
 //  Status: Complete
 

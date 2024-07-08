@@ -1,6 +1,6 @@
 //
 //  os_eligibility.h
-//  eligibility
+//  system_eligibility
 //
 //  Created by Kyle on 2024/7/2.
 //  Audited for RELEASE_2024_BETA_1
