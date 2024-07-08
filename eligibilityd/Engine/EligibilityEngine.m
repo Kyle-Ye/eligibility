@@ -6,9 +6,9 @@
 //
 
 #import "EligibilityEngine.h"
-#import "GlobalConfiguration.h"
 #import "EligibilityLog.h"
-
+#import "EligibilityUtils.h"
+#import "GlobalConfiguration.h"
 #import "TestDomain.h"
 #import "XcodeLLMDomain.h"
 
@@ -17,8 +17,8 @@
 - (NSDictionary *)_createDefaultDomains;
 - (void)_currentLocaleDidChange:(NSNotification *)notification;
 - (id)_decodeObjectOfClasses:(NSSet *)classes atURL:(NSURL *)url withError:(NSError * _Nullable *)errorPtr;
-- (id)_loadOverridesWithError:(NSError * _Nullable *)errorPtr;
-- (id)_loadDomainsWithError:(NSError * _Nullable *)errorPtr;
+- (EligibilityOverride *)_loadOverridesWithError:(NSError **)errorPtr;
+- (NSDictionary *)_loadDomainsWithError:(NSError **)errorPtr;
 
 - (void)_onQueue_recomputeAllDomainAnswers;
 
@@ -38,11 +38,27 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // TODO
+        NSMutableDictionary *defaultDomains = [self _createDefaultDomains].mutableCopy;
+        NSError *error = nil;
+        NSDictionary *loadedDomains = [self _loadDomainsWithError:&error];
+        if (!loadedDomains) {
+            os_log(eligibility_log(), "%s: Unable to load serialized domains, initing with empty values: %@", __func__, error);
+            error = nil;
+        } else {
+            [defaultDomains addEntriesFromDictionary:loadedDomains];
+        }
+        _domains = defaultDomains.copy;
+        id loadedOverrides = [self _loadOverridesWithError:&error];
+        if (!loadedOverrides) {
+            os_log(eligibility_log(), "%s: Unable to load serialized overrides, initing with no overrides: %@", __func__, error);
+            loadedOverrides = [EligibilityOverride new];
+        }
+        _eligibilityOverrides = loadedOverrides;
+        _notificationsToSend = [NSMutableSet new];
         dispatch_queue_attr_t internalQueueAttr = dispatch_queue_attr_make_with_autorelease_frequency(nil, DISPATCH_AUTORELEASE_FREQUENCY_WORK_ITEM);
         dispatch_queue_t internalQueue = dispatch_queue_create("com.apple.eligibility.EligibilityEngine.internal", internalQueueAttr);
         _internalQueue = internalQueue;
-        // TODO
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_currentLocaleDidChange:) name:NSCurrentLocaleDidChangeNotification object:nil];
     }
     return self;
 }
@@ -64,7 +80,7 @@
     [self recomputeAllDomainAnswers];
 }
 
-- (id)_decodeObjectOfClasses:(NSSet *)classes atURL:(NSURL *)url withError:(NSError * _Nullable *)errorPtr {
+- (id)_decodeObjectOfClasses:(NSSet *)classes atURL:(NSURL *)url withError:(NSError **)errorPtr {
     NSError *readinessError = nil;
     NSData *data = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe | NSDataReadingUncached error:&readinessError];
     if (!data) {
@@ -102,16 +118,52 @@
     return decoded;
 }
 
-- (id)_loadOverridesWithError:(NSError * _Nullable __autoreleasing *)errorPtr {
-    // TODO
-    return nil;
+- (EligibilityOverride *)_loadOverridesWithError:(NSError **)errorPtr {
+    NSError *error = nil;
+    NSURL *container = OEURLForContainerWithError(&error);
+    EligibilityOverride *decoded;
+    if (!container) {
+        os_log_error(eligibility_log(), "%s: Failed to obtain the URL for our data container: %@", __func__, error);
+        decoded = nil;
+    } else {
+        NSURL *url = [container URLByAppendingPathComponent:@"Library/Caches/NeverRestore/eligibility_overrides.data" isDirectory:NO];
+        decoded = [self _decodeObjectOfClasses:[NSSet setWithObjects:EligibilityOverride.class, nil] atURL:url withError:&error];
+        if (!decoded) {
+            os_log_error(eligibility_log(), "%s: Failed to decode overrides: %@", __func__, error);
+        } else {
+            error = nil;
+        }
+    }
+    if (errorPtr != nil) {
+        *errorPtr = error;
+    }
+    return decoded;
 }
 
-- (id)_loadDomainsWithError:(NSError * _Nullable __autoreleasing *)errorPtr {
-    // TODO
-    return nil;
+- (NSDictionary *)_loadDomainsWithError:(NSError **)errorPtr {
+    NSSet *classes = [NSSet setWithObjects:NSDictionary.class, EligibilityDomain.class, NSString.class, nil];
+    const char *path = copy_eligibility_domain_domains_serialization_path();
+    NSDictionary *decoded;
+    NSError *error;
+    if (!path) {
+        os_log_error(eligibility_log(), "%s: Failed to copy domains serialization path", __func__);
+        decoded = nil;
+        error = nil;
+    } else {
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithUTF8String:path] isDirectory:NO];
+        NSError *decodeError = nil;
+        decoded = [self _decodeObjectOfClasses:classes atURL:url withError:&decodeError];
+        if (!decoded) {
+            os_log_error(eligibility_log(), "%s: Failed to decode domains: %@", __func__, decodeError);
+        }
+        error = decodeError;
+    }
+    free((void *)path);
+    if (errorPtr != nil && decoded == nil) {
+        *errorPtr = error;
+    }
+    return decoded;
 }
-
 
 - (void)recomputeAllDomainAnswers {
     dispatch_async(self.internalQueue, ^{
