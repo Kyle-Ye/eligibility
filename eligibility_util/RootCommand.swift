@@ -13,8 +13,12 @@ struct RootCommand: ParsableCommand {
     static var configuration: CommandConfiguration = CommandConfiguration(
         commandName: "eligibility_util",
         subcommands: [
-            GetAnswerCommand.self,
+            QueryNotificationNameCommand.self,
+            SetInputCommand.self,
+            ResetAnswerCommand.self,
             GetInternalStateCommand.self,
+            SetTestModeCommand.self,
+            GetAnswerCommand.self,
         ]
     )
 }

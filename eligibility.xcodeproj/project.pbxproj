@@ -135,6 +135,10 @@
 				RootCommand.swift,
 				Subcommands/GetAnswerCommand.swift,
 				Subcommands/GetInternalStateCommand.swift,
+				Subcommands/QueryNotificationNameCommand.swift,
+				Subcommands/ResetAnswerCommand.swift,
+				Subcommands/SetInputCommand.swift,
+				Subcommands/SetTestModeCommand.swift,
 			);
 			target = 27EE1CD42C3B0426004AFE9B /* eligibility_util */;
 		};

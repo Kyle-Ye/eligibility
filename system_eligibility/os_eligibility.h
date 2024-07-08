@@ -21,7 +21,7 @@
 ELIGIBILITY_ASSUME_NONNULL_BEGIN
 
 ELIGIBILITY_EXPORT
-EligibilityDomainType os_eligibility_domain_for_name(const char *name) ELIGIBILITY_SWIFT_NAME(EligibilityDomainType.init(name:));
+EligibilityDomainType os_eligibility_domain_for_name(const char * _Nullable name) ELIGIBILITY_SWIFT_NAME(EligibilityDomainType.init(name:));
 ELIGIBILITY_EXPORT
 const char * _Nullable os_eligibility_get_domain_notification_name(EligibilityDomainType domain);
 
