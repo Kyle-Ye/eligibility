@@ -8,7 +8,9 @@
 #import "EligibilityEngine.h"
 #import "EligibilityLog.h"
 #import "EligibilityUtils.h"
+#import "InputManager.h"
 #import "GlobalConfiguration.h"
+#import "LocatedCountryInput.h"
 #import "TestDomain.h"
 #import "XcodeLLMDomain.h"
 
@@ -173,6 +175,23 @@
 
 - (void)_onQueue_recomputeAllDomainAnswers {
     // TODO
+}
+
+- (NSDictionary *)internalStateWithError:(NSError **)error {
+    NSMutableDictionary *state = [NSMutableDictionary new];
+    dispatch_sync(self.internalQueue, ^{
+        LocatedCountryInput *countryInput = (LocatedCountryInput *)[InputManager.sharedInstance objectForInputValue:EligibilityInputTypeCountryLocation];
+        state[@"OS_ELIGIBILITY_INTERNAL_STATE_COUNTRY_LOCATION"] = countryInput.countryCodes.allObjects;
+        BOOL hasActiveGracePeriod = NO;
+        for (EligibilityDomain *domain in self.domains.allValues) {
+            if (domain.hasActiveGracePeriod) {
+                hasActiveGracePeriod = YES;
+                break;
+            }
+        }
+        state[@"OS_ELIGIBILITY_INTERNAL_STATE_GRACE_PERIOD_IN_EFFECT"] = @(hasActiveGracePeriod);
+    });
+    return state.copy;
 }
 
 - (void)scheduleDailyRecompute {

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init;
 
 - (void)recomputeAllDomainAnswers;
+- (NSDictionary *)internalStateWithError:(NSError **)error;
 
 - (void)scheduleDailyRecompute;
 
