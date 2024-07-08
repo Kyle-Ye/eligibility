@@ -10,6 +10,8 @@
 #import "XPCSPI.h"
 #import "containermanager.h"
 
+#define ELIGIBILITY_ROOT "/"
+
 void asyncBlock(dispatch_queue_t queue, dispatch_block_t block) {
     // TODO
     os_transaction_t transaction = os_transaction_create("com.apple.eligibilityd.async-block");
@@ -22,30 +24,43 @@ void asyncBlock(dispatch_queue_t queue, dispatch_block_t block) {
 }
 
 const char *copy_eligibility_domain_data_vault_directory_path(void) {
-    char *buffer;
-    int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/os_eligibility");
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/os_eligibility";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/os_eligibility");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
     }
-    return buffer;
+    return absolute_path;
 }
 
 const char *copy_eligibility_domain_daemon_directory_path(void) {
-    char *buffer;
-    int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/eligibilityd");
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/eligibilityd";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/eligibilityd");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
     }
-    return buffer;
+    return absolute_path;
 }
 
 const char *copy_eligibility_domain_input_manager_plist_path(void) {
-    char *buffer;
-    int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/eligibilityd/eligibility_inputs.plist");
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/eligibilityd/eligibility_inputs.plist";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
-        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/eligibilityd/eligibility_inputs.plist");
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
     }
-    return buffer;
+    return absolute_path;
+}
+
+const char * copy_eligibility_domain_domains_serialization_path(void) {
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/eligibilityd/domains.data";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
+    if (size == -1) {
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
+    }
+    return absolute_path;
 }
 
 uint64_t eligibility_xpc_get_message_type(xpc_object_t object) {

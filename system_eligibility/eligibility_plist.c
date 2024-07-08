@@ -15,24 +15,28 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
+#define OS_ELIGIBILITY_ROOT "/"
+
 extern xpc_object_t xpc_create_from_plist(void *data, size_t size);
 
 const char * copy_eligibility_domain_answer_plist_path(void) {
-    char *buffer;
-    int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/os_eligibility/eligibility.plist");
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/os_eligibility/eligibility.plist";
+    int size = asprintf(&absolute_path, "%s%s", OS_ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
-        os_log_error(eligibility_log_handle(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/os_eligibility/eligibility.plist");
+        os_log_error(eligibility_log_handle(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
     }
-    return buffer;
+    return absolute_path;
 }
 
 const char * copy_eligibility_domain_public_answer_plist_path(void) {
-    char *buffer;
-    int size = asprintf(&buffer, "%s%s", "/", "/private/var/db/eligibilityd/eligibility.plist");
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/eligibilityd/eligibility.plist";
+    int size = asprintf(&absolute_path, "%s%s", OS_ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
-        os_log_error(eligibility_log_handle(), "%s: Failed to construct absolute path for relative path: %s", __func__, "/private/var/db/eligibilityd/eligibility.plist");
+        os_log_error(eligibility_log_handle(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
     }
-    return buffer;
+    return absolute_path;
 }
 
 int load_eligibility_plist(const char *path, xpc_object_t *result_ptr) {
