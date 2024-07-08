@@ -8,7 +8,7 @@
 
 #import "EligibilityTimer.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 
 @interface EligibilityTimer ()
 

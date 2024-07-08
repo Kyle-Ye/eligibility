@@ -8,7 +8,7 @@
 
 #import "DeviceClassInput.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 #import "MobileGestalt.h"
 
 @interface DeviceClassInput ()

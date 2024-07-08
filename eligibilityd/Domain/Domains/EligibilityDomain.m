@@ -11,7 +11,7 @@
 #import "InputManager.h"
 #import "EligibilityLog.h"
 #import "EligibilityTimer.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 
 @interface EligibilityDomain ()
 

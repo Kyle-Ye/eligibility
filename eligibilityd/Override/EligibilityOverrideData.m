@@ -8,7 +8,7 @@
 
 #import "EligibilityOverrideData.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 
 @interface EligibilityOverrideData ()
 

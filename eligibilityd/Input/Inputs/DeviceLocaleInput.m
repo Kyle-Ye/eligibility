@@ -8,7 +8,7 @@
 
 #import "DeviceLocaleInput.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 #import "XPCSPI.h"
 
 @implementation DeviceLocaleInput

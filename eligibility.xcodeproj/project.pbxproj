@@ -13,6 +13,8 @@
 		277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 277F01752C3A94AD00899CDA /* ArgumentParser */; };
 		277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
 		277F03362C3AA16500899CDA /* libsystem_eligibility.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		27EE1CDF2C3B0442004AFE9B /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 27EE1CDE2C3B0442004AFE9B /* ArgumentParser */; };
+		27EE1CE02C3B0449004AFE9B /* libsystem_eligibility.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,15 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27EE1CD32C3B0426004AFE9B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -63,9 +74,10 @@
 		2730C7962C1F13F700F5D46B /* libMobileGestalt.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libMobileGestalt.tbd; path = usr/lib/libMobileGestalt.tbd; sourceTree = SDKROOT; };
 		275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_containermanager.tbd; path = usr/lib/system/libsystem_containermanager.tbd; sourceTree = SDKROOT; };
 		276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsystem_eligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		277F01622C3A942A00899CDA /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
+		277F01622C3A942A00899CDA /* eligibility_util_internal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util_internal; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_eligibility.tbd; path = usr/lib/system/libsystem_eligibility.tbd; sourceTree = SDKROOT; };
 		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		27EE1CD52C3B0426004AFE9B /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -116,6 +128,16 @@
 			);
 			target = 2730C7842C1F120B00F5D46B /* eligibilityd */;
 		};
+		27EE1CE42C3B045A004AFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Helper.c,
+				RootCommand.swift,
+				Subcommands/GetAnswerCommand.swift,
+				Subcommands/GetInternalStateCommand.swift,
+			);
+			target = 27EE1CD42C3B0426004AFE9B /* eligibility_util */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
@@ -129,7 +151,7 @@
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		277F016A2C3A943000899CDA /* eligibility_util */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = eligibility_util; sourceTree = "<group>"; };
+		277F016A2C3A943000899CDA /* eligibility_util */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EE1CE42C3B045A004AFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibility_util; sourceTree = "<group>"; };
 		27EC6A6B2C34627B00F76D70 /* EligibilityCore */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EligibilityCore; sourceTree = "<group>"; };
 		27EC6A752C3468DD00F76D70 /* system_eligibility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (277FFF992C39909C00899CDA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27EC6A7C2C3468DD00F76D70 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = system_eligibility; sourceTree = "<group>"; };
 		27EC6ACC2C3468E200F76D70 /* eligibilityd */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibilityd; sourceTree = "<group>"; };
@@ -162,6 +184,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27EE1CD22C3B0426004AFE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EE1CDF2C3B0442004AFE9B /* ArgumentParser in Frameworks */,
+				27EE1CE02C3B0449004AFE9B /* libsystem_eligibility.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -183,7 +214,8 @@
 			children = (
 				2730C7852C1F120B00F5D46B /* eligibilityd */,
 				276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */,
-				277F01622C3A942A00899CDA /* eligibility_util */,
+				277F01622C3A942A00899CDA /* eligibility_util_internal */,
+				27EE1CD52C3B0426004AFE9B /* eligibility_util */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,9 +285,9 @@
 			productReference = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		277F01612C3A942A00899CDA /* eligibility_util */ = {
+		277F01612C3A942A00899CDA /* eligibility_util_internal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util" */;
+			buildConfigurationList = 277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util_internal" */;
 			buildPhases = (
 				277F015E2C3A942A00899CDA /* Sources */,
 				277F015F2C3A942A00899CDA /* Frameworks */,
@@ -270,12 +302,32 @@
 			fileSystemSynchronizedGroups = (
 				277F016A2C3A943000899CDA /* eligibility_util */,
 			);
-			name = eligibility_util;
+			name = eligibility_util_internal;
 			packageProductDependencies = (
 				277F01752C3A94AD00899CDA /* ArgumentParser */,
 			);
 			productName = eligibility_util;
-			productReference = 277F01622C3A942A00899CDA /* eligibility_util */;
+			productReference = 277F01622C3A942A00899CDA /* eligibility_util_internal */;
+			productType = "com.apple.product-type.tool";
+		};
+		27EE1CD42C3B0426004AFE9B /* eligibility_util */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27EE1CD92C3B0426004AFE9B /* Build configuration list for PBXNativeTarget "eligibility_util" */;
+			buildPhases = (
+				27EE1CD12C3B0426004AFE9B /* Sources */,
+				27EE1CD22C3B0426004AFE9B /* Frameworks */,
+				27EE1CD32C3B0426004AFE9B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = eligibility_util;
+			packageProductDependencies = (
+				27EE1CDE2C3B0442004AFE9B /* ArgumentParser */,
+			);
+			productName = eligibility_util;
+			productReference = 27EE1CD52C3B0426004AFE9B /* eligibility_util */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -298,6 +350,9 @@
 						CreatedOnToolsVersion = 16.0;
 						LastSwiftMigration = 1600;
 					};
+					27EE1CD42C3B0426004AFE9B = {
+						CreatedOnToolsVersion = 16.0;
+					};
 				};
 			};
 			buildConfigurationList = 2730C7802C1F120B00F5D46B /* Build configuration list for PBXProject "eligibility" */;
@@ -311,14 +366,15 @@
 			packageReferences = (
 				277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 			);
-			preferredProjectObjectVersion = 63;
+			preferredProjectObjectVersion = 60;
 			productRefGroup = 2730C7862C1F120B00F5D46B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2730C7842C1F120B00F5D46B /* eligibilityd */,
 				276F6D2C2C34537E00748E4D /* system_eligibility */,
-				277F01612C3A942A00899CDA /* eligibility_util */,
+				277F01612C3A942A00899CDA /* eligibility_util_internal */,
+				27EE1CD42C3B0426004AFE9B /* eligibility_util */,
 			);
 		};
 /* End PBXProject section */
@@ -339,6 +395,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		277F015E2C3A942A00899CDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27EE1CD12C3B0426004AFE9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -553,22 +616,19 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				DEVELOPMENT_TEAM = VB7MJ8R223;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = eligibility_util/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "top.kyleye.eligibility-util";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = macosx;
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -581,22 +641,66 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
-				DEVELOPMENT_TEAM = VB7MJ8R223;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = eligibility_util/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "top.kyleye.eligibility-util";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = macosx;
-				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		27EE1CDA2C3B0426004AFE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		27EE1CDB2C3B0426004AFE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = eligibility_util/eligibility_util.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -633,11 +737,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util" */ = {
+		277F01662C3A942A00899CDA /* Build configuration list for PBXNativeTarget "eligibility_util_internal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277F01672C3A942A00899CDA /* Debug */,
 				277F01682C3A942A00899CDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27EE1CD92C3B0426004AFE9B /* Build configuration list for PBXNativeTarget "eligibility_util" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EE1CDA2C3B0426004AFE9B /* Debug */,
+				27EE1CDB2C3B0426004AFE9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -657,6 +770,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		277F01752C3A94AD00899CDA /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		27EE1CDE2C3B0442004AFE9B /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;

@@ -8,7 +8,7 @@
 
 #import "BoronAsset.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 
 @implementation BoronAsset
 

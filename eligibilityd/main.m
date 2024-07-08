@@ -6,7 +6,7 @@
 //
 
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 #import "EligibilityUtils.h"
 #import "EligibilityLog.h"
 #import "EligibilityEngine.h"

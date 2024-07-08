@@ -8,7 +8,7 @@
 
 #import "LocatedCountryInput.h"
 #import "EligibilityLog.h"
-#import "EligibilityBase.h"
+#import "EligibilityDefine.h"
 #import "XPCSPI.h"
 
 @implementation LocatedCountryInput
