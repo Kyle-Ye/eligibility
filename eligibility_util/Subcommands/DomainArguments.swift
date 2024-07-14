@@ -19,11 +19,9 @@ struct DomainArguments: ParsableArguments, CustomStringConvertible {
         if domain != nil && domainName != nil {
             throw ValidationError("Only one of --domain or --domainName can be provided.")
         }
-        if let domainName, EligibilityDomainType(name: domainName) != .invalid {
-            return
-        } else if let domain, domain != .invalid {
-            return
-        } else {
+        if let domainName, EligibilityDomainType(name: domainName) == .invalid {
+            throw ValidationError("Invalid domain input")
+        } else if let domain, domain == .invalid {
             throw ValidationError("Invalid domain input")
         }
     }

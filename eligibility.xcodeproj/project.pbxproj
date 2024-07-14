@@ -141,7 +141,7 @@
 				Subcommands/DumpSysdiagnoseDataCommand.swift,
 				Subcommands/ForceDomainAnswerCommand.swift,
 				Subcommands/ForceDomainSetAnswerCommand.swift,
-				Subcommands/GetAnswerCommand.swift,
+				Subcommands/GetDomainAnswerCommand.swift,
 				Subcommands/GetInternalStateCommand.swift,
 				Subcommands/GetStateDumpCommand.swift,
 				Subcommands/QueryNotificationNameCommand.swift,

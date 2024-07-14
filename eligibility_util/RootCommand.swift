@@ -14,7 +14,7 @@ struct RootCommand: ParsableCommand {
         commandName: "eligibility_util",
         subcommands: [
             QueryNotificationNameCommand.self,
-            GetAnswerCommand.self,
+            GetDomainAnswerCommand.self,
             SetInputCommand.self,
             ResetDomainCommand.self,
             ForceDomainAnswerCommand.self,

@@ -1,5 +1,5 @@
 //
-//  GetAnswerCommand.swift
+//  GetDomainAnswerCommand.swift
 //  eligibility_util
 //
 //  Created by Kyle on 2024/7/7.
@@ -8,9 +8,9 @@
 import ArgumentParser
 import Foundation
 
-struct GetAnswerCommand: ParsableCommand {
+struct GetDomainAnswerCommand: ParsableCommand {
     static var configuration: CommandConfiguration = CommandConfiguration(
-        commandName: "getAnswer"
+        commandName: "getDomainAnswer"
     )
     
     @OptionGroup(title: "The domain to query answer")
@@ -84,10 +84,13 @@ struct GetAnswerCommand: ParsableCommand {
     func validate() throws {
         if queryAll {
             guard !domain.hasSet else {
-                print("Passing both --all and --domain or --domainName is not supported")
-                throw POSIXError(.EINVAL)
+                throw ValidationError("Passing both --all and --domain or --domainName is not supported")
             }
             return
+        } else {
+            guard domain.hasSet && domain.type != .invalid else {
+                throw ValidationError("Invalid domain input")
+            }
         }
     }
 }

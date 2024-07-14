@@ -61,10 +61,13 @@ struct ResetDomainCommand: ParsableCommand {
     func validate() throws {
         if resetAll {
             guard !domain.hasSet else {
-                print("Passing both --all and --domain or --domainName is not supported")
-                throw POSIXError(.EINVAL)
+                throw ValidationError("Passing both --all and --domain or --domainName is not supported")
             }
             return
+        } else {
+            guard domain.hasSet && domain.type != .invalid else {
+                throw ValidationError("Invalid domain input")
+            }
         }
     }
 }
