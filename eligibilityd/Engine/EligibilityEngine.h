@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)resetDomain:(NSString *)domain withError:(NSError **)errorPtr;
 - (void)resetAllDomainsWithError:(NSError **)errorPtr;
 - (NSDictionary *)internalStateWithError:(NSError **)errorPtr;
+- (NSDictionary *)stateDumpWithError:(NSError **)errorPtr;
+- (void)asyncUpdateAndRecomputeAllAnswers;
 - (void)scheduleDailyRecompute;
 
 @end

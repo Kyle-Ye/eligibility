@@ -240,11 +240,9 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 xpc_connection_cancel(connection);
                 return;
             }
-            // TODO: EligibilityEngine
-            // CFTypeRef stateDumpDictionary = [EligibilityEngine.sharedInstance stateDumpWithError: &error];
-            CFTypeRef stateDumpDictionary = nil;
+            NSDictionary *stateDumpDictionary = [EligibilityEngine.sharedInstance stateDumpWithError: &error];
             if (stateDumpDictionary) {
-                xpc_object_t stateDumpDictionaryXPC = _CFXPCCreateXPCObjectFromCFObject(stateDumpDictionary);
+                xpc_object_t stateDumpDictionaryXPC = _CFXPCCreateXPCObjectFromCFObject((__bridge CFDictionaryRef)stateDumpDictionary);
                 xpc_dictionary_set_value(reply, "stateDumpDictionary", stateDumpDictionaryXPC);
                 success = YES;
             }

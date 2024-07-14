@@ -445,6 +445,30 @@
     return state.copy;
 }
 
+- (NSDictionary *)stateDumpWithError:(NSError **)errorPtr {
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dispatch_sync(self.internalQueue, ^{
+        dict[@"OS_ELIGIBILITY_STATE_DUMP_INPUTS"] = InputManager.sharedInstance.debugDictionary;
+        NSMutableDictionary *domainsDictionary = [NSMutableDictionary new];
+        [self.domains enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, __kindof EligibilityDomain * _Nonnull obj, BOOL * _Nonnull stop) {
+            domainsDictionary[key] = obj.description;
+        }];
+        dict[@"OS_ELIGIBILITY_STATE_DUMP_DOMAINS"] = domainsDictionary.copy;
+        dict[@"OS_ELIGIBILITY_STATE_DUMP_OVERRIDES"] = self.eligibilityOverrides.description;
+        dict[@"OS_ELIGIBILITY_STATE_DUMP_GLOBAL_STATE"] = GlobalConfiguration.sharedInstance.description;
+        dict[@"OS_ELIGIBILITY_STATE_DUMP_MOBILE_ASSET"] = MobileAssetManager.sharedInstance.debugDescription;
+    });
+    return dict.copy;
+}
+
+- (void)asyncUpdateAndRecomputeAllAnswers {
+    asyncBlock(self.internalQueue, ^{
+        for (EligibilityDomain *domain in self.domains.allValues) {
+            [domain updateParameters];
+        }
+        [self _onQueue_recomputeAllDomainAnswers];
+    });
+}
 
 - (void)_onQueue_handleRecompute:(BGSystemTask *)task {
     dispatch_assert_queue(self.internalQueue);
