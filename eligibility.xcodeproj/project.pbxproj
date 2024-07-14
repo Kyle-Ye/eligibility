@@ -13,6 +13,7 @@
 		277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 277F01752C3A94AD00899CDA /* ArgumentParser */; };
 		277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
 		277F03362C3AA16500899CDA /* libsystem_eligibility.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		278C20D92C43E91900B748E9 /* BackgroundSystemTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278C20D82C43E91900B748E9 /* BackgroundSystemTasks.framework */; };
 		27EE1CDF2C3B0442004AFE9B /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 27EE1CDE2C3B0442004AFE9B /* ArgumentParser */; };
 		27EE1CE02C3B0449004AFE9B /* libsystem_eligibility.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsystem_eligibility.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F01622C3A942A00899CDA /* eligibility_util_internal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util_internal; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_eligibility.tbd; path = usr/lib/system/libsystem_eligibility.tbd; sourceTree = SDKROOT; };
+		278C20D82C43E91900B748E9 /* BackgroundSystemTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundSystemTasks.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/BackgroundSystemTasks.framework; sourceTree = DEVELOPER_DIR; };
 		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27EE1CD52C3B0426004AFE9B /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,7 +98,8 @@
 		27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Asset/BoronAsset.m,
+				Asset/Assets/BoronAsset.m,
+				Asset/Manager/MobileAssetManager.m,
 				Configuration/GlobalConfiguration.m,
 				Domain/Domains/EligibilityDomain.m,
 				Domain/Domains/TestDomain.m,
@@ -168,6 +171,7 @@
 			files = (
 				275F93AB2C31E3170049F986 /* libsystem_containermanager.tbd in Frameworks */,
 				27267E482C2874E100614B1D /* SystemConfiguration.framework in Frameworks */,
+				278C20D92C43E91900B748E9 /* BackgroundSystemTasks.framework in Frameworks */,
 				2730C7972C1F150A00F5D46B /* libMobileGestalt.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +231,7 @@
 		2730C7952C1F13F700F5D46B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				278C20D82C43E91900B748E9 /* BackgroundSystemTasks.framework */,
 				277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */,
 				275F93AA2C31E30D0049F986 /* libsystem_containermanager.tbd */,
 				27267E472C2874E100614B1D /* SystemConfiguration.framework */,
@@ -554,6 +559,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
+				OTHER_LDFLAGS = (
+					"-iframework",
+					/System/Library/PrivateFrameworks/,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
@@ -574,6 +583,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				OTHER_CODE_SIGN_FLAGS = "-i com.apple.eligibilityd";
+				OTHER_LDFLAGS = (
+					"-iframework",
+					/System/Library/PrivateFrameworks/,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.apple.eligibilityd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;

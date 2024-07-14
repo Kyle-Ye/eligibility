@@ -14,6 +14,8 @@
 #import "TestDomain.h"
 #import "XcodeLLMDomain.h"
 #import "EligibilityDomainTypeHelper.h"
+#import "BackgroundSystemTasks.h"
+#import "MobileAssetManager.h"
 #import <notify.h>
 
 @interface EligibilityEngine ()
@@ -33,7 +35,7 @@
 - (BOOL)_sendNotification:(NSNotificationName)notifictation;
 - (void)_onQueue_sendNotifications;
 - (void)_onQueue_recomputeAllDomainAnswers;
-
+- (void)_onQueue_handleRecompute:(BGSystemTask *)task;
 @end
 
 @implementation EligibilityEngine
@@ -219,7 +221,6 @@
     NSError *error = nil;
     NSURL *container = OEURLForContainerWithError(&error);
     BOOL result;
-    EligibilityOverride *decoded;
     if (!container) {
         os_log_error(eligibility_log(), "%s: Failed to obtain the URL for our data container: %@", __func__, error);
         result = NO;
@@ -444,8 +445,24 @@
     return state.copy;
 }
 
-- (void)scheduleDailyRecompute {
+
+- (void)_onQueue_handleRecompute:(BGSystemTask *)task {
+    dispatch_assert_queue(self.internalQueue);
+    NSString *identifier = task.identifier;
+    task.expirationHandler = ^{
+        os_log_debug(eligibility_log(), "%s: Expiration handler called for %@", __func__, identifier);
+    };
+    os_log(eligibility_log(), "%s: Refresh MobileAsset parameters", __func__);
+    [MobileAssetManager.sharedInstance asyncRefetchMobileAsset];
     // TODO
+}
+
+- (void)scheduleDailyRecompute {
+    [BGSystemTaskScheduler.sharedScheduler registerForTaskWithIdentifier:@"com.apple.eligibility.recompute"
+                                                              usingQueue:self.internalQueue
+                                                           launchHandler:^(__kindof BGSystemTask * _Nonnull task) {
+        [self _onQueue_handleRecompute:task];
+    }];
 }
 
 @end

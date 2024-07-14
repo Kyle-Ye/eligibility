@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSDictionary *debugDictionary;
 
 + (instancetype)sharedInstance;
-- (instancetype)init;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 - (BOOL)setInput:(EligibilityInput *)input withError:(NSError * _Nullable *)errorPtr;
 - (EligibilityInput *)objectForInputValue:(EligibilityInputType)inputType;
