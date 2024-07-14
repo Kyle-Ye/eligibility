@@ -32,7 +32,6 @@
 - (BOOL)_onQueue_saveDomainAnswerOutputsWithError:(NSError **)errorPtr;
 - (BOOL)_sendNotification:(NSNotificationName)notifictation;
 - (void)_onQueue_sendNotifications;
-
 - (void)_onQueue_recomputeAllDomainAnswers;
 
 @end
@@ -373,17 +372,62 @@
     }
 }
 
-- (void)resetDomain:(NSString *)domain withError:(NSError **)error {
+- (BOOL)setInput:(EligibilityInputType)inputType to:(xpc_object_t)object status:(EligibilityInputStatus)status fromProcess:(NSString *)process withError:(NSError **)errorPtr {
+    EligibilityInput *input;
+    switch (inputType) {
+        case EligibilityInputTypeCountryLocation:
+            input = [[LocatedCountryInput alloc] initWithCountryCodes:object status:status process:process];
+            break;
+        case EligibilityInputTypeCountryBilling:
+            input = [[CountryBillingInput alloc] initWithBillingCountry:object status:status process:process];
+            break;
+        case EligibilityInputTypeDeviceLocale:
+            input = [[DeviceLocaleInput alloc] initWithDeviceLocale:object status:status process:process];
+            break;
+        case EligibilityInputTypeGreyMatterOnQueue:
+            input = [[GreymatterQueueInput alloc] initOnQueue:object status:status process:process];
+            break;
+        default: {
+            os_log_error(eligibility_log(), "%s: Unsupported input type: %llu", __func__, (uint64_t)inputType);
+            NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+            if (errorPtr) {
+                *errorPtr = error;
+            }
+            return NO;
+        }
+    }
+    if (input == nil) {
+        os_log_error(eligibility_log(), "%s: Failed to initalize input type", __func__);
+        NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+        if (errorPtr) {
+            *errorPtr = error;
+        }
+        return NO;
+    } else {
+        asyncBlock(self.internalQueue, ^{
+            NSError *error = nil;
+            BOOL result = [InputManager.sharedInstance setInput:input withError:&error];
+            if (result) {
+                [self _onQueue_recomputeAllDomainAnswers];
+            } else {
+                os_log_error(eligibility_log(), "%s: Failed to set input value: %@", __func__, error);
+            }
+        });
+        return YES;
+    }
+}
+
+- (void)resetDomain:(NSString *)domain withError:(NSError **)errorPtr {
     // TODO
 }
 
-- (void)resetAllDomainsWithError:(NSError **)error {
+- (void)resetAllDomainsWithError:(NSError **)errorPtr {
     asyncBlock(self.internalQueue, ^{
         // TODO
     });
 }
 
-- (NSDictionary *)internalStateWithError:(NSError **)error {
+- (NSDictionary *)internalStateWithError:(NSError **)errorPtr {
     NSMutableDictionary *state = [NSMutableDictionary new];
     dispatch_sync(self.internalQueue, ^{
         LocatedCountryInput *countryInput = (LocatedCountryInput *)[InputManager.sharedInstance objectForInputValue:EligibilityInputTypeCountryLocation];
