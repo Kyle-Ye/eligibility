@@ -5,8 +5,8 @@ This folder contains the eligibility daemon code.
 ## Status
 
 - [ ] some Asset and Domain are missing.
-- [ ] EligibilityEngine is not implemented.
-- [ ] XPC related stuff is buggy.
+- [ ] EligibilityEngine is not fully implemented.
+- [ ] MobileAssetManager is not implemented.
 
 ## Related Links
 
