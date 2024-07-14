@@ -1,5 +1,5 @@
 //
-//  ResetAnswerCommand.swift
+//  ResetDomainCommand.swift
 //  eligibility_util
 //
 //  Created by Kyle on 2024/7/7.
@@ -8,9 +8,9 @@
 import ArgumentParser
 import Foundation
 
-struct ResetAnswerCommand: ParsableCommand {
+struct ResetDomainCommand: ParsableCommand {
     static var configuration: CommandConfiguration = CommandConfiguration(
-        commandName: "resetAnswer"
+        commandName: "resetDomain"
     )
     
     @Argument(help: "The domain name to reset answer")
@@ -21,7 +21,7 @@ struct ResetAnswerCommand: ParsableCommand {
             .customLong("all"),
             .customShort("a"),
         ],
-        help: "reset all answers"
+        help: "reset all domains"
     )
     private var resetAll = false
     

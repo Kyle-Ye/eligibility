@@ -136,10 +136,14 @@
 			membershipExceptions = (
 				Helper.c,
 				RootCommand.swift,
+				Subcommands/DumpSysdiagnoseDataCommand.swift,
+				Subcommands/ForceDomainAnswerCommand.swift,
+				Subcommands/ForceDomainSetAnswerCommand.swift,
 				Subcommands/GetAnswerCommand.swift,
 				Subcommands/GetInternalStateCommand.swift,
+				Subcommands/GetStateDumpCommand.swift,
 				Subcommands/QueryNotificationNameCommand.swift,
-				Subcommands/ResetAnswerCommand.swift,
+				Subcommands/ResetDomainCommand.swift,
 				Subcommands/SetInputCommand.swift,
 				Subcommands/SetTestModeCommand.swift,
 			);

@@ -4,13 +4,21 @@
 <dict>
 	<key>com.apple.private.eligibilityd.setInput</key>
 	<true/>
-	<key>com.apple.private.eligibilityd.setTestMode</key>
+	<key>com.apple.private.eligibilityd.resetDomain</key>
+	<true/>
+	<key>com.apple.private.eligibilityd.forceDomain</key>
 	<true/>
 	<key>com.apple.private.eligibilityd.internalState</key>
 	<true/>
-	<key>com.apple.private.eligibilityd.resetDomain</key>
-	<true/>
 	<key>com.apple.private.eligibilityd.resetAllDomains</key>
+	<true/>
+	<key>com.apple.private.eligibilityd.forceDomainSet</key>
+	<true/>
+	<key>com.apple.private.eligibilityd.stateDump</key>
+	<true/>
+	<key>com.apple.private.eligibilityd.dumpSysdiagnoseDataToDir</key>
+	<true/>
+	<key>com.apple.private.eligibilityd.setTestMode</key>
 	<true/>
 </dict>
 </plist>
