@@ -10,6 +10,7 @@
 #import "XPCSPI.h"
 #import "containermanager.h"
 #import "EligibilityBase.h"
+#import "EligibilityXPCMessageType.h"
 
 #define ELIGIBILITY_ROOT "/"
 
@@ -88,11 +89,11 @@ const char * copy_eligibility_domain_public_answer_plist_path(void) {
     return absolute_path;
 }
 
-uint64_t eligibility_xpc_get_message_type(xpc_object_t object) {
+EligibilityXPCMessageType eligibility_xpc_get_message_type(xpc_object_t object) {
     xpc_type_t type = xpc_get_type(object);
     if (type != XPC_TYPE_DICTIONARY) {
         os_log_error(eligibility_log(), "%s: xpc message type must be a dictionary", __func__);
-        return 0;
+        return EligibilityXPCMessageTypeInvalid;
     }
     return xpc_dictionary_get_uint64(object, "eligibility_message_type");
 }

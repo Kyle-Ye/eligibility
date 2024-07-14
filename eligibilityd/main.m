@@ -166,17 +166,20 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
         return;
     }
     
-    uint64_t messageType = eligibility_xpc_get_message_type(object);
-    bool success = NO;
+    EligibilityXPCMessageType messageType = eligibility_xpc_get_message_type(object);
+    BOOL result = NO;
     NSError *error = nil;
     switch (messageType) {
         case EligibilityXPCMessageTypeSetInput: {
             if (!_checkEntitlement(&auditToken ,"com.apple.private.eligibilityd.setInput") || !_checkTestModeEntitlement(&auditToken)) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send set input message", __func__, process);
+                xpc_connection_cancel(connection);
+                return;
             }
-            uint64 input = xpc_dictionary_get_uint64(object, "input");
+            EligibilityInputType input = xpc_dictionary_get_uint64(object, "input");
             xpc_object_t value = xpc_dictionary_get_value(object, "value");
-            uint64 status = xpc_dictionary_get_uint64(object, "status");
+            EligibilityInputStatus status = xpc_dictionary_get_uint64(object, "status");
+            // FIXME
             if ((input > 9) ||
                 ((uint64_t)0x216 >> input == 0) ||
                 (value == 0 && (status == 0 || status > 7)) ||
@@ -185,56 +188,77 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
                 break;
             }
-            // TODO: EligibilityEngine
-            // success = [EligibilityEngine.sharedInstance setInput:input to:value status: status fromProcess:process withError:error];
+            result = [EligibilityEngine.sharedInstance setInput:input to:value status:status fromProcess:process withError:&error];
             break;
         }
         case EligibilityXPCMessageTypeResetDomain: {
-            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.resetDomain")) {
+            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.resetDomain") || !_checkTestModeEntitlement(&auditToken)) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send reset domain message", __func__, process);
                 xpc_connection_cancel(connection);
                 return;
             }
-            // TODO
+            EligibilityDomainType domain = xpc_dictionary_get_uint64(object, "domain");
+            result = [EligibilityEngine.sharedInstance resetDomain:domain withError:&error];
             break;
         }
-        case 3: {
-            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.resetAllDomains")) {\
-                os_log_error(eligibility_log(), "%s: Process %@ not entitled to send reset all domains message", __func__, process);
-                xpc_connection_cancel(connection);
-                return;
-            }
-            // TODO
-            break;
-        }
-        case 4: {
-            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.forceDomain")) {
+        case ELIGIBILITYXPCMessageTypeForceDomainAnswer: {
+            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.forceDomain") || !_checkTestModeEntitlement(&auditToken)) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send force domain message", __func__, process);
                 xpc_connection_cancel(connection);
                 return;
             }
-            // TODO
-            break;
-        }
-        case 5: {
-            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.forceDomainSet")) {
-                os_log_error(eligibility_log(), "%s: Process %@ not entitled to send force domain set message", __func__, process);
-                xpc_connection_cancel(connection);
-                return;
+            EligibilityDomainType domain = xpc_dictionary_get_uint64(object, "domain");
+            EligibilityAnswer answer = xpc_dictionary_get_uint64(object, "answer");
+            xpc_object_t context = xpc_dictionary_get_dictionary(object, "context");
+            if (answer < EligibilityAnswerNotEligible || answer > EligibilityAnswerEligible) {
+                error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+                break;
             }
-            // TODO
+            result = [EligibilityEngine.sharedInstance forceDomainAnswer:domain answer:answer context:context withError:&error];
             break;
         }
-        case 6: {
+        case ELIGIBILITYXPCMessageTypeGetInternalState: {
             if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.internalState")) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send internal state message", __func__, process);
                 xpc_connection_cancel(connection);
                 return;
             }
-            // TODO
+            NSDictionary *state = [EligibilityEngine.sharedInstance internalStateWithError:&error];
+            if (state) {
+                xpc_object_t stateXPC = _CFXPCCreateXPCObjectFromCFObject((__bridge CFDictionaryRef)state);
+                xpc_dictionary_set_value(reply, "internalStateDictionary", stateXPC);
+                result = YES;
+            }
+            break;
+            
+        }
+        case EligibilityXPCMessageTypeResetAllDomains: {
+            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.resetAllDomains") || !_checkTestModeEntitlement(&auditToken)) {
+                os_log_error(eligibility_log(), "%s: Process %@ not entitled to send reset all domains message", __func__, process);
+                xpc_connection_cancel(connection);
+                return;
+            }
+            result = [EligibilityEngine.sharedInstance resetAllDomainsWithError:&error];
             break;
         }
-        case 7: {
+        case ELIGIBILITYXPCMessageTypeForceDomainSetAnswer: {
+            if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.forceDomainSet") || !_checkTestModeEntitlement(&auditToken)) {
+                os_log_error(eligibility_log(), "%s: Process %@ not entitled to send force domain set message", __func__, process);
+                xpc_connection_cancel(connection);
+                return;
+            }
+            EligibilityDomainTypes domainSet = xpc_dictionary_get_uint64(object, "domainSet");
+            EligibilityAnswer answer = xpc_dictionary_get_uint64(object, "answer");
+            xpc_object_t context = xpc_dictionary_get_dictionary(object, "context");
+            // FIXME
+            if (domainSet != 1 || answer < EligibilityAnswerNotEligible || answer > EligibilityAnswerEligible) {
+                error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+                break;
+            }
+            result = [EligibilityEngine.sharedInstance forceDomainSetAnswers:1 answer:answer context:context withError:&error];
+            break;
+        }
+        case EligibilityXPCMessageTypeGetStateDump: {
             if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.stateDump")) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send state dump message", __func__, process);
                 xpc_connection_cancel(connection);
@@ -244,11 +268,11 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
             if (stateDumpDictionary) {
                 xpc_object_t stateDumpDictionaryXPC = _CFXPCCreateXPCObjectFromCFObject((__bridge CFDictionaryRef)stateDumpDictionary);
                 xpc_dictionary_set_value(reply, "stateDumpDictionary", stateDumpDictionaryXPC);
-                success = YES;
+                result = YES;
             }
             break;
         }
-        case 8: {
+        case EligibilityXPCMessageTypeDumpSysdiagnoseData: {
             if (!_checkEntitlement(&auditToken, "com.apple.private.eligibilityd.dumpSysdiagnoseDataToDir")) {
                 os_log_error(eligibility_log(), "%s: Process %@ not entitled to send sysdiagnose dump message", __func__, process);
                 xpc_connection_cancel(connection);
@@ -264,8 +288,7 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 os_log_error(eligibility_log(), "%s: Failed to convert directory path %s to an NSURL, aborting.", __func__, dirPath);
                 error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
             }
-            // TODO: EligibilityEngine
-            // success = [EligibilityEngine.sharedInstance dumpToDirectory:dirPathURL withError:&error];
+            result = [EligibilityEngine.sharedInstance dumpToDirectory:dirPathURL withError:&error];
             break;
         }
         case EligibilityXPCMessageTypeSetTestMode: {
@@ -275,14 +298,14 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 return;
             }
             bool testModeEnabled = xpc_dictionary_get_bool(object, "enabled");
-            success = [GlobalConfiguration.sharedInstance setTestMode:testModeEnabled withError:&error];
+            result = [GlobalConfiguration.sharedInstance setTestMode:testModeEnabled withError:&error];
             break;
         }
         default:
             xpc_connection_cancel(connection);
             return;
     }
-    if (success) {
+    if (result) {
         xpc_dictionary_set_int64(reply, "errorNum", 0);
     } else {
         os_log_error(eligibility_log(), "%s: Message %llu failed: %@", __func__, messageType, error);

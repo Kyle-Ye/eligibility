@@ -418,22 +418,26 @@
     }
 }
 
-- (void)resetDomain:(NSString *)domain withError:(NSError **)errorPtr {
+- (BOOL)resetDomain:(EligibilityDomainType)domain withError:(NSError **)errorPtr {
     // TODO
+    return NO;
 }
 
-- (void)resetAllDomainsWithError:(NSError **)errorPtr {
+- (BOOL)resetAllDomainsWithError:(NSError **)errorPtr {
     asyncBlock(self.internalQueue, ^{
         // TODO
     });
+    return NO;
 }
 
-- (void)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+- (BOOL)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
     // TODO
+    return NO;
 }
 
-- (void)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+- (BOOL)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
     // TODO
+    return NO;
 }
 
 - (NSDictionary *)internalStateWithError:(NSError **)errorPtr {
