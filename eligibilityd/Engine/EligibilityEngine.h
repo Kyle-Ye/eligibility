@@ -8,12 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <dispatch/dispatch.h>
 #import "EligibilityOverride.h"
+#import "EligibilityDomain.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface EligibilityEngine : NSObject
 
-@property (nonatomic, retain) NSDictionary *domains;
+@property (nonatomic, retain) NSDictionary<NSString *, __kindof EligibilityDomain *> *domains;
 @property (nonatomic, retain) NSMutableSet *notificationsToSend;
 @property (nonatomic, retain) EligibilityOverride *eligibilityOverrides;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *internalQueue;
@@ -22,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init;
 
 - (void)recomputeAllDomainAnswers;
+- (void)resetDomain:(NSString *)domain withError:(NSError **)error;
+- (void)resetAllDomainsWithError:(NSError **)error;
 - (NSDictionary *)internalStateWithError:(NSError **)error;
 
 - (void)scheduleDailyRecompute;

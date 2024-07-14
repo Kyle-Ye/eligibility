@@ -13,6 +13,7 @@
 #import "LocatedCountryInput.h"
 #import "TestDomain.h"
 #import "XcodeLLMDomain.h"
+#import "EligibilityDomainTypeHelper.h"
 
 @interface EligibilityEngine ()
 
@@ -21,6 +22,13 @@
 - (id)_decodeObjectOfClasses:(NSSet *)classes atURL:(NSURL *)url withError:(NSError * _Nullable *)errorPtr;
 - (EligibilityOverride *)_loadOverridesWithError:(NSError **)errorPtr;
 - (NSDictionary *)_loadDomainsWithError:(NSError **)errorPtr;
+- (BOOL)_onQueue_saveDomainsWithError:(NSError **)errorPtr;
+- (BOOL)_serializeObject:(id)object toURL:(NSURL *)url withError:(NSError **)errorPtr;
+- (BOOL)_onQueue_serializeOverrideDataToDiskWithError:(NSError **)errorPtr;
+- (BOOL)_onQueue_serializeInternalDomainStateToDiskWithError:(NSError **)errorPtr;
+- (NSDictionary *)_onQueue_finalEligibilityDictionaryForDomain:(EligibilityDomain *)domain;
+- (NSDictionary *)_onQueue_urlToDomainData;
+- (BOOL)_onQueue_saveDomainAnswerOutputsWithError:(NSError **)errorPtr;
 
 - (void)_onQueue_recomputeAllDomainAnswers;
 
@@ -167,6 +175,152 @@
     return decoded;
 }
 
+- (BOOL)_onQueue_saveDomainsWithError:(NSError **)errorPtr {
+    dispatch_assert_queue(self.internalQueue);
+    BOOL result;
+    NSError *error = nil;
+    if ([self _onQueue_serializeInternalDomainStateToDiskWithError:&error] && [self _onQueue_saveDomainAnswerOutputsWithError:&error] && [self _onQueue_serializeOverrideDataToDiskWithError:&error]) {
+        result = YES;
+    } else {
+        result = NO;
+    }
+    if (!result && errorPtr) {
+        *errorPtr = error;
+    }
+    return result;
+}
+
+- (BOOL)_serializeObject:(id)object toURL:(NSURL *)url withError:(NSError **)errorPtr {
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initRequiringSecureCoding:YES];
+    [archiver encodeObject:object forKey:NSKeyedArchiveRootObjectKey];
+    NSData *encodedData = [archiver encodedData];
+    NSError *writingError = nil;
+    BOOL writeResult = [encodedData writeToURL:url options:NSDataWritingAtomic | NSDataWritingFileProtectionNone error:&writingError];
+    BOOL result;
+    NSError *error;
+    if (writeResult) {
+        error = nil;
+        result = YES;
+    } else {
+        os_log_error(eligibility_log(), "%s: Failed to write data %@ to disk at %@: %@", __func__, object, url.path, writingError);
+        error = writingError;
+        result = NO;
+    }
+    if (!result && errorPtr) {
+        *errorPtr = error;
+    }
+    return result;
+}
+
+- (BOOL)_onQueue_serializeOverrideDataToDiskWithError:(NSError **)errorPtr {
+    dispatch_assert_queue(self.internalQueue);
+    NSError *error = nil;
+    NSURL *container = OEURLForContainerWithError(&error);
+    BOOL result;
+    EligibilityOverride *decoded;
+    if (!container) {
+        os_log_error(eligibility_log(), "%s: Failed to obtain the URL for our data container: %@", __func__, error);
+        result = NO;
+    } else {
+        NSURL *url = [container URLByAppendingPathComponent:@"Library/Caches/NeverRestore/eligibility_overrides.data" isDirectory:NO];
+        BOOL success = [self _serializeObject:self.eligibilityOverrides toURL:url withError:&error];
+        if (success) {
+            result = YES;
+        } else {
+            os_log(eligibility_log(), "%s: Failed to write eligibility overrides data to disk: %@", __func__, error);
+            result = NO;
+        }
+    }
+    if (!result && errorPtr != nil) {
+        *errorPtr = error;
+    }
+    return result;
+}
+
+- (BOOL)_onQueue_serializeInternalDomainStateToDiskWithError:(NSError **)errorPtr {
+    dispatch_assert_queue(self.internalQueue);
+    const char *path = copy_eligibility_domain_domains_serialization_path();
+    BOOL result;
+    NSError *error;
+    if (path == NULL) {
+        os_log_fault(eligibility_log(), "%s: Failed to copy domains serialization path", __func__);
+        error = nil;
+        result = NO;
+    } else {
+        NSString *string = [NSString stringWithUTF8String:path];
+        NSURL *url = [NSURL fileURLWithPath:string isDirectory:NO];
+        NSError *serializeError = nil;
+        BOOL success = [self _serializeObject:self.domains toURL:url withError:&serializeError];
+        if (success) {
+            error = nil;
+            result = YES;
+        } else {
+            os_log(eligibility_log(), "%s: Failed to write domain data to disk: %@", __func__, serializeError);
+            error = serializeError;
+            result = NO;
+        }
+    }
+    free((void *)path);
+    if (!result && errorPtr) {
+        *errorPtr = error;
+    }
+    return result;
+}
+
+- (NSDictionary *)_onQueue_finalEligibilityDictionaryForDomain:(EligibilityDomain *)domain {
+    dispatch_assert_queue(self.internalQueue);
+    NSDictionary *overrideResult = [self.eligibilityOverrides overrideResultDictionaryForDomain:domain.domain];
+    return overrideResult ?: [domain serialize];
+}
+
+- (NSDictionary *)_onQueue_urlToDomainData {
+    dispatch_assert_queue(self.internalQueue);
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    [self.domains enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, __kindof EligibilityDomain * _Nonnull obj, BOOL * _Nonnull stop) {
+        const char *path = eligibility_plist_path_for_domain(obj.domain);
+        if (path == NULL) {
+            os_log_fault(eligibility_log(), "%s: Skipping domain %@ because it doesn't have a plist specified", __func__, obj);
+        } else {
+            NSString *string = [NSString stringWithUTF8String:path];
+            free((void *)path);
+            NSURL *url = [NSURL fileURLWithPath:string isDirectory:NO];
+            if (dict[url] == NULL) {
+                dict[url] = [NSMutableDictionary new];
+            }
+            dict[url][key] = [self _onQueue_finalEligibilityDictionaryForDomain:obj];
+        }
+    }];
+    return dict.copy;
+}
+
+- (BOOL)_onQueue_saveDomainAnswerOutputsWithError:(NSError **)errorPtr {
+    dispatch_assert_queue(self.internalQueue);
+    NSDictionary *domainData = [self _onQueue_urlToDomainData];
+    __block NSError *blockError = nil;
+    __block BOOL blockResult = NO;
+    [domainData enumerateKeysAndObjectsUsingBlock:^(NSURL * _Nonnull key, NSMutableDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
+        NSError *error = nil;
+        NSData *data = [NSPropertyListSerialization dataWithPropertyList:obj format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+        if (data == NULL) {
+            os_log_error(eligibility_log(), "%s: Failed to write answer plist %@: %@", __func__, key.path, error);
+            blockError = error;
+        } else {
+            NSError *writingError = nil;
+            BOOL writeResult = [data writeToURL:key options:NSDataWritingAtomic | NSDataWritingFileProtectionNone error:&writingError];
+            if (writeResult) {
+                blockResult = YES;
+            } else {
+                os_log_error(eligibility_log(), "%s: Failed to write answer plist %@: %@", __func__, key.path, writingError);
+                blockError = writingError;
+            }
+        }
+    }];
+    if (!blockResult && errorPtr) {
+        *errorPtr = blockError;
+    }
+    return blockResult;
+}
+
 - (void)recomputeAllDomainAnswers {
     dispatch_async(self.internalQueue, ^{
         [self _onQueue_recomputeAllDomainAnswers];
@@ -175,6 +329,16 @@
 
 - (void)_onQueue_recomputeAllDomainAnswers {
     // TODO
+}
+
+- (void)resetDomain:(NSString *)domain withError:(NSError **)error {
+    // TODO
+}
+
+- (void)resetAllDomainsWithError:(NSError **)error {
+    asyncBlock(self.internalQueue, ^{
+        // TODO
+    });
 }
 
 - (NSDictionary *)internalStateWithError:(NSError **)error {

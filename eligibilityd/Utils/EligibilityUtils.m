@@ -9,13 +9,18 @@
 #import "EligibilityLog.h"
 #import "XPCSPI.h"
 #import "containermanager.h"
+#import "EligibilityBase.h"
 
 #define ELIGIBILITY_ROOT "/"
 
 void asyncBlock(dispatch_queue_t queue, dispatch_block_t block) {
-    // TODO
-    os_transaction_t transaction = os_transaction_create("com.apple.eligibilityd.async-block");
-    
+    // See os_transaction_create usage on the following link
+    // 1. It will call xpc_transaction_begin() on init and xpc_transaction_end() on dispose
+    // 2. It provide a name label for better debugging
+    // Related source code:
+    // https://bug-224288-attachments.webkit.org/attachment.cgi?id=425415
+    // https://opensource.apple.com/source/Security/Security-58286.70.7/OSX/sec/securityd/SecRevocationDb.c
+    ELIGIBILITY_UNUSED os_transaction_t transaction = os_transaction_create("com.apple.eligibilityd.async-block");
     dispatch_async(queue, ^{
         @autoreleasepool {
             block();
@@ -56,6 +61,26 @@ const char *copy_eligibility_domain_input_manager_plist_path(void) {
 const char * copy_eligibility_domain_domains_serialization_path(void) {
     char *absolute_path;
     const char *relative_path = "/private/var/db/eligibilityd/domains.data";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
+    if (size == -1) {
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
+    }
+    return absolute_path;
+}
+
+const char * copy_eligibility_domain_answer_plist_path(void) {
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/os_eligibility/eligibility.plist";
+    int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
+    if (size == -1) {
+        os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
+    }
+    return absolute_path;
+}
+
+const char * copy_eligibility_domain_public_answer_plist_path(void) {
+    char *absolute_path;
+    const char *relative_path = "/private/var/db/eligibilityd/eligibility.plist";
     int size = asprintf(&absolute_path, "%s%s", ELIGIBILITY_ROOT, relative_path);
     if (size == -1) {
         os_log_error(eligibility_log(), "%s: Failed to construct absolute path for relative path: %s", __func__, relative_path);
