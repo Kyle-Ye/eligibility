@@ -428,6 +428,14 @@
     });
 }
 
+- (void)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+    // TODO
+}
+
+- (void)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+    // TODO
+}
+
 - (NSDictionary *)internalStateWithError:(NSError **)errorPtr {
     NSMutableDictionary *state = [NSMutableDictionary new];
     dispatch_sync(self.internalQueue, ^{
@@ -459,6 +467,31 @@
         dict[@"OS_ELIGIBILITY_STATE_DUMP_MOBILE_ASSET"] = MobileAssetManager.sharedInstance.debugDescription;
     });
     return dict.copy;
+}
+
+- (BOOL)dumpToDirectory:(NSURL *)directory withError:(NSError **)errorPtr {
+    NSURL *plist_url = [directory URLByAppendingPathComponent:@"state.plist" isDirectory:NO];
+    BOOL result;
+    NSError *error = nil;
+    NSDictionary *state = [self stateDumpWithError:&error];
+    if (state == nil) {
+        os_log_error(eligibility_log(), "%s: Failed to generate state dump: %@", __func__, error);
+        result = NO;
+    } else {
+        NSError *writingErorr = nil;
+        BOOL writeResult = [state writeToURL:plist_url error:&writingErorr];
+        if (!writeResult) {
+            os_log_error(eligibility_log(), "%s: Failed to save state dump to disk: %@", __func__, writingErorr);
+            error = writingErorr;
+            result = NO;
+        } else {
+            result = YES;
+        }
+    }
+    if (!result && errorPtr) {
+        *errorPtr = error;
+    }
+    return result;
 }
 
 - (void)asyncUpdateAndRecomputeAllAnswers {
