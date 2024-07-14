@@ -14,6 +14,7 @@
 #import "TestDomain.h"
 #import "XcodeLLMDomain.h"
 #import "EligibilityDomainTypeHelper.h"
+#import <notify.h>
 
 @interface EligibilityEngine ()
 
@@ -29,6 +30,8 @@
 - (NSDictionary *)_onQueue_finalEligibilityDictionaryForDomain:(EligibilityDomain *)domain;
 - (NSDictionary *)_onQueue_urlToDomainData;
 - (BOOL)_onQueue_saveDomainAnswerOutputsWithError:(NSError **)errorPtr;
+- (BOOL)_sendNotification:(NSNotificationName)notifictation;
+- (void)_onQueue_sendNotifications;
 
 - (void)_onQueue_recomputeAllDomainAnswers;
 
@@ -319,6 +322,28 @@
         *errorPtr = blockError;
     }
     return blockResult;
+}
+
+- (BOOL)_sendNotification:(NSNotificationName)notifictation {
+    const char *name = notifictation.UTF8String;
+    uint32_t status = notify_post(name);
+    if (status != 0) {
+        os_log_error(eligibility_log(), "%s: Could not post domain change notification \\\"%s\\\": %u", __func__, name, status);
+    }
+    return status == 0;
+}
+
+- (void)_onQueue_sendNotifications {
+    dispatch_assert_queue(self.internalQueue);
+    NSMutableSet<NSNotificationName> *notifications = self.notificationsToSend;
+    if (notifications.count != 0) {
+        [notifications addObject:@"com.apple.os-eligibility-domain.change"];
+    }
+    for (NSNotificationName notification in notifications.copy) {
+        if ([self _sendNotification:notification]) {
+            [notifications removeObject:notification];
+        }
+    }
 }
 
 - (void)recomputeAllDomainAnswers {

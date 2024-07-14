@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EligibilityEngine : NSObject
 
 @property (nonatomic, retain) NSDictionary<NSString *, __kindof EligibilityDomain *> *domains;
-@property (nonatomic, retain) NSMutableSet *notificationsToSend;
+@property (nonatomic, retain) NSMutableSet<NSNotificationName> *notificationsToSend;
 @property (nonatomic, retain) EligibilityOverride *eligibilityOverrides;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *internalQueue;
 
