@@ -20,8 +20,8 @@ struct RootCommand: ParsableCommand {
             ForceDomainAnswerCommand.self, // TODO
             GetInternalStateCommand.self,
             ForceDomainSetAnswerCommand.self, // TODO
-            GetStateDumpCommand.self, // TODO
-            DumpSysdiagnoseDataCommand.self, // TODO
+            GetStateDumpCommand.self,
+            DumpSysdiagnoseDataCommand.self,
             SetTestModeCommand.self,
         ]
     )
