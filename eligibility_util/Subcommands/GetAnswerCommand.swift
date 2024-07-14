@@ -13,8 +13,8 @@ struct GetAnswerCommand: ParsableCommand {
         commandName: "getAnswer"
     )
     
-    @Option(name: .shortAndLong ,help: "The domain name to query answer")
-    private var domainName: String?
+    @OptionGroup(title: "The domain to query answer")
+    private var domain: DomainArguments
     
     @Flag(
         name: [
@@ -24,10 +24,6 @@ struct GetAnswerCommand: ParsableCommand {
         help: "query all answers"
     )
     private var queryAll = false
-    
-    private var domainType: EligibilityDomainType {
-        EligibilityDomainType(name: domainName)
-    }
     
     func run() throws {
         if queryAll {
@@ -39,7 +35,8 @@ struct GetAnswerCommand: ParsableCommand {
     
     private func handleGetDomainAnswer() throws {
         var answer: EligibilityAnswer = .invalid
-        let result = os_eligibility_get_domain_answer(domainType, &answer, nil, nil, nil)
+        // FIXME
+        let result = os_eligibility_get_domain_answer(domain.type, &answer, nil, nil, nil)
         guard result == 0 else {
             if let posixErrorCode = POSIXErrorCode(rawValue: result) {
                 throw POSIXError(posixErrorCode)
@@ -86,16 +83,11 @@ struct GetAnswerCommand: ParsableCommand {
     
     func validate() throws {
         if queryAll {
-            guard domainName == nil else {
-                print("Passing both --all and domain name is not supported")
+            guard !domain.hasSet else {
+                print("Passing both --all and --domain or --domainName is not supported")
                 throw POSIXError(.EINVAL)
             }
             return
-        }
-        let domainType = domainType
-        guard domainType != .invalid && domainType.rawValue <= EligibilityDomainTypeCount else {
-            print("Invalid domain name")
-            throw POSIXError(.EINVAL)
         }
     }
 }

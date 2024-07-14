@@ -137,6 +137,7 @@
 				"Eligibility+ArgumentParser.swift",
 				Helper.c,
 				RootCommand.swift,
+				Subcommands/DomainArguments.swift,
 				Subcommands/DumpSysdiagnoseDataCommand.swift,
 				Subcommands/ForceDomainAnswerCommand.swift,
 				Subcommands/ForceDomainSetAnswerCommand.swift,

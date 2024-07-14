@@ -8,13 +8,6 @@
 import ArgumentParser
 import Foundation
 
-enum ExclusiveOptions: String, ExpressibleByArgument {
-    case bool
-    case string
-    case array
-    case dictionary
-}
-
 extension [String]: @retroactive ExpressibleByArgument {
     public init?(argument: String) {
         self = argument.split(separator: ",").map(String.init)
@@ -64,7 +57,7 @@ struct SetInputCommand: ParsableCommand {
     private var status: EligibilityInputStatus
     
     @OptionGroup
-    private var value :ExclusiveOptionsGroup
+    private var value: ExclusiveOptionsGroup
     
     func run() throws {
         let result = os_eligibility_set_input(input, value.xpcValue, status)

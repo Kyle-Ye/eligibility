@@ -13,12 +13,11 @@ struct QueryNotificationNameCommand: ParsableCommand {
         commandName: "queryNotificationName"
     )
     
-    @Option(name: .shortAndLong, help: "The domain name to query notification name")
-    private var domainName: String?
+    @OptionGroup(title: "The domain to query notification name")
+    private var domain: DomainArguments
 
     func run() throws {
-        let domainType = EligibilityDomainType(name: domainName)
-        guard let notificationName = os_eligibility_get_domain_notification_name(domainType) else {
+        guard let notificationName = os_eligibility_get_domain_notification_name(domain.type) else {
             throw POSIXError(.EINVAL)
         }
         print(String(cString: notificationName))

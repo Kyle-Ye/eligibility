@@ -13,8 +13,8 @@ struct ResetDomainCommand: ParsableCommand {
         commandName: "resetDomain"
     )
     
-    @Option(name: .shortAndLong, help: "The domain name to reset answer")
-    private var domainName: String?
+    @OptionGroup(title: "The domain to reset answer")
+    private var domain: DomainArguments
     
     @Flag(
         name: [
@@ -25,10 +25,6 @@ struct ResetDomainCommand: ParsableCommand {
     )
     private var resetAll = false
     
-    private var domainType: EligibilityDomainType {
-        EligibilityDomainType(name: domainName)
-    }
-    
     func run() throws {
         if resetAll {
             try handleResetAllDomainAnswers()
@@ -36,12 +32,12 @@ struct ResetDomainCommand: ParsableCommand {
 
         } else {
             try handleResetDomainAnswer()
-            print("Reset \(domainName ?? "") successfully")
+            print("Reset \(domain) successfully")
         }
     }
     
     private func handleResetDomainAnswer() throws {
-        let result = os_eligibility_reset_domain(domainType)
+        let result = os_eligibility_reset_domain(domain.type)
         guard result == 0 else {
             if let posixErrorCode = POSIXErrorCode(rawValue: result) {
                 throw POSIXError(posixErrorCode)
@@ -64,16 +60,11 @@ struct ResetDomainCommand: ParsableCommand {
     
     func validate() throws {
         if resetAll {
-            guard domainName == nil else {
-                print("Passing both --all and domain name is not supported")
+            guard !domain.hasSet else {
+                print("Passing both --all and --domain or --domainName is not supported")
                 throw POSIXError(.EINVAL)
             }
             return
-        }
-        let domainType = domainType
-        guard domainType != .invalid && domainType.rawValue <= EligibilityDomainTypeCount else {
-            print("Invalid domain name")
-            throw POSIXError(.EINVAL)
         }
     }
 }
