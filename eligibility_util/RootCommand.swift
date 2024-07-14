@@ -15,11 +15,11 @@ struct RootCommand: ParsableCommand {
         subcommands: [
             QueryNotificationNameCommand.self,
             GetAnswerCommand.self,
-            SetInputCommand.self, // TODO
+            SetInputCommand.self,
             ResetDomainCommand.self,
-            ForceDomainAnswerCommand.self, // TODO
+            ForceDomainAnswerCommand.self,
             GetInternalStateCommand.self,
-            ForceDomainSetAnswerCommand.self, // TODO
+            ForceDomainSetAnswerCommand.self,
             GetStateDumpCommand.self,
             DumpSysdiagnoseDataCommand.self,
             SetTestModeCommand.self,

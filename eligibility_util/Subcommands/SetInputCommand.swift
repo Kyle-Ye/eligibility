@@ -13,7 +13,20 @@ struct SetInputCommand: ParsableCommand {
         commandName: "setInput"
     )
     
+    @Option(help: "The input type to set")
+    var input: EligibilityInputType
+    
+    @Option(help: "The status to set")
+    var status: EligibilityInputStatus
+    
     func run() throws {
-        fatalError("Unimplemented")
+        // FIXME
+        let value = xpc_dictionary_create_empty()
+        let result = os_eligibility_set_input(input, value, status)
+        if result == 0 {
+            print("Set input command successfully")
+        } else {
+            print("Set input command failed: errorNum \(result)")
+        }
     }
 }

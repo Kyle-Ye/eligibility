@@ -134,6 +134,7 @@
 		27EE1CE42C3B045A004AFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				"Eligibility+ArgumentParser.swift",
 				Helper.c,
 				RootCommand.swift,
 				Subcommands/DumpSysdiagnoseDataCommand.swift,
