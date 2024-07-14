@@ -26,6 +26,7 @@ void _createDirectories(void);
 void _connectionHandler(xpc_object_t object, xpc_connection_t connection);
 bool _checkEntitlement(audit_token_t *token, const char *name);
 bool _checkTestModeEntitlement(audit_token_t *token);
+bool _dumpToDirectory(xpc_object_t object, NSError **errorPtr);
 void _tryExitWhenCleanOnWorkloop_block_invoke(void);
 
 static dispatch_source_t source;
@@ -278,17 +279,7 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 xpc_connection_cancel(connection);
                 return;
             }
-            const char *dirPath = xpc_dictionary_get_string(object, "dirPath");
-            if (!dirPath) {
-                os_log_error(eligibility_log(), "%s: File path read from xpc message was nil, aborting.", __func__);
-                error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
-            }
-            NSURL *dirPathURL = [NSURL fileURLWithFileSystemRepresentation:dirPath isDirectory:YES relativeToURL:nil];
-            if (!dirPathURL) {
-                os_log_error(eligibility_log(), "%s: Failed to convert directory path %s to an NSURL, aborting.", __func__, dirPath);
-                error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
-            }
-            result = [EligibilityEngine.sharedInstance dumpToDirectory:dirPathURL withError:&error];
+            result = _dumpToDirectory(object, &error);
             break;
         }
         case EligibilityXPCMessageTypeSetTestMode: {
@@ -364,6 +355,22 @@ bool _checkTestModeEntitlement(audit_token_t *token) {
     }
     os_log_error(eligibility_log(), "%s: Missing the com.apple.private.eligibilityd.setTestMode entitlement while test mode is enabled", __func__);
     return NO;
+}
+
+bool _dumpToDirectory(xpc_object_t object, NSError **errorPtr) {
+    const char *dirPath = xpc_dictionary_get_string(object, "dirPath");
+    if (!dirPath) {
+        os_log_error(eligibility_log(), "%s: File path read from xpc message was nil, aborting.", __func__);
+        *errorPtr = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+        return NO;
+    }
+    NSURL *dirPathURL = [NSURL fileURLWithFileSystemRepresentation:dirPath isDirectory:YES relativeToURL:nil];
+    if (!dirPathURL) {
+        os_log_error(eligibility_log(), "%s: Failed to convert directory path %s to an NSURL, aborting.", __func__, dirPath);
+        *errorPtr = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+        return NO;
+    }
+    return [EligibilityEngine.sharedInstance dumpToDirectory:dirPathURL withError:errorPtr];
 }
 
 void _tryExitWhenCleanOnWorkloop_block_invoke(void) {
