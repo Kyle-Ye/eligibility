@@ -14,10 +14,10 @@ struct ForceDomainSetAnswerCommand: ParsableCommand {
     )
     
     @Option(help: "The domain set to force the answer for")
-    var domainSet: EligibilityDomainTypes
+    private var domainSet: EligibilityDomainTypes
     
     @Option(help: "The answer to force")
-    var answer: EligibilityAnswer
+    private var answer: EligibilityAnswer
     
     func run() throws {
         let result = os_eligibility_force_domain_set_answers(domainSet, answer, nil)

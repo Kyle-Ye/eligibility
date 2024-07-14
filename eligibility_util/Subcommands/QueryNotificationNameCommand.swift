@@ -13,7 +13,7 @@ struct QueryNotificationNameCommand: ParsableCommand {
         commandName: "queryNotificationName"
     )
     
-    @Argument(help: "The domain name to query notification name")
+    @Option(name: .shortAndLong, help: "The domain name to query notification name")
     private var domainName: String?
 
     func run() throws {

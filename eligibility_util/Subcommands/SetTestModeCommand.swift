@@ -13,8 +13,8 @@ struct SetTestModeCommand: ParsableCommand {
         commandName: "setTestMode"
     )
     
-    @Argument(help: "The domain name to query notification name")
-    private var enable: Bool = true
+    @Option(name: .shortAndLong, help: "Enable value for test mode")
+    private var enable: Bool = false
 
     func run() throws {
         let result = os_eligibility_set_test_mode(enable)

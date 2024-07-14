@@ -14,10 +14,10 @@ struct ForceDomainAnswerCommand: ParsableCommand {
     )
     
     @Option(help: "The domain to force the answer for")
-    var domain: EligibilityDomainType
+    private var domain: EligibilityDomainType
     
     @Option(help: "The answer to force")
-    var answer: EligibilityAnswer
+    private var answer: EligibilityAnswer
     
     func run() throws {
         let result = os_eligibility_force_domain_answer(domain, answer, nil)

@@ -13,7 +13,7 @@ struct ResetDomainCommand: ParsableCommand {
         commandName: "resetDomain"
     )
     
-    @Argument(help: "The domain name to reset answer")
+    @Option(name: .shortAndLong, help: "The domain name to reset answer")
     private var domainName: String?
     
     @Flag(

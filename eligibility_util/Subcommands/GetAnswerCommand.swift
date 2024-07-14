@@ -13,7 +13,7 @@ struct GetAnswerCommand: ParsableCommand {
         commandName: "getAnswer"
     )
     
-    @Argument(help: "The domain name to query answer")
+    @Option(name: .shortAndLong ,help: "The domain name to query answer")
     private var domainName: String?
     
     @Flag(

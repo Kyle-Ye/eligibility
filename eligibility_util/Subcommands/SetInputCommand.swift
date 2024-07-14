@@ -23,19 +23,31 @@ extension [String]: @retroactive ExpressibleByArgument {
 
 struct ExclusiveOptionsGroup: ParsableArguments {
     @Option(name: .long, help: "bool value")
-    var bool: Bool?
+    private var bool: Bool?
 
     @Option(name: .long, help: "string value")
-    var string: String?
+    private var string: String?
 
     @Option(name: .long, help: "array value")
-    var array: [String]?
+    private var array: [String]?
 
     func validate() throws {
         let array: [Any?] = [bool, string, array]
         let options = array.compactMap { $0 }
         if options.count > 1 {
             throw ValidationError("Only one of --bool, --string or --array can be provided.")
+        }
+    }
+    
+    var xpcValue: xpc_object_t? {
+        if let bool {
+            xpc_bool_create(bool)
+        } else if let string {
+            xpc_string_create(string)
+        } else if let array {
+            _CFXPCCreateXPCObjectFromCFObject(array as NSArray as CFArray)
+        } else {
+            nil
         }
     }
 }
@@ -46,26 +58,16 @@ struct SetInputCommand: ParsableCommand {
     )
     
     @Option(help: "The input type to set")
-    var input: EligibilityInputType
+    private var input: EligibilityInputType
     
     @Option(help: "The status to set")
-    var status: EligibilityInputStatus
+    private var status: EligibilityInputStatus
     
     @OptionGroup
-    var value :ExclusiveOptionsGroup
+    private var value :ExclusiveOptionsGroup
     
     func run() throws {
-        let xpcValue: xpc_object_t?
-        if let bool = value.bool {
-            xpcValue = xpc_bool_create(bool)
-        } else if let string = value.string {
-            xpcValue = xpc_string_create(string)
-        } else if let array = value.array {
-            xpcValue = _CFXPCCreateXPCObjectFromCFObject(array as NSArray as CFArray)
-        } else {
-            xpcValue = nil
-        }
-        let result = os_eligibility_set_input(input, xpcValue, status)
+        let result = os_eligibility_set_input(input, value.xpcValue, status)
         if result == 0 {
             print("Set input command successfully")
         } else {
