@@ -347,13 +347,30 @@
 }
 
 - (void)recomputeAllDomainAnswers {
-    dispatch_async(self.internalQueue, ^{
+    dispatch_sync(self.internalQueue, ^{
         [self _onQueue_recomputeAllDomainAnswers];
     });
 }
 
 - (void)_onQueue_recomputeAllDomainAnswers {
-    // TODO
+    dispatch_assert_queue(self.internalQueue);
+    [self.domains enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, __kindof EligibilityDomain * _Nonnull obj, BOOL * _Nonnull stop) {
+        EligibilityAnswer oldAnswer = obj.answer;
+        NSError *error = nil;
+        if ([obj computeWithError:&error] == EligibilityAnswerInvalid) {
+            os_log_error(eligibility_log(), "%s: Failed to compute eligibility for domain %@: %@", __func__, key ,error);
+        } else {
+            if (obj.answer != oldAnswer) {
+                [self.notificationsToSend addObject:obj.domainChangeNotificationName];
+            }
+        }
+    }];
+    NSError *error = nil;
+    if ([self _onQueue_saveDomainsWithError:&error]) {
+        [self _onQueue_sendNotifications];
+    } else {
+        os_log_error(eligibility_log(), "%s: Failed to save domains to disk: %@", __func__, error);
+    }
 }
 
 - (void)resetDomain:(NSString *)domain withError:(NSError **)error {
