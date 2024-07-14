@@ -4,8 +4,7 @@ This folder contains an open source eligibility_util implementation.
 
 ## Status
 
-- [ ] GetAnswerCommand's single domain query in not implementated
-- [ ] Other subcommandds is not implemented.
+- [ ] GetAnswerCommand's single domain query in not full implementated
 
 ## Related Links
 

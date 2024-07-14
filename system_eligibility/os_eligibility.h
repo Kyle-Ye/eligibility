@@ -26,7 +26,7 @@ ELIGIBILITY_EXPORT
 const char * _Nullable os_eligibility_get_domain_notification_name(EligibilityDomainType domain);
 
 ELIGIBILITY_EXPORT
-int os_eligibility_set_input(EligibilityInputType input, xpc_object_t value, EligibilityInputStatus status);
+int os_eligibility_set_input(EligibilityInputType input, xpc_object_t _Nullable value, EligibilityInputStatus status);
 ELIGIBILITY_EXPORT
 int os_eligibility_reset_domain(EligibilityDomainType domain);
 ELIGIBILITY_EXPORT
