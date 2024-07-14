@@ -2,6 +2,8 @@
 
 This folder contains the eligibility daemon code.
 
+eligibilityd is a deamon process to determine whether the device is eligible for country-specific features to be enabled.
+
 ## Status
 
 - [ ] some Asset and Domain are missing.

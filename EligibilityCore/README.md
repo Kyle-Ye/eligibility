@@ -1,6 +1,10 @@
 # EligibilityCore
 
-This folder contains common header definitions for eligibility project and can be used as a SwiftPM package in other projects.
+This folder contains common header definitions for eligibility project.
+
+EligibilityCore can be used as a SwiftPM package in other projects.
+
+## Usage
 
 ```swift
 dependencies: [

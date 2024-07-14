@@ -42,9 +42,9 @@ A library to replace `/usr/lib/system/libsystem_eligibility.dylib`
 
 See detail on [libsystem_eligibility/README.md](libsystem_eligibility/README.md)
 
-### [TODO] eligibility_util
+### eligibility_util
 
-A binary tool to query eligibility status.
+A Swift CLI tool to communite with eligibilityd with libsystem_eligibility API.
 
 See detail on [eligibility_util/README.md](eligibility_util/README.md)
 

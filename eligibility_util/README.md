@@ -2,6 +2,8 @@
 
 This folder contains an open source eligibility_util implementation.
 
+eligibility_util is a Swift CLI tool to communite with eligibilityd with libsystem_eligibility API.
+
 ## Status
 
 - [ ] GetAnswerCommand's single domain query in not full implementated
