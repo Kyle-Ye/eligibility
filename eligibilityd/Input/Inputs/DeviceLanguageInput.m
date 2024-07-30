@@ -8,10 +8,7 @@
 
 #import "DeviceLanguageInput.h"
 #import "GlobalConfiguration.h"
-
-@interface NSLocale (Eligibility)
-+ (NSArray *)systemLanguages;
-@end
+#import "NSLocale+Private.h"
 
 @implementation DeviceLanguageInput
 

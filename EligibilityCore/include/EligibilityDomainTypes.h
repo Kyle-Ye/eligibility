@@ -12,10 +12,12 @@
 #include "EligibilityDomainType.h"
 
 // TODO
+// FIXME: out of scope
 typedef ELIGIBILITY_OPTIONS(uint64_t, EligibilityDomainTypes) {
     EligibilityDomainTypesInvalid = EligibilityDomainTypeInvalid,
     EligibilityDomainTypesTest = 1 << (EligibilityDomainTypeTest - 1),
     EligibilityDomainTypesXcodeLLM = 1 << (EligibilityDomainTypeXcodeLLM - 1),
+    EligibilityDomainTypesGreymatter = 1 << (EligibilityDomainTypeGreymatter - 1),
 };
 
 #endif /* EligibilityDomainTypes_h */

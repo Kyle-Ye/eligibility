@@ -14,6 +14,7 @@ const char *eligibility_domain_to_str(EligibilityDomainType domain) {
         // TODO
         case EligibilityDomainTypeTest: return "OS_ELIGIBILITY_DOMAIN_TEST";
         // TODO
+        case EligibilityDomainTypeGreymatter: return "OS_ELIGIBILITY_DOMAIN_GREYMATTER";
         case EligibilityDomainTypeXcodeLLM: return "OS_ELIGIBILITY_DOMAIN_XCODE_LLM";
         default: return "<Unknown Domain>";
     }

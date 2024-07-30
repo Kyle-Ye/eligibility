@@ -81,7 +81,11 @@
 }
 
 - (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod {
-    [self setLocatedCountriesOfInterest:locatedCountriesOfInterest];
+    [self setLocatedCountriesOfInterest:locatedCountriesOfInterest withGracePeriod:gracePeriod isInverted:NO];
+}
+
+- (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod isInverted:(BOOL)inverted {
+    [self setLocatedCountriesOfInterest:locatedCountriesOfInterest isInverted:inverted];
     EligibilityTimer *timer = self.locatedCountryTimer;
     if (timer) {
         [timer setDurationWithSeconds:gracePeriod];
@@ -171,6 +175,10 @@
 
 - (void)setSiriLanguageInterest {
     self.supportedInputs |= EligibilityInputTypesSiriLanguage;
+}
+
+- (void)setExternalBootInterest {
+    self.supportedInputs |= EligibilityInputTypesExternalBoot;
 }
 
 - (void)resetInputsOfInterest {

@@ -24,6 +24,7 @@ typedef ELIGIBILITY_OPTIONS(uint64_t, EligibilityInputTypes) {
     EligibilityInputTypesGenerativeModelSystem = 1 << (EligibilityInputTypeGenerativeModelSystem - 1),
     EligibilityInputTypesGreyMatterOnQueue = 1 << (EligibilityInputTypeGreyMatterOnQueue - 1),
     EligibilityInputTypesSiriLanguage = 1 << (EligibilityInputTypeSiriLanguage - 1),
+    EligibilityInputTypesExternalBoot = 1 << (EligibilityInputTypeExternalBoot - 1),
 };
 
 #endif /* EligibilityInputTypes_h */
