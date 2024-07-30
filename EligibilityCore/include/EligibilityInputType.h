@@ -25,6 +25,7 @@ typedef ELIGIBILITY_ENUM(uint64_t, EligibilityInputType) {
     EligibilityInputTypeGenerativeModelSystem = 8,
     EligibilityInputTypeGreyMatterOnQueue = 9,
     EligibilityInputTypeSiriLanguage = 10,
+    EligibilityInputTypeExternalBoot = 11,
 };
 
 #endif /* EligibilityInputType_h */

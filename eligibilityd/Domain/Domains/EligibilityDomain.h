@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest isInverted:(BOOL)inverted;
 - (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest;
 - (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod;
+- (void)setLocatedCountriesOfInterest:(nullable NSSet *)locatedCountriesOfInterest withGracePeriod:(NSUInteger)gracePeriod isInverted:(BOOL)inverted;
 - (void)setBillingCountriesOfInterest:(nullable NSSet *)billingCountriesOfInterest isInverted:(BOOL)inverted;
 - (void)setBillingCountriesOfInterest:(nullable NSSet *)billingCountriesOfInterest;
 - (void)setDeviceClassesOfInterest:(nullable NSSet *)deviceClassesOfInterest;
@@ -70,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setGenerativeModelSystemVersionInterest;
 - (void)setGreymatterQueueInterest;
 - (void)setSiriLanguageInterest;
+- (void)setExternalBootInterest;
 - (void)resetInputsOfInterest;
 
 - (EligibilityAnswer)computeWithError:(NSError * _Nullable *)errorPtr;
@@ -91,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSDictionary *)serialize;
 - (EligibilityAnswer)computeAnswerFromStatus:(NSDictionary *)status;
 - (EligibilityAnswer)computeAnswerFromStatusWithError:(NSError * _Nullable *)errorPtr;
-- (void)addContextForKey:(NSString *)key value:(id)value;
+- (void)addContextForKey:(NSString *)key value:(nullable id)value;
 
 @end
 

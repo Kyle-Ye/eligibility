@@ -8,6 +8,7 @@
 
 #import "DeviceLanguageInput.h"
 #import "GlobalConfiguration.h"
+#import "NSLocale+Private.h"
 
 @implementation DeviceLanguageInput
 
@@ -21,6 +22,10 @@
         return nil;
     }
     return (__bridge NSArray *)CFPreferencesCopyValue((__bridge CFStringRef)@"AppleLanguages", kCFPreferencesAnyApplication, (__bridge CFStringRef)username, kCFPreferencesAnyHost);
+}
+
+- (NSString *)primaryLanguage {
+    return [NSBundle preferredLocalizationsFromArray:NSLocale.systemLanguages forPreferences:self.deviceLanguages].firstObject;
 }
 
 - (instancetype)init {
@@ -54,7 +59,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"[DeviceLanguageInput deviceLanguages:\\\"%@\\\" %@]", self.deviceLanguages, [super description]];
+    return [NSString stringWithFormat:@"[DeviceLanguageInput deviceLanguages:(%@)\\\"%@\\\" %@]", self.primaryLanguage, self.deviceLanguages, [super description]];
 }
 
 @end

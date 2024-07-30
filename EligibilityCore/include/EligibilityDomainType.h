@@ -16,6 +16,7 @@
 typedef ELIGIBILITY_ENUM(uint64_t, EligibilityDomainType) {
     EligibilityDomainTypeInvalid = 0,
     EligibilityDomainTypeTest = 120,
+    EligibilityDomainTypeGreymatter = 122,
     EligibilityDomainTypeXcodeLLM = 123,
 };
 

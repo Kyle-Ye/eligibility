@@ -12,6 +12,7 @@
 #import "GlobalConfiguration.h"
 #import "LocatedCountryInput.h"
 #import "TestDomain.h"
+#import "GreymatterDomain.h"
 #import "XcodeLLMDomain.h"
 #import "EligibilityDomainTypeHelper.h"
 #import "BackgroundSystemTasks.h"
@@ -79,6 +80,7 @@
 
 - (NSDictionary *)_createDefaultDomains {
     NSDictionary *domains = @{
+        eligibility_domain_to_NSString(EligibilityDomainTypeGreymatter): [GreymatterDomain new],
         eligibility_domain_to_NSString(EligibilityDomainTypeXcodeLLM): [XcodeLLMDomain new],
     }; // TODO: Add more domains
     

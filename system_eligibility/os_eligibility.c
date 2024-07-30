@@ -20,6 +20,8 @@ EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
         return EligibilityDomainTypeInvalid;
     } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TEST") == 0) {
         return EligibilityDomainTypeTest;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GREYMATTER") == 0) {
+        return EligibilityDomainTypeGreymatter;
     } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_XCODE_LLM") == 0) {
         return EligibilityDomainTypeXcodeLLM;
     } else {
