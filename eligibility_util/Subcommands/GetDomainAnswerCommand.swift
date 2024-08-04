@@ -35,8 +35,10 @@ struct GetDomainAnswerCommand: ParsableCommand {
     
     private func handleGetDomainAnswer() throws {
         var answer: EligibilityAnswer = .invalid
-        // FIXME
-        let result = os_eligibility_get_domain_answer(domain.type, &answer, nil, nil, nil)
+        var source: EligibilityAnswerSource = .invalid
+        var status: xpc_object_t?
+        var context: xpc_object_t?
+        let result = os_eligibility_get_domain_answer(domain.type, &answer, &source, &status, &context)
         guard result == 0 else {
             if let posixErrorCode = POSIXErrorCode(rawValue: result) {
                 throw POSIXError(posixErrorCode)

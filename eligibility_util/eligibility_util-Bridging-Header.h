@@ -38,7 +38,7 @@ ELIGIBILITY_EXPORT
 int os_eligibility_set_test_mode(bool enabled);
 
 ELIGIBILITY_EXPORT
-int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAnswer *, xpc_object_t _Nullable, xpc_object_t _Nonnull * _Nullable, void * _Nullable);
+int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAnswer * _Nullable answer_ptr, EligibilityAnswerSource * _Nullable answer_source_ptr, xpc_object_t _Nullable * _Nullable status_ptr, xpc_object_t _Nullable * _Nullable context_ptr);
 ELIGIBILITY_EXPORT
 int os_eligibility_get_all_domain_answers(xpc_object_t _Nullable * _Nullable answers_ptr);
 
