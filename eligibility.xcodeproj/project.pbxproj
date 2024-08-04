@@ -581,6 +581,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/EligibilityCore/**",
+					"${PROJECT_DIR}/eligibilityd/**",
+				);
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -605,6 +610,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/EligibilityCore/**",
+					"${PROJECT_DIR}/eligibilityd/**",
+				);
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};
@@ -622,6 +632,11 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/EligibilityCore/**",
+					"${PROJECT_DIR}/system_eligibility/**",
+				);
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -639,6 +654,11 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
+				USER_HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/EligibilityCore/**",
+					"${PROJECT_DIR}/system_eligibility/**",
+				);
+				USE_HEADERMAP = NO;
 			};
 			name = Release;
 		};

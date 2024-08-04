@@ -1,5 +1,5 @@
 //
-//  eligibility_log_handle.m
+//  eligibility_log_handle.c
 //  system_eligibility
 //
 //  Created by Kyle on 2024/7/7.
