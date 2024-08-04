@@ -12,6 +12,7 @@
 #include "eligibility_log_handle.h"
 #include "EligibilityDomainTypeHelper.h"
 #include "EligibilityInputTypeHelper.h"
+#include "EligibilityAnswerSource.h"
 #include <xpc/xpc.h>
 
 EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
@@ -404,9 +405,158 @@ int os_eligibility_set_test_mode(bool enabled) {
     return error_num;
 }
 
-int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAnswer *arg1, xpc_object_t arg2, xpc_object_t * arg3, void * arg4) {
-    os_log_info(eligibility_log_handle(), "%s: TODO Umplementated yet", __func__);
-    return 0;
+int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAnswer *answer_ptr, EligibilityAnswerSource* answer_source_ptr, xpc_object_t * status_ptr, xpc_object_t *context_ptr) {
+    xpc_object_t plist = NULL;
+    const char *path = eligibility_plist_path_for_domain(domain);
+    int error_num = 0;
+    EligibilityAnswer answer = EligibilityAnswerNotYetAvailable;
+    EligibilityAnswerSource answer_source = EligibilityAnswerSourceInvalid;
+    xpc_object_t status = NULL;
+    int option = 0;
+    if (!path) {
+        os_log_error(eligibility_log_handle(), "%s: Unknown plist for domain %llu", __func__, domain);
+        error_num = 22;
+    } else {
+        if (load_eligibility_plist(path, &plist)) {
+            error_num = 0;
+        } else {
+            switch (domain) {
+                case EligibilityDomainTypeLotX: {
+                    const char *key = "OS_ELIGIBILITY_DOMAIN_LOTX";
+                    xpc_object_t domain_object = xpc_dictionary_get_dictionary(plist, key); // x28
+                    if (!domain_object) {
+                        os_log_error(eligibility_log_handle(), "%s: Domain %s(%llu) missing from plist", __func__, key, domain);
+                        error_num = -1;
+                        break;
+                    }
+                    answer = xpc_dictionary_get_int64(domain_object, "os_eligibility_answer_t"); // x26
+                    if (answer < 0) {
+                        os_log_error(eligibility_log_handle(), "%s: Unable to read eligibility answer for domain: %s", __func__, key);
+                        error_num = EDOM;
+                        break;
+                    }
+                    if (answer_source_ptr == NULL) {
+                        answer_source = EligibilityAnswerSourceInvalid;
+                        if (status_ptr != NULL) {
+                            status = xpc_dictionary_get_value(domain_object, "status");
+                            if (status != NULL) {
+                                xpc_retain(status);
+                            }
+                        }
+                        if (context_ptr != 0) {
+                            xpc_object_t context = xpc_dictionary_get_dictionary(domain_object, "context");
+                            if (context != NULL) {
+                                xpc_retain(context);
+                                error_num = 0;
+                                *context_ptr = context;
+                            }
+                        } else {
+                            error_num = 0;
+                        }
+                    } else {
+                        answer_source = xpc_dictionary_get_int64(domain_object, "os_eligibility_answer_source_t");
+                        if (answer_source < 0) {
+                            os_log_error(eligibility_log_handle(), "%s: Unable to read eligibility source for domain: %s", __func__, key);
+                            error_num = EDOM;
+                            break;
+                        }
+                        *answer_source_ptr = answer_source;
+                    }
+                    break;
+                }
+                // TODO: Add more cases
+                default:
+                    os_log_error(eligibility_log_handle(), "%s: Invalid domain %llu", __func__, domain);
+                    break;
+            }
+        }
+    }
+    free((void *)path);
+    if (answer_ptr) {
+        *answer_ptr = answer;
+    }
+    if (status_ptr == NULL) {
+        if (status != NULL) {
+            xpc_release(status);
+        }
+    } else {
+        if (status != NULL || answer_source == EligibilityAnswerSourceForced) {
+            *status_ptr = status;
+        } else {
+            xpc_object_t dict = xpc_dictionary_create(NULL, NULL, 0);
+            switch (domain) {
+                case EligibilityDomainTypeLotX:
+                case EligibilityDomainTypeCobalt:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryLocation), 1);
+                    break;
+                case EligibilityDomainTypeFluorine:
+                case EligibilityDomainTypeMagnesium:
+                case EligibilityDomainTypeSilicon:
+                case EligibilityDomainTypeChromium:
+                case EligibilityDomainTypeManganese:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryBilling), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceClass), 1);
+                    break;
+                case EligibilityDomainTypeHydrogen:
+                case EligibilityDomainTypeHelium:
+                case EligibilityDomainTypeLithium:
+                case EligibilityDomainTypeBeryllium:
+                case EligibilityDomainTypeBoron:
+                case EligibilityDomainTypeCarbon:
+                case EligibilityDomainTypeNitrogen:
+                case EligibilityDomainTypeOxygen:
+                case EligibilityDomainTypeNeon:
+                case EligibilityDomainTypeSodium:
+                case EligibilityDomainTypeAluminum:
+                case EligibilityDomainTypePhosphorus:
+                case EligibilityDomainTypeSulfur:
+                case EligibilityDomainTypeArgon:
+                case EligibilityDomainTypePotassium:
+                case EligibilityDomainTypeScandium:
+                case EligibilityDomainTypeTitanium:
+                case EligibilityDomainTypeVanadium:
+                case EligibilityDomainTypeIron:
+                case EligibilityDomainTypeSearchMarketplaces:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryLocation), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryBilling), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceClass), 1);
+                    break;
+                case EligibilityDomainTypeChlorine:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryBilling), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceClass), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceLocale), 1);
+                    break;
+                case EligibilityDomainTypeCalcium:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeChinaCellular), 1);
+                case EligibilityDomainTypeTest:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryLocation), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryBilling), 1);
+                    break;
+                case EligibilityDomainTypePodcastsTranscripts:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryLocation), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryBilling), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceRegionCode), 1);
+                    break;
+                case EligibilityDomainTypeGreymatter:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeCountryLocation), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceLocale), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeGenerativeModelSystem), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceRegionCode), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeSiriLanguage), 1);
+                    break;
+                case EligibilityDomainTypeXcodeLLM:
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceRegionCode), 1);
+                    xpc_dictionary_set_int64(dict, eligibility_input_to_str(EligibilityInputTypeDeviceClass), 1);
+                default:
+                    break;
+            }
+            *status_ptr = dict;
+        }
+    }
+    if (plist != NULL) {
+        xpc_release(plist);
+    }
+    return error_num;
 }
 
 int os_eligibility_get_all_domain_answers(xpc_object_t *answers_ptr) {
