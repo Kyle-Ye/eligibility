@@ -421,8 +421,9 @@ int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAn
             error_num = 0;
         } else {
             switch (domain) {
-                case EligibilityDomainTypeLotX: {
-                    const char *key = "OS_ELIGIBILITY_DOMAIN_LOTX";
+                case EligibilityDomainTypeLotX ... EligibilityDomainTypeCobalt:
+                case EligibilityDomainTypeTest ... EligibilityDomainTypeSearchMarketplaces: {
+                    const char *key = eligibility_domain_to_str(domain);
                     xpc_object_t domain_object = xpc_dictionary_get_dictionary(plist, key); // x28
                     if (!domain_object) {
                         os_log_error(eligibility_log_handle(), "%s: Domain %s(%llu) missing from plist", __func__, key, domain);
@@ -464,7 +465,6 @@ int os_eligibility_get_domain_answer(EligibilityDomainType domain, EligibilityAn
                     }
                     break;
                 }
-                // TODO: Add more cases
                 default:
                     os_log_error(eligibility_log_handle(), "%s: Invalid domain %llu", __func__, domain);
                     break;

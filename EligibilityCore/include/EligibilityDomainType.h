@@ -162,4 +162,6 @@ typedef ELIGIBILITY_ENUM(uint64_t, EligibilityDomainType) {
     EligibilityDomainTypeSearchMarketplaces = 124,
 };
 
+const char *eligibility_domain_to_str(EligibilityDomainType domain);
+
 #endif /* EligibilityDomainType_h */
