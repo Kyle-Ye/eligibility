@@ -10,9 +10,10 @@
 #include "eligibility_plist.h"
 #include "eligibility_xpc.h"
 #include "eligibility_log_handle.h"
+#include "EligibilityDomainTypeHelper.h"
+#include "EligibilityInputTypeHelper.h"
 #include <xpc/xpc.h>
 
-// TODO: Add more cases
 EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
     if (!name) {
         return EligibilityDomainTypeInvalid;
@@ -20,10 +21,252 @@ EligibilityDomainType os_eligibility_domain_for_name(const char *name) {
         return EligibilityDomainTypeInvalid;
     } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TEST") == 0) {
         return EligibilityDomainTypeTest;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LOTX") == 0) {
+        return EligibilityDomainTypeLotX;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PODCASTS_TRANSCRIPTS") == 0) {
+        return EligibilityDomainTypePodcastsTranscripts;
     } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GREYMATTER") == 0) {
         return EligibilityDomainTypeGreymatter;
     } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_XCODE_LLM") == 0) {
         return EligibilityDomainTypeXcodeLLM;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SEARCH_MARKETPLACES") == 0) {
+        return EligibilityDomainTypeSearchMarketplaces;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_HYDROGEN") == 0) {
+        return EligibilityDomainTypeHydrogen;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_HELIUM") == 0) {
+        return EligibilityDomainTypeHelium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LITHIUM") == 0) {
+        return EligibilityDomainTypeLithium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BERYLLIUM") == 0) {
+        return EligibilityDomainTypeBeryllium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BORON") == 0) {
+        return EligibilityDomainTypeBoron;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CARBON") == 0) {
+        return EligibilityDomainTypeCarbon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NITROGEN") == 0) {
+        return EligibilityDomainTypeNitrogen;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_OXYGEN") == 0) {
+        return EligibilityDomainTypeOxygen;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_FLUORINE") == 0) {
+        return EligibilityDomainTypeFluorine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NEON") == 0) {
+        return EligibilityDomainTypeNeon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SODIUM") == 0) {
+        return EligibilityDomainTypeSodium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MAGNESIUM") == 0) {
+        return EligibilityDomainTypeMagnesium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ALUMINUM") == 0) {
+        return EligibilityDomainTypeAluminum;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SILICON") == 0) {
+        return EligibilityDomainTypeSilicon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PHOSPHORUS") == 0) {
+        return EligibilityDomainTypePhosphorus;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SULFUR") == 0) {
+        return EligibilityDomainTypeSulfur;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CHLORINE") == 0) {
+        return EligibilityDomainTypeChlorine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ARGON") == 0) {
+        return EligibilityDomainTypeArgon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_POTASSIUM") == 0) {
+        return EligibilityDomainTypePotassium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CALCIUM") == 0) {
+        return EligibilityDomainTypeCalcium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SCANDIUM") == 0) {
+        return EligibilityDomainTypeScandium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TITANIUM") == 0) {
+        return EligibilityDomainTypeTitanium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_VANADIUM") == 0) {
+        return EligibilityDomainTypeVanadium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CHROMIUM") == 0) {
+        return EligibilityDomainTypeChromium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MANGANESE") == 0) {
+        return EligibilityDomainTypeManganese;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_IRON") == 0) {
+        return EligibilityDomainTypeIron;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_COBALT") == 0) {
+        return EligibilityDomainTypeCobalt;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NICKEL") == 0) {
+        return EligibilityDomainTypeNickel;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_COPPER") == 0) {
+        return EligibilityDomainTypeCopper;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ZINC") == 0) {
+        return EligibilityDomainTypeZinc;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GALLIUM") == 0) {
+        return EligibilityDomainTypeGallium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GERMANIUM") == 0) {
+        return EligibilityDomainTypeGermanium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ARSENIC") == 0) {
+        return EligibilityDomainTypeArsenic;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SELENIUM") == 0) {
+        return EligibilityDomainTypeSelenium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BROMINE") == 0) {
+        return EligibilityDomainTypeBromine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_KRYPTON") == 0) {
+        return EligibilityDomainTypeKrypton;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RUBIDIUM") == 0) {
+        return EligibilityDomainTypeRubidium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_STRONTIUM") == 0) {
+        return EligibilityDomainTypeStrontium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_YTTRIUM") == 0) {
+        return EligibilityDomainTypeYttrium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ZIRCONIUM") == 0) {
+        return EligibilityDomainTypeZirconium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NIOBIUM") == 0) {
+        return EligibilityDomainTypeNiobium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MOLYBDENUM") == 0) {
+        return EligibilityDomainTypeMolybdenum;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TECHNETIUM") == 0) {
+        return EligibilityDomainTypeTechnetium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RUTHENIUM") == 0) {
+        return EligibilityDomainTypeRuthenium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RHODIUM") == 0) {
+        return EligibilityDomainTypeRhodium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PALLADIUM") == 0) {
+        return EligibilityDomainTypePalladium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SILVER") == 0) {
+        return EligibilityDomainTypeSilver;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CADMIUM") == 0) {
+        return EligibilityDomainTypeCadmium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_INDIUM") == 0) {
+        return EligibilityDomainTypeIndium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TIN") == 0) {
+        return EligibilityDomainTypeTin;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ANTIMONY") == 0) {
+        return EligibilityDomainTypeAntimony;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TELLURIUM") == 0) {
+        return EligibilityDomainTypeTellurium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_IODINE") == 0) {
+        return EligibilityDomainTypeIodine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_XENON") == 0) {
+        return EligibilityDomainTypeXenon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CESIUM") == 0) {
+        return EligibilityDomainTypeCesium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BARIUM") == 0) {
+        return EligibilityDomainTypeBarium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LANTHANUM") == 0) {
+        return EligibilityDomainTypeLanthanum;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CERIUM") == 0) {
+        return EligibilityDomainTypeCerium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PRASEODYMIUM") == 0) {
+        return EligibilityDomainTypePraseodymium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NEODYMIUM") == 0) {
+        return EligibilityDomainTypeNeodymium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PROMETHIUM") == 0) {
+        return EligibilityDomainTypePromethium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SAMARIUM") == 0) {
+        return EligibilityDomainTypeSamarium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_EUROPIUM") == 0) {
+        return EligibilityDomainTypeEuropium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GADOLINIUM") == 0) {
+        return EligibilityDomainTypeGadolinium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TERBIUM") == 0) {
+        return EligibilityDomainTypeTerbium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_DYSPROSIUM") == 0) {
+        return EligibilityDomainTypeDysprosium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_HOLMIUM") == 0) {
+        return EligibilityDomainTypeHolmium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ERBIUM") == 0) {
+        return EligibilityDomainTypeErbium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_THULIUM") == 0) {
+        return EligibilityDomainTypeThulium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_YTTERBIUM") == 0) {
+        return EligibilityDomainTypeYtterbium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LUTETIUM") == 0) {
+        return EligibilityDomainTypeLutetium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_HAFNIUM") == 0) {
+        return EligibilityDomainTypeHafnium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TANTALUM") == 0) {
+        return EligibilityDomainTypeTantalum;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TUNGSTEN") == 0) {
+        return EligibilityDomainTypeTungsten;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RHENIUM") == 0) {
+        return EligibilityDomainTypeRhenium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_OSMIUM") == 0) {
+        return EligibilityDomainTypeOsmium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_IRIDIUM") == 0) {
+        return EligibilityDomainTypeIridium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PLATINUM") == 0) {
+        return EligibilityDomainTypePlatinum;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_GOLD") == 0) {
+        return EligibilityDomainTypeGold;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MERCURY") == 0) {
+        return EligibilityDomainTypeMercury;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_THALLIUM") == 0) {
+        return EligibilityDomainTypeThallium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LEAD") == 0) {
+        return EligibilityDomainTypeLead;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BISMUTH") == 0) {
+        return EligibilityDomainTypeBismuth;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_POLONIUM") == 0) {
+        return EligibilityDomainTypePolonium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ASTATINE") == 0) {
+        return EligibilityDomainTypeAstatine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RADON") == 0) {
+        return EligibilityDomainTypeRadon;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_FRANCIUM") == 0) {
+        return EligibilityDomainTypeFrancium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RADIUM") == 0) {
+        return EligibilityDomainTypeRadium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ACTINIUM") == 0) {
+        return EligibilityDomainTypeActinium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_THORIUM") == 0) {
+        return EligibilityDomainTypeThorium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PROTACTINIUM") == 0) {
+        return EligibilityDomainTypeProtactinium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_URANIUM") == 0) {
+        return EligibilityDomainTypeUranium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NEPTUNIUM") == 0) {
+        return EligibilityDomainTypeNeptunium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_PLUTONIUM") == 0) {
+        return EligibilityDomainTypePlutonium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_AMERICIUM") == 0) {
+        return EligibilityDomainTypeAmericium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CURIUM") == 0) {
+        return EligibilityDomainTypeCurium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BERKELIUM") == 0) {
+        return EligibilityDomainTypeBerkelium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_CALIFORNIUM") == 0) {
+        return EligibilityDomainTypeCalifornium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_EINSTEINIUM") == 0) {
+        return EligibilityDomainTypeEinsteinium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_FERMIUM") == 0) {
+        return EligibilityDomainTypeFermium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MENDELEVIUM") == 0) {
+        return EligibilityDomainTypeMendelevium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NOBELIUM") == 0) {
+        return EligibilityDomainTypeNobelium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LAWRENCIUM") == 0) {
+        return EligibilityDomainTypeLawrencium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_RUTHERFORDIUM") == 0) {
+        return EligibilityDomainTypeRutherfordium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_DUBNIUM") == 0) {
+        return EligibilityDomainTypeDubnium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_SEABORGIUM") == 0) {
+        return EligibilityDomainTypeSeaborgium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_BOHRIUM") == 0) {
+        return EligibilityDomainTypeBohrium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_HASSIUM") == 0) {
+        return EligibilityDomainTypeHassium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MEITNERIUM") == 0) {
+        return EligibilityDomainTypeMeitnerium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_DARMSTADTIUM") == 0) {
+        return EligibilityDomainTypeDarmstadtium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_ROENTGENIUM") == 0) {
+        return EligibilityDomainTypeRoentgenium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_COPERNICIUM") == 0) {
+        return EligibilityDomainTypeCopernicium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_NIHONIUM") == 0) {
+        return EligibilityDomainTypeNihonium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_FLEROVIUM") == 0) {
+        return EligibilityDomainTypeFlerovium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_MOSCOVIUM") == 0) {
+        return EligibilityDomainTypeMoscovium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_LIVERMORIUM") == 0) {
+        return EligibilityDomainTypeLivermorium;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_TENNESSINE") == 0) {
+        return EligibilityDomainTypeTennessine;
+    } else if (strcmp(name, "OS_ELIGIBILITY_DOMAIN_OGANESSON") == 0) {
+        return EligibilityDomainTypeOganesson;
     } else {
         return EligibilityDomainTypeInvalid;
     }
