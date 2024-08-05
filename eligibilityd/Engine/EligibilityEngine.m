@@ -18,6 +18,7 @@
 #import "EligibilityDomainTypeHelper.h"
 #import "BackgroundSystemTasks.h"
 #import "MobileAssetManager.h"
+#import "XPCSPI.h"
 #import <notify.h>
 
 @interface EligibilityEngine ()
@@ -468,9 +469,58 @@
     return YES;
 }
 
-- (BOOL)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
-    // TODO
-    return NO;
+- (BOOL)forceDomainAnswer:(EligibilityDomainType)domain_type answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+    const char *domain_str = eligibility_domain_to_str(domain_type);
+    if (domain_type == EligibilityDomainTypeInvalid || domain_str == NULL) {
+        NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+        if (errorPtr) {
+            *errorPtr = error;
+        }
+        return NO;
+    }
+    
+    NSDictionary *contextDict = nil;
+    if (context) {
+        xpc_type_t context_type = xpc_get_type(context);
+        if (context_type != XPC_TYPE_DICTIONARY) {
+            os_log_error(eligibility_log(), "%s: Expected context to be a dictionary but instead was a %s", __func__, xpc_type_get_name(context_type));
+            NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+            if (errorPtr) {
+                *errorPtr = error;
+            }
+            return NO;
+        }
+        contextDict = (__bridge NSDictionary *)(_CFXPCCreateCFObjectFromXPCObject(context));
+    }
+    __block NSError *error = nil;
+    __block NSNotificationName notificationName = nil;
+    dispatch_sync(self.internalQueue, ^{
+        NSString *domainString = [NSString stringWithUTF8String:domain_str];
+        EligibilityDomain *domain = self.domains[domainString];
+        if (domain == nil) {
+            os_log_error(eligibility_log(), "%s: Unknown domain: %llu", __func__, domain_type);
+            error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+            return;
+        }
+        [self.eligibilityOverrides forceDomain:domain_type answer:answer context:contextDict];
+        notificationName = domain.domainChangeNotificationName;
+    });
+    if (error) {
+        if (errorPtr) {
+            *errorPtr = error;
+        }
+        return NO;
+    }
+    asyncBlock(self.internalQueue, ^{
+        NSError *saveError = nil;
+        if ([self _onQueue_saveDomainsWithError:&saveError]) {
+            [self.notificationsToSend addObject:notificationName];
+            [self _onQueue_sendNotifications];
+        } else {
+            os_log_error(eligibility_log(), "%s: Failed to save updated eligibility to disk: %@", __func__, saveError);
+        }
+    });
+    return YES;
 }
 
 - (BOOL)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
