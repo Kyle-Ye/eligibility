@@ -147,7 +147,7 @@
         NSURL *url = [container URLByAppendingPathComponent:@"Library/Caches/NeverRestore/eligibility_overrides.data" isDirectory:NO];
         decoded = [self _decodeObjectOfClasses:[NSSet setWithObjects:EligibilityOverride.class, nil] atURL:url withError:&error];
         if (!decoded) {
-            os_log_error(eligibility_log(), "%s: Failed to decode overrides: %@", __func__, error);
+            os_log_error(eligibility_log(), "%s: Failed to decode eligibility overrides: %@", __func__, error);
         } else {
             error = nil;
         }
