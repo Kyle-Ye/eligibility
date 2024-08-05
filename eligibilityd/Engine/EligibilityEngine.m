@@ -451,9 +451,20 @@
 
 - (BOOL)resetAllDomainsWithError:(NSError **)errorPtr {
     asyncBlock(self.internalQueue, ^{
-        // TODO
+        NSMutableSet *notifications = self.notificationsToSend;
+        for (EligibilityDomain * domain in self.domains.allValues) {
+            [self.eligibilityOverrides resetAnswerForDomain:domain.domain];
+            [notifications addObject:domain.domainChangeNotificationName];
+        }
+        NSError *saveError = nil;
+        if ([self _onQueue_saveDomainsWithError:&saveError]) {
+            [self.notificationsToSend addObject:@"com.apple.os-eligibility-domain.input-needed"];
+            [self _onQueue_sendNotifications];
+        } else {
+            os_log_error(eligibility_log(), "%s: Failed to save updated eligibility to disk: %@", __func__, saveError);
+        }
     });
-    return NO;
+    return YES;
 }
 
 - (BOOL)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
