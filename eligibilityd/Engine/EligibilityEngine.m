@@ -420,9 +420,33 @@
     }
 }
 
-- (BOOL)resetDomain:(EligibilityDomainType)domain withError:(NSError **)errorPtr {
-    // TODO
-    return NO;
+- (BOOL)resetDomain:(EligibilityDomainType)domain_type withError:(NSError **)errorPtr {
+    const char *domain_str = eligibility_domain_to_str(domain_type);
+    if (domain_type == EligibilityDomainTypeInvalid || domain_str == NULL) {
+        NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+        if (errorPtr) {
+            *errorPtr = error;
+        }
+        return NO;
+    }
+    asyncBlock(self.internalQueue, ^{
+        NSString *domainString = [NSString stringWithUTF8String:domain_str];
+        EligibilityDomain *domain = self.domains[domainString];
+        if (domain == nil) {
+            os_log_error(eligibility_log(), "%s: Unknown domain: %llu", __func__, domain_type);
+            return;
+        }
+        [self.eligibilityOverrides resetAnswerForDomain:domain_type];
+        NSError *saveError = nil;
+        if ([self _onQueue_saveDomainsWithError:&saveError]) {
+            [self.notificationsToSend addObject:domain.domainChangeNotificationName];
+            [self.notificationsToSend addObject:@"com.apple.os-eligibility-domain.input-needed"];
+            [self _onQueue_sendNotifications];
+        } else {
+            os_log_error(eligibility_log(), "%s: Failed to save updated eligibility to disk: %@", __func__, saveError);
+        }
+    });
+    return YES;
 }
 
 - (BOOL)resetAllDomainsWithError:(NSError **)errorPtr {
