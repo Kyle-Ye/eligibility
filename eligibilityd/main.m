@@ -248,15 +248,14 @@ void _connectionHandler(xpc_object_t object, xpc_connection_t connection) {
                 xpc_connection_cancel(connection);
                 return;
             }
-            EligibilityDomainTypes domainSet = xpc_dictionary_get_uint64(object, "domainSet");
+            EligibilityDomainSet domainSet = xpc_dictionary_get_uint64(object, "domainSet");
             EligibilityAnswer answer = xpc_dictionary_get_uint64(object, "answer");
             xpc_object_t context = xpc_dictionary_get_dictionary(object, "context");
-            // FIXME
-            if (domainSet != 1 || answer < EligibilityAnswerNotEligible || answer > EligibilityAnswerEligible) {
+            if (domainSet != EligibilityDomainSetDefault || answer < EligibilityAnswerNotEligible || answer > EligibilityAnswerEligible) {
                 error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
                 break;
             }
-            result = [EligibilityEngine.sharedInstance forceDomainSetAnswers:1 answer:answer context:context withError:&error];
+            result = [EligibilityEngine.sharedInstance forceDomainSetAnswers:domainSet answer:answer context:context withError:&error];
             break;
         }
         case EligibilityXPCMessageTypeGetStateDump: {

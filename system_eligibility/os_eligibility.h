@@ -11,7 +11,7 @@
 
 #include "EligibilityBase.h"
 #include "EligibilityDomainType.h"
-#include "EligibilityDomainTypes.h"
+#include "EligibilityDomainSet.h"
 #include "EligibilityInputType.h"
 #include "EligibilityInputTypes.h"
 #include "EligibilityInputStatus.h"
@@ -37,7 +37,7 @@ int os_eligibility_get_internal_state(xpc_object_t _Nullable * _Nullable interna
 ELIGIBILITY_EXPORT
 int os_eligibility_reset_all_domains(void);
 ELIGIBILITY_EXPORT
-int os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet, EligibilityAnswer answer, xpc_object_t _Nullable context);
+int os_eligibility_force_domain_set_answers(EligibilityDomainSet domainSet, EligibilityAnswer answer, xpc_object_t _Nullable context);
 ELIGIBILITY_EXPORT
 int os_eligibility_get_state_dump(xpc_object_t _Nullable * _Nullable state_dump_dictionary_ptr);
 ELIGIBILITY_EXPORT

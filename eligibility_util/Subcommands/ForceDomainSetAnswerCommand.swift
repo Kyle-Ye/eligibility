@@ -14,7 +14,7 @@ struct ForceDomainSetAnswerCommand: ParsableCommand {
     )
     
     @Option(help: "The domain set to force the answer for")
-    private var domainSet: EligibilityDomainTypes
+    private var domainSet: EligibilityDomainSet
     
     @Option(help: "The answer to force")
     private var answer: EligibilityAnswer

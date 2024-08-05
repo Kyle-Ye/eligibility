@@ -11,7 +11,7 @@
 #import "EligibilityOverride.h"
 #import "EligibilityDomain.h"
 #import "EligibilityDomainType.h"
-#import "EligibilityDomainTypes.h"
+#import "EligibilityDomainSet.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)resetDomain:(EligibilityDomainType)domain withError:(NSError **)errorPtr;
 - (BOOL)resetAllDomainsWithError:(NSError **)errorPtr;
 - (BOOL)forceDomainAnswer:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(xpc_object_t _Nullable)context withError:(NSError **)errorPtr;
-- (BOOL)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t _Nullable)context withError:(NSError **)errorPtr;
+- (BOOL)forceDomainSetAnswers:(EligibilityDomainSet)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t _Nullable)context withError:(NSError **)errorPtr;
 - (NSDictionary *)internalStateWithError:(NSError **)errorPtr;
 - (NSDictionary *)stateDumpWithError:(NSError **)errorPtr;
 - (BOOL)dumpToDirectory:(NSURL *)directory withError:(NSError **)errorPtr;

@@ -523,9 +523,47 @@
     return YES;
 }
 
-- (BOOL)forceDomainSetAnswers:(EligibilityDomainTypes)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
-    // TODO
-    return NO;
+- (BOOL)forceDomainSetAnswers:(EligibilityDomainSet)domainSet answer:(EligibilityAnswer)answer context:(xpc_object_t)context withError:(NSError **)errorPtr {
+    NSDictionary *contextDict = nil;
+    if (context) {
+        xpc_type_t context_type = xpc_get_type(context);
+        if (context_type != XPC_TYPE_DICTIONARY) {
+            os_log_error(eligibility_log(), "%s: Expected context to be a dictionary but instead was a %s", __func__, xpc_type_get_name(context_type));
+            NSError *error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil];
+            if (errorPtr) {
+                *errorPtr = error;
+            }
+            return NO;
+        }
+        contextDict = (__bridge NSDictionary *)(_CFXPCCreateCFObjectFromXPCObject(context));
+    }
+    asyncBlock(self.internalQueue, ^{
+        for (EligibilityDomain * domain in self.domains.allValues) {
+            EligibilityDomainType domain_type = domain.domain;
+            if (domainSet != EligibilityDomainSetDefault) {
+                os_log_fault(eligibility_log(), "%s: Checking if a domain %llu is in unknown domain set %llu", __func__, domain_type, domainSet);
+                continue;
+            }
+            switch (domain_type) {
+                case EligibilityDomainTypeLotX ... EligibilityDomainTypePotassium:
+                case EligibilityDomainTypeScandium ... EligibilityDomainTypeManganese:
+                case EligibilityDomainTypeTest:
+                case EligibilityDomainTypeGreymatter ... EligibilityDomainTypeSearchMarketplaces:
+                    [self.eligibilityOverrides forceDomain:domain.domain answer:answer context:contextDict];
+                    [self.notificationsToSend addObject:domain.domainChangeNotificationName];
+                    continue;
+                default:
+                    continue;
+            }
+            
+        }
+        NSError *saveError = nil;
+        if (![self _onQueue_saveDomainsWithError:&saveError]) {
+            os_log_error(eligibility_log(), "%s: Failed to save updated eligibility to disk: %@", __func__, saveError);
+        }
+        [self _onQueue_sendNotifications];
+    });
+    return YES;
 }
 
 - (NSDictionary *)internalStateWithError:(NSError **)errorPtr {

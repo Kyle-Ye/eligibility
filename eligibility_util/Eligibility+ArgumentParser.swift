@@ -16,7 +16,7 @@ extension EligibilityDomainType: ExpressibleByArgument {
     }
 }
 
-extension EligibilityDomainTypes: ExpressibleByArgument {
+extension EligibilityDomainSet: ExpressibleByArgument {
     public init?(argument: String) {
         guard let rawValue = UInt64(argument) else {
             return nil

@@ -470,7 +470,7 @@ int os_eligibility_reset_all_domains(void) {
     return error_num;
 }
 
-int os_eligibility_force_domain_set_answers(EligibilityDomainTypes domainSet, EligibilityAnswer answer, xpc_object_t context) {
+int os_eligibility_force_domain_set_answers(EligibilityDomainSet domainSet, EligibilityAnswer answer, xpc_object_t context) {
     xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
     eligibility_xpc_set_message_type(ELIGIBILITYXPCMessageTypeForceDomainSetAnswer, message);
     xpc_dictionary_set_uint64(message, "domainSet", domainSet);
