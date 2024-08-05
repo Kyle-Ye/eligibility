@@ -134,6 +134,6 @@ const char *eligibility_domain_to_str(EligibilityDomainType domain) {
         case EligibilityDomainTypeGreymatter: return "OS_ELIGIBILITY_DOMAIN_GREYMATTER";
         case EligibilityDomainTypeXcodeLLM: return "OS_ELIGIBILITY_DOMAIN_XCODE_LLM";
         case EligibilityDomainTypeSearchMarketplaces: return "OS_ELIGIBILITY_DOMAIN_SEARCH_MARKETPLACES";
-        default: return "<Unknown Domain>";
+        default: return nil;
     }
 }

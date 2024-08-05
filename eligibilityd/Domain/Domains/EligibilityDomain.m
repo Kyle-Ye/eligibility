@@ -682,7 +682,7 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<Domain: %s(%llu)>(%@) - <answer: %@, source: %@, context: %@, status: %@> - <%@>>",
-            eligibility_domain_to_str(self.domain),
+            eligibility_domain_to_str(self.domain) ?: "<Unknown Domain>",
             (uint64_t)self.domain,
             self._supportedInputsString,
             eligibility_answer_to_NSString(self.answer),

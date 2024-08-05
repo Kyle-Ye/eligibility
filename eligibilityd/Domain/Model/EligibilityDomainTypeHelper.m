@@ -9,7 +9,7 @@
 #import "EligibilityUtils.h"
 
 NSString *eligibility_domain_to_NSString(EligibilityDomainType domain) {
-    return [NSString stringWithUTF8String:eligibility_domain_to_str(domain)];
+    return [NSString stringWithUTF8String:eligibility_domain_to_str(domain) ?: "<Unknown Domain>"];
 }
 
 const char *eligibility_plist_path_for_domain(EligibilityDomainType domain) {

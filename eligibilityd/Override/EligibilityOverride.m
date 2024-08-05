@@ -32,13 +32,13 @@
 }
 
 - (void)forceDomain:(EligibilityDomainType)domain answer:(EligibilityAnswer)answer context:(nullable NSDictionary *)context {
-    NSString *domainString = [NSString stringWithUTF8String:eligibility_domain_to_str(domain)];
+    NSString *domainString = eligibility_domain_to_NSString(domain);
     EligibilityOverrideData *data = [[EligibilityOverrideData alloc] initWithAnswer:answer context:context];
     self.overrideMap[domainString] = data;
 }
 
 - (void)resetAnswerForDomain:(EligibilityDomainType)domain {
-    [self.overrideMap removeObjectForKey:[NSString stringWithUTF8String:eligibility_domain_to_str(domain)]];
+    [self.overrideMap removeObjectForKey:eligibility_domain_to_NSString(domain)];
 }
 
 - (void)resetAllAnswers {
@@ -46,7 +46,7 @@
 }
 
 - (NSDictionary *)overrideResultDictionaryForDomain:(EligibilityDomainType)domain {
-    NSString *domainString = [NSString stringWithUTF8String:eligibility_domain_to_str(domain)];
+    NSString *domainString = eligibility_domain_to_NSString(domain);
     EligibilityOverrideData *data = self.overrideMap[domainString];
     if (!data) {
         return nil;
