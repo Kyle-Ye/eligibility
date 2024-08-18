@@ -48,6 +48,10 @@ A Swift CLI tool to communite with eligibilityd with libsystem_eligibility API.
 
 See detail on [eligibility_util/README.md](eligibility_util/README.md)
 
+## Related projects
+
+- https://github.com/Kyle-Ye/XcodeLLMEligible
+
 ## Contributions
 
 If you find any issues or have suggestions for improvements, feel free to submit an issue or a pull request.
