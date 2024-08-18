@@ -9,10 +9,10 @@ import ArgumentParser
 import Foundation
 
 struct DomainArguments: ParsableArguments, CustomStringConvertible {
-    @Option(name: .long, help: "bool value")
+    @Option(name: .long, help: "String representing the domain type")
     private var domainName: String?
 
-    @Option(name: .long, help: "string value")
+    @Option(name: .long, help: "Int value representing the domain type.")
     private var domain: EligibilityDomainType?
 
     func validate() throws {
