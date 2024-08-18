@@ -1,0 +1,42 @@
+{
+    "Program": "/usr/libexec/eligibilityd",
+    "POSIXSpawnType": "Adaptive",
+    "MachServices": {
+        "com.apple.eligibilityd": true
+    },
+    "EnableTransactions": true,
+    "LaunchEvents": {
+        "com.apple.notifyd.matching": {
+            "AppleLanguagePreferencesChangedNotification": {
+                "Notification": "AppleLanguagePreferencesChangedNotification"
+            },
+            "AFLanguageCodeDidChangeDarwinNotification": {
+                "Notification": "AFLanguageCodeDidChangeDarwinNotification"
+            },
+            "com.apple.coregraphics.GUIConsoleSessionChanged": {
+                "Notification": "com.apple.coregraphics.GUIConsoleSessionChanged"
+            },
+            "com.apple.MobileAsset.AutoAssetNotification^com.apple.MobileAsset.OSEligibility^ASSET_VERSION_DOWNLOADED": {
+                "Notification": "com.apple.MobileAsset.AutoAssetNotification^com.apple.MobileAsset.OSEligibility^ASSET_VERSION_DOWNLOADED"
+            }
+        },
+        "com.apple.bg.system.task": {
+            "com.apple.eligibility.recompute": {
+                "Priority": "Maintenance",
+                "RepeatingTask": {
+                    "Interval": 86400
+                },
+                "RequiresNetworkConnectivity": false,
+                "RequiresExternalPower": false,
+                "RequiresProtectionClass": "D"
+            }
+        }
+    },
+    "KeepAlive": {
+        "PathState": {
+            "/private/var/db/os_eligibility/eligibility.plist": false,
+            "/private/var/db/eligibilityd/eligibility.plist": false
+        }
+    },
+    "Label": "com.apple.eligibilityd"
+}
