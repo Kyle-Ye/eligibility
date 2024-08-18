@@ -10,6 +10,7 @@
 #import "EligibilityOverrideData.h"
 #import "EligibilityLog.h"
 #import "EligibilityDefine.h"
+#import "EligibilityAnswerSource.h"
 
 @interface EligibilityOverride ()
 
@@ -53,13 +54,15 @@
     }
     if (data.context) {
         return @{
-            @"os_eligibility_answer_source_t": @(data.answer),
+            @"os_eligibility_answer_t": @(data.answer),
+            @"os_eligibility_answer_source_t": @(EligibilityAnswerSourceForced),
             @"context": data.context,
         };
 
     } else {
         return @{
-            @"os_eligibility_answer_source_t": @(data.answer)
+            @"os_eligibility_answer_t": @(data.answer),
+            @"os_eligibility_answer_source_t": @(EligibilityAnswerSourceForced),
         };
     }
 }
