@@ -14,6 +14,8 @@
 		277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; };
 		277F03362C3AA16500899CDA /* libsystem_eligibility.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		278C20D92C43E91900B748E9 /* BackgroundSystemTasks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 278C20D82C43E91900B748E9 /* BackgroundSystemTasks.framework */; };
+		27C8D3952C9005A3008053DA /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 27C8D3912C9005A3008053DA /* ArgumentParser */; };
+		27C8D3962C9005A3008053DA /* libsystem_eligibility.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */; };
 		27EE1CDF2C3B0442004AFE9B /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 27EE1CDE2C3B0442004AFE9B /* ArgumentParser */; };
 		27EE1CE02C3B0449004AFE9B /* libsystem_eligibility.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,15 @@
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27C8D3972C9005A3008053DA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		27EE1CD32C3B0426004AFE9B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,6 +89,7 @@
 		277F01622C3A942A00899CDA /* eligibility_util_internal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util_internal; sourceTree = BUILT_PRODUCTS_DIR; };
 		277F01772C3A9AA700899CDA /* libsystem_eligibility.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsystem_eligibility.tbd; path = usr/lib/system/libsystem_eligibility.tbd; sourceTree = SDKROOT; };
 		278C20D82C43E91900B748E9 /* BackgroundSystemTasks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BackgroundSystemTasks.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/PrivateFrameworks/BackgroundSystemTasks.framework; sourceTree = DEVELOPER_DIR; };
+		27C8D39B2C9005A3008053DA /* eligibility_util_sip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util_sip; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EC6A4D2C345EC500F76D70 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		27EE1CD52C3B0426004AFE9B /* eligibility_util */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = eligibility_util; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +120,26 @@
 				EligibilityDomainType.c,
 			);
 			target = 276F6D2C2C34537E00748E4D /* system_eligibility */;
+		};
+		27C8D3AB2C900608008053DA /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Eligibility+ArgumentParser.swift",
+				Helper.c,
+				RootCommand.swift,
+				Subcommands/DomainArguments.swift,
+				Subcommands/DumpSysdiagnoseDataCommand.swift,
+				Subcommands/ForceDomainAnswerCommand.swift,
+				Subcommands/ForceDomainSetAnswerCommand.swift,
+				Subcommands/GetDomainAnswerCommand.swift,
+				Subcommands/GetInternalStateCommand.swift,
+				Subcommands/GetStateDumpCommand.swift,
+				Subcommands/QueryNotificationNameCommand.swift,
+				Subcommands/ResetDomainCommand.swift,
+				Subcommands/SetInputCommand.swift,
+				Subcommands/SetTestModeCommand.swift,
+			);
+			target = 27C8D3902C9005A3008053DA /* eligibility_util_sip */;
 		};
 		27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -186,7 +218,7 @@
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		277F016A2C3A943000899CDA /* eligibility_util */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EE1CE42C3B045A004AFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibility_util; sourceTree = "<group>"; };
+		277F016A2C3A943000899CDA /* eligibility_util */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EE1CE42C3B045A004AFE9B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27C8D3AB2C900608008053DA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibility_util; sourceTree = "<group>"; };
 		27EC6A6B2C34627B00F76D70 /* EligibilityCore */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (279878372C600042006C82FF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 279878382C600042006C82FF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EligibilityCore; sourceTree = "<group>"; };
 		27EC6A752C3468DD00F76D70 /* system_eligibility */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (277FFF992C39909C00899CDA /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27EC6A7C2C3468DD00F76D70 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = system_eligibility; sourceTree = "<group>"; };
 		27EC6ACC2C3468E200F76D70 /* eligibilityd */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (27EC6AEA2C3468E200F76D70 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 27D0B0A32C58C602008BF3D6 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = eligibilityd; sourceTree = "<group>"; };
@@ -217,6 +249,15 @@
 			files = (
 				277F01762C3A94AD00899CDA /* ArgumentParser in Frameworks */,
 				277F03352C3AA16500899CDA /* libsystem_eligibility.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27C8D3942C9005A3008053DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27C8D3952C9005A3008053DA /* ArgumentParser in Frameworks */,
+				27C8D3962C9005A3008053DA /* libsystem_eligibility.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +293,7 @@
 				276F6D2D2C34537E00748E4D /* libsystem_eligibility.dylib */,
 				277F01622C3A942A00899CDA /* eligibility_util_internal */,
 				27EE1CD52C3B0426004AFE9B /* eligibility_util */,
+				27C8D39B2C9005A3008053DA /* eligibility_util_sip */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +389,26 @@
 			productReference = 277F01622C3A942A00899CDA /* eligibility_util_internal */;
 			productType = "com.apple.product-type.tool";
 		};
+		27C8D3902C9005A3008053DA /* eligibility_util_sip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27C8D3982C9005A3008053DA /* Build configuration list for PBXNativeTarget "eligibility_util_sip" */;
+			buildPhases = (
+				27C8D3932C9005A3008053DA /* Sources */,
+				27C8D3942C9005A3008053DA /* Frameworks */,
+				27C8D3972C9005A3008053DA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = eligibility_util_sip;
+			packageProductDependencies = (
+				27C8D3912C9005A3008053DA /* ArgumentParser */,
+			);
+			productName = eligibility_util;
+			productReference = 27C8D39B2C9005A3008053DA /* eligibility_util_sip */;
+			productType = "com.apple.product-type.tool";
+		};
 		27EE1CD42C3B0426004AFE9B /* eligibility_util */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27EE1CD92C3B0426004AFE9B /* Build configuration list for PBXNativeTarget "eligibility_util" */;
@@ -412,6 +474,7 @@
 				276F6D2C2C34537E00748E4D /* system_eligibility */,
 				277F01612C3A942A00899CDA /* eligibility_util_internal */,
 				27EE1CD42C3B0426004AFE9B /* eligibility_util */,
+				27C8D3902C9005A3008053DA /* eligibility_util_sip */,
 			);
 		};
 /* End PBXProject section */
@@ -432,6 +495,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		277F015E2C3A942A00899CDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27C8D3932C9005A3008053DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -725,6 +795,51 @@
 			};
 			name = Release;
 		};
+		27C8D3992C9005A3008053DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		27C8D39A2C9005A3008053DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = eligibility_util/Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.eligibility-util";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "eligibility_util/eligibility_util-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		27EE1CDA2C3B0426004AFE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -811,6 +926,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		27C8D3982C9005A3008053DA /* Build configuration list for PBXNativeTarget "eligibility_util_sip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27C8D3992C9005A3008053DA /* Debug */,
+				27C8D39A2C9005A3008053DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27EE1CD92C3B0426004AFE9B /* Build configuration list for PBXNativeTarget "eligibility_util" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -831,12 +955,25 @@
 				minimumVersion = 1.4.0;
 			};
 		};
+		27C8D3922C9005A3008053DA /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		277F01752C3A94AD00899CDA /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 277F01742C3A94AD00899CDA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		27C8D3912C9005A3008053DA /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27C8D3922C9005A3008053DA /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;
 		};
 		27EE1CDE2C3B0442004AFE9B /* ArgumentParser */ = {
