@@ -1,0 +1,49 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # This will trigger the workflow when a tag matching 'v*' pattern is pushed
+
+jobs:
+  publish_release:
+    runs-on: macos-14  # Use macOS runner for macOS/Xcode environment
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.0-beta'
+      - name: Build Binaries
+        run: |
+          xcodebuild archive \
+            -project eligibility.xcodeproj \
+            -scheme eligibility_util \
+            -configuration Release \
+            -destination "generic/platform=macOS" \
+            -archivePath "archives/eligibility_util" \
+            SKIP_INSTALL=NO
+          xcodebuild archive \
+            -project eligibility.xcodeproj \
+            -scheme eligibility_util_sip \
+            -configuration Release \
+            -destination "generic/platform=macOS" \
+            -archivePath "archives/eligibility_util_sip" \
+            SKIP_INSTALL=NO
+      - name: Compute Checksum
+        id: checksum
+        run: |
+          echo "util_md5=$(md5 ./archives/eligibility_util.xcarchive/Products/usr/local/bin/eligibility_util)" >> $GITHUB_OUTPUT
+          echo "util_sip_md5=$(md5 ./archives/eligibility_util_sip.xcarchive/Products/usr/local/bin/eligibility_util_sip)" >> $GITHUB_OUTPUT
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          body: |
+            | Name                                 | MD5                                        |
+            |--------------------------------------|--------------------------------------------|
+            | eligibility_util                     | ${{ steps.checksum.outputs.util_md5 }}     |
+            | eligibility_util_sip                 | ${{ steps.checksum.outputs.util_sip_md5 }} |
+          allowUpdates: true
+          artifacts: "archives/eligibility_util.xcarchive/Products/usr/local/bin/eligibility_util,archives/eligibility_util_sip.xcarchive/Products/usr/local/bin/eligibility_util_sip"
+          token: ${{ secrets.GITHUB_TOKEN }}
