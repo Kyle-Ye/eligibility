@@ -3,7 +3,7 @@ name: Publish Release
 on:
   push:
     tags:
-      - 'v*'  # This will trigger the workflow when a tag matching 'v*' pattern is pushed
+      - '^\d+\.\d+\.\d+$'  # This will trigger the workflow when a tag matching version pattern is pushed
 
 jobs:
   publish_release:
