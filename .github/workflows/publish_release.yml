@@ -3,7 +3,7 @@ name: Publish Release
 on:
   push:
     tags:
-      - '^\d+\.\d+\.\d+$'  # This will trigger the workflow when a tag matching version pattern is pushed
+      - '*'  # This will trigger the workflow when a tag matching version pattern is pushed
 
 jobs:
   publish_release:
@@ -37,11 +37,13 @@ jobs:
         run: |
           echo "util_md5=$(md5 -q ./archives/eligibility_util.xcarchive/Products/usr/local/bin/eligibility_util)" >> $GITHUB_OUTPUT
           echo "util_sip_md5=$(md5 -q ./archives/eligibility_util_sip.xcarchive/Products/usr/local/bin/eligibility_util_sip)" >> $GITHUB_OUTPUT
+          echo "xcode_path=$(xcrun xcode-select --print-path)" >> $GITHUB_OUTPUT
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1
         with:
           body: |
+            Build Xcode version ${{ steps.checksum.outputs.xcode_path }}
             | Name                                 | MD5                                        |
             |--------------------------------------|--------------------------------------------|
             | eligibility_util                     | ${{ steps.checksum.outputs.util_md5 }}     |
