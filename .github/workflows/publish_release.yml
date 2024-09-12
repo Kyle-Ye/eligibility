@@ -8,6 +8,8 @@ on:
 jobs:
   publish_release:
     runs-on: macos-14  # Use macOS runner for macOS/Xcode environment
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - name: Setup Xcode
@@ -33,8 +35,8 @@ jobs:
       - name: Compute Checksum
         id: checksum
         run: |
-          echo "util_md5=$(md5 ./archives/eligibility_util.xcarchive/Products/usr/local/bin/eligibility_util)" >> $GITHUB_OUTPUT
-          echo "util_sip_md5=$(md5 ./archives/eligibility_util_sip.xcarchive/Products/usr/local/bin/eligibility_util_sip)" >> $GITHUB_OUTPUT
+          echo "util_md5=$(md5 -q ./archives/eligibility_util.xcarchive/Products/usr/local/bin/eligibility_util)" >> $GITHUB_OUTPUT
+          echo "util_sip_md5=$(md5 -q ./archives/eligibility_util_sip.xcarchive/Products/usr/local/bin/eligibility_util_sip)" >> $GITHUB_OUTPUT
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1
